@@ -4,7 +4,7 @@ env/
 .prettierignore
 
 # Build files
-clien/node_modules/
+client/node_modules/
 
 # Byte compiled
 **/__pycache__/
