@@ -1,2 +1,0 @@
-Django admin username: muhammadsami
-Django admin password: AmsEYEvER
