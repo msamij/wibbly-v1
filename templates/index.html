@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block font %}
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&amp;display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon" />
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock %}
+
+{% block javascript %}
+  <script defer src="{% static 'build/index.js' %}"></script>
+{% endblock %}
+
+{% block body %}  
+  <body class="container">
+    <div class="overlay"></div>
+    <div class="message"></div>
+    <form class="form form-signup">
+      <input type="text" name="username" placeholder="username" maxlength="150" required class="input input__username" id="id_username"/>
+      <input type="password" name="password1" placeholder="password" maxlength="128" required class="input input__password" id="id_password1" />
+      <input type="password" name="password2" placeholder="confirm password" maxlength="128" required class="input input__confirm-password" id="id_password2" />
+      <input type="number" name="credit_card_no" placeholder="credit card no" required class="input input__credit-card-no" id="id_credit_card_no"/>
+      <button class="btn btn-secondary">Signin</button>
+    </form>
+
+    <form class="form form-login">
+      <input type="text" name="username" placeholder="username" maxlength="150" required class="input input__username" id="id_username"/>
+      <input type="password" name="password1" placeholder="password" maxlength="128" required class="input input__password" id="id_password1" />
+      <button class="btn btn-secondary">Login</button>
+    </form>
+    <div class="popup-list-menu booking-list">
+      <!-- <h2 class="heading-default booking-list__message">You currently have no bookings ☹️</h2> -->
+
+      <a href="#" class="booking">
+        <img
+          class="booking__image"
+          src=""
+          alt="booking image"
+        />
+        <div class="booking__title-box">
+          <p class="heading-default booking__title">Hotel transalvania</p>
+          <p class="heading-default booking__date">20, Jan 2021</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="popup-list-menu notification-list">
+      <!-- <h2 class="heading-default booking-list__message">✨ No notifications at this moment ✨</h2> -->
+
+      <p class="notification-list__notification">
+        🌟 Your booking for hotel transalvania for 20, dec 2022 is now finished.
+        <a href="#" class="btn-rating">Rate Now</a>
+      </p>
+    </div>
+
+    <div class="popup-list-menu review-list">
+      <div class="select-menu-box">
+        <select class="select-menu-box__menu">
+          <option value="0">Select rating</option>
+          <option value="1">Excellent</option>
+          <option value="2">Very Good</option>
+          <option value="3">Good</option>
+          <option value="4">Bad</option>
+          <option value="5">Poor</option>
+        </select>
+      </div>
+      <textarea class="review-list__description" cols="35" rows="3" placeholder="Description (Optional)"></textarea>
+      <button class="btn btn-secondary">Save</button>
+    </div>
+
+    <header class="header">
+        <img src="{% static 'img/logo.png' %}" alt="Logo" class="header__logo" />
+
+      <div class="header__menu">
+        <button class="btn btn-primary btn__bookings">
+          My Bookings
+          <svg class="btn__icon">
+            <use xlink:href="{% static 'img/symbol-defs.svg' %}#icon-credit-card"></use>
+          </svg>
+        </button>
+
+        <button class="btn btn-primary btn__notifications">
+          Notifications
+          <svg class="btn__icon">
+            <use xlink:href="{% static 'img/symbol-defs.svg' %}#icon-notifications-outline"></use>
+          </svg>
+        </button>
+
+        <button class="btn btn-primary btn__profile">
+          Profile
+          <svg class="btn__icon">
+            <use xlink:href="{% static 'img/symbol-defs.svg' %}#icon-user"></use>
+          </svg>
+        </button>
+
+        <div class="header__profile-menu">
+          <button class="btn btn-secondary btn-logout">Logout</button>
+          <button class="btn btn-secondary btn-signup">Signup</button>
+          <button class="btn btn-secondary btn-login">Login</button>
+          {% if request.user.is_authenticated %}
+            <style>
+              .btn-logout{
+                display: block;
+              }
+              .btn-login,.btn-signup{
+                display: none;
+              }
+            </style>
+          {% else %}
+            <style>
+              .btn-logout{
+                display: none;
+              }
+              .btn-login,.btn-signup{
+                display: block;
+              }
+            </style>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <h2 class="heading-default heading-primary">Hotels 🏨</h2>
+      <div class="figure-box">
+        {% for hotel in hotels %}
+          <figure class="figure">
+            <a href="/hotels/{{ hotel.hotel.name }}" class="figure__link">
+              <img
+                src="{{ hotel.hotel_image_url }}"
+                alt="Hotel Image"
+                class="figure__image"
+              />
+              <h2 class="heading-default figure__title">{{ hotel.hotel.name }}, <span class="figure__rooms">{{ hotel.hotel.no_of_rooms }} rooms</span></h2>
+              <h3 class="heading-default figure__price">{{ hotel.hotel.price_per_night }}$ night</h3>
+            </a>
+          </figure>
+        {% endfor %}
+      </div>
+
+      <h2 class="heading-default heading-primary">Tours ⛰️</h2>
+      <div class="figure-box">
+        {% for tour in tours %}
+          <figure class="figure">
+            <a href="/tours/{{ tour.tour.name }}" class="figure__link">
+                <img
+                  src="{{ tour.tour_image_url }}"
+                  alt="Tour Image"
+                  class="figure__image"
+                />
+              <h2 class="heading-default figure__title">{{ tour.tour.name }}, <span class="figure__duration">{{ tour.tour.duration }} day tour</span></h2>
+              <h3 class="heading-default figure__price">{{ tour.tour.price }}$</h3>
+            </a>
+          </figure>
+        {% endfor %}
+      </div>
+
+      <h2 class="heading-default heading-primary">Activities 🏊🏻‍♂️</h2>
+      <div class="figure-box">
+        {% for activity in activities %}
+          <figure class="figure">
+            <a href="/activities/{{ activity.activity.name }}" class="figure__link">
+              <img
+                src="{{ activity.activity_image_url }}"
+                alt="Activity Image"
+                class="figure__image"
+              />
+              <h2 class="heading-default figure__title">{{ activity.activity.name }}</h2>
+              <h3 class="heading-default figure__price">{{ activity.activity.price }}$</h3>
+            </a>
+          </figure>
+        {% endfor %}
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p class="heading-default copyright">&copy; Muhammad Sami</p>
+    </footer>
+  </body>
+{% endblock %}
