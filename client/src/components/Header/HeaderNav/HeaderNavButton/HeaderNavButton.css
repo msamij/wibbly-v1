@@ -1,0 +1,4 @@
+.btn__profile:focus + .header__profile-menu {
+  opacity: 1;
+  visibility: visible;
+}

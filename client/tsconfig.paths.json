@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@header/*": ["./src/components/Header/*"],
+      "@main/*": ["./src/components/Main/*"],
+      "@headerLogo/*": ["./src/components/Header/HeaderLogo/*"],
+      "@headerNav/*": ["./src/components/Header/HeaderNav/*"],
+      "@headerNavButton/*": ["./src/components/Header/HeaderNav/HeaderNavButton/*"],
+      "@headerProfileMenu/*": ["./src/components/Header/HeaderProfileMenu/*"],
+      "@figureContainer/*": ["./src/components/Main/FigureContainer/*"],
+      "@figure/*": ["./src/components/Main/FigureContainer/Figure/*"],
+      "@button/*": ["./src/components/UI/Button/*"],
+      "@heading/*": ["./src/components/UI/Heading/*"],
+      "@overlay/*": ["./src/components/UI/Overlay/*"]
+    }
+  }
+}
