@@ -3,7 +3,7 @@ from rest_framework import serializers
 from ..models import Tour
 
 
-class ToursSerializer(serializers.ModelSerializer):
+class TourSerializer(serializers.ModelSerializer):
     tour_images = serializers.SlugRelatedField(
         many=True,
         read_only=True,
