@@ -3,7 +3,8 @@ from server.apps.tours.models import Tour
 
 
 class TourImage(models.Model):
-    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+    tour = models.ForeignKey(
+        Tour, on_delete=models.CASCADE, related_name='tour_images')
     tour_image_url = models.URLField(max_length=255)
 
     def __str__(self) -> str:
