@@ -3,7 +3,8 @@ from server.apps.activities.models import Activity
 
 
 class ActivityImage(models.Model):
-    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    activity = models.ForeignKey(
+        Activity, on_delete=models.CASCADE, related_name='activity_images')
     activity_image_url = models.URLField(max_length=255)
 
     def __str__(self) -> str:
