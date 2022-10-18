@@ -2,17 +2,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@header/*": ["./src/components/Header/*"],
-      "@main/*": ["./src/components/Main/*"],
-      "@headerLogo/*": ["./src/components/Header/HeaderLogo/*"],
-      "@headerNav/*": ["./src/components/Header/HeaderNav/*"],
-      "@headerNavButton/*": ["./src/components/Header/HeaderNav/HeaderNavButton/*"],
-      "@headerProfileMenu/*": ["./src/components/Header/HeaderProfileMenu/*"],
-      "@figureContainer/*": ["./src/components/Main/FigureContainer/*"],
-      "@figure/*": ["./src/components/Main/FigureContainer/Figure/*"],
-      "@button/*": ["./src/components/UI/Button/*"],
-      "@heading/*": ["./src/components/UI/Heading/*"],
-      "@overlay/*": ["./src/components/UI/Overlay/*"]
+      "@header/*": ["./src/pages/products/components/Header/*"],
+      "@main/*": ["./src/pages/products/components/Main/*"],
+      "@headerLogo/*": ["./src/pages/products/components/Header/HeaderLogo/*"],
+      "@headerNav/*": ["./src/pages/products/components/Header/HeaderNav/*"],
+      "@headerProfileMenu/*": ["./src/pages/products/components/Header/HeaderProfileMenu/*"],
+      "@figureContainer/*": ["./src/pages/products/components/Main/FigureContainer/*"],
+      "@figure/*": ["./src/pages/products/components/Main/FigureContainer/Figure/*"],
+      "@button/*": ["./src/common/components/UI/Button/*"],
+      "@heading/*": ["./src/common/components/UI/Heading/*"],
+      "@overlay/*": ["./src/common/components/Overlay/*"],
+      "@form/*": ["./src/pages/products/components/Form/*"],
+      "@input/*": ["./src/pages/products/components/Input/*"],
+      "@message/*": ["./src/common/components/Message/*"],
+      "@footer/*": ["./src/pages/products/components/Footer/*"]
     }
   }
 }

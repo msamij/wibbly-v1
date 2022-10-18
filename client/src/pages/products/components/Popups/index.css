@@ -1,0 +1,16 @@
+/* Global style sheet for popup applied to Booking list component, Notification list component and Review Component */
+.popup {
+  position: absolute;
+  background-color: #ffff;
+  max-height: 15rem;
+  width: 55rem;
+  border-radius: 5px;
+  top: 20%;
+  left: 50%;
+  z-index: 200;
+  transform: translate(-50%, -20%);
+  padding: 2rem 3rem;
+  overflow-y: scroll;
+  opacity: 0;
+  visibility: hidden;
+}

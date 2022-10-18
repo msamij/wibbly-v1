@@ -1,0 +1,20 @@
+.booking {
+  background-color: #f7f7f7;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+}
+
+.booking__image {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50px;
+  margin-right: 3rem;
+  background-position: center;
+}
+
+.booking__title,
+.booking__date {
+  font-size: 1.5rem;
+}
