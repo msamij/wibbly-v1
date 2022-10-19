@@ -7,10 +7,10 @@
       "@headerLogo/*": ["./src/pages/products/components/Header/HeaderLogo/*"],
       "@headerNav/*": ["./src/pages/products/components/Header/HeaderNav/*"],
       "@headerProfileMenu/*": ["./src/pages/products/components/Header/HeaderProfileMenu/*"],
+      "@headingMain/*": ["./src/pages/products/components/Main/Heading/*"],
       "@figureContainer/*": ["./src/pages/products/components/Main/FigureContainer/*"],
       "@figure/*": ["./src/pages/products/components/Main/FigureContainer/Figure/*"],
       "@button/*": ["./src/common/components/UI/Button/*"],
-      "@heading/*": ["./src/common/components/UI/Heading/*"],
       "@overlay/*": ["./src/common/components/Overlay/*"],
       "@form/*": ["./src/pages/products/components/Form/*"],
       "@input/*": ["./src/pages/products/components/Input/*"],
@@ -21,7 +21,13 @@
       "@notification/*": ["./src/pages/products/components/Popups/NotificationList/Notification/*"],
       "@popupMessage/*": ["./src/pages/products/components/Popups/PopupMessage/*"],
       "@reviewMenu/*": ["./src/pages/products/components/Popups/ReviewMenu/*"],
-      "@footer/*": ["./src/pages/products/components/Footer/*"]
+      "@footer/*": ["./src/pages/products/components/Footer/*"],
+
+      "@productsDetailsHeader/*": ["./src/pages/productDetails/components/Header/*"],
+      "@productDetailsMain/*": ["./src/pages/productDetails/components/Main/*"],
+      "@gallery/*": ["./src/pages/productDetails/components/Main/Gallery/*"],
+      "@description/*": ["./src/pages/productDetails/components/Description/*"],
+      "@bookingDatePopup/*": ["./src/pages/productDetails/components/BookingDatePopup/*"]
     }
   }
 }

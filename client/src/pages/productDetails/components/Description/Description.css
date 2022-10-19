@@ -1,0 +1,14 @@
+.description {
+  width: 80rem;
+  padding: 5rem 0 5rem 15rem;
+  background-color: #fff;
+}
+.description__heading {
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+.description__text {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}

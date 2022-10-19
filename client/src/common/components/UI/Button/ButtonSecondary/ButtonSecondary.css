@@ -4,9 +4,7 @@
   color: var(--color-primary);
   background-color: var(--color-tertiary);
 }
-.btn-secondary:not(:last-of-type) {
-  margin-bottom: 2rem;
-}
 .btn-secondary:hover {
   color: var(--color-tertiary);
+  background-color: var(--color-primary);
 }

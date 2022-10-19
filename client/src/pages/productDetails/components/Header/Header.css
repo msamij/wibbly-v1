@@ -2,3 +2,18 @@
   padding: 6rem 0 5rem 15rem;
   background-color: var(--color-primary);
 }
+.heading-primary--bold {
+  font-size: 3.5rem;
+  font-weight: 500 !important;
+}
+.heading-secondary {
+  font-size: 1.6rem;
+}
+.heading-secondary--2 {
+  display: block;
+}
+.heading-price {
+  font-size: 1.4rem;
+  font-weight: 400 !important;
+  margin-top: 0.3rem;
+}

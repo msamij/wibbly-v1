@@ -1,0 +1,7 @@
+.gallery-image {
+  height: 25rem;
+  border-radius: 3px;
+}
+.gallery-image:not(:last-of-type) {
+  margin-right: 2rem;
+}

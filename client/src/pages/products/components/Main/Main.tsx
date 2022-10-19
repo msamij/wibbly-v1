@@ -1,6 +1,6 @@
 import React from 'react';
 import FigureContainer from '@figureContainer/FigureContainer';
-import Heading from '@heading/Heading';
+import Heading from '@headingMain/Heading';
 import './Main.css';
 
 function Main() {

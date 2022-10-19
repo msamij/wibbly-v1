@@ -31,3 +31,9 @@ a:visited {
   cursor: pointer;
   text-decoration: none;
 }
+
+.heading-default {
+  font-family: inherit;
+  font-weight: 300;
+  color: var(--color-secondary);
+}

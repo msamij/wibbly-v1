@@ -5,15 +5,13 @@ import '../App.css';
 interface ButtonClassConfig {
   btnText: string;
   btnType: 'bookings' | 'notifications' | 'profile';
+  emoji: any;
 }
 
 function ButtonPrimary(props: ButtonClassConfig) {
   return (
     <button className={`btn btn-primary btn__${props.btnType}`}>
-      {props.btnText}
-      <svg className="btn__icon">
-        <use xlinkHref=""></use>
-      </svg>
+      {props.btnText} {props.emoji}
     </button>
   );
 }

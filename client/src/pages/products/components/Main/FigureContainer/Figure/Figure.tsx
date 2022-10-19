@@ -13,7 +13,7 @@ function Figure() {
         <h2 className="heading-default figure__title">
           Transalvania, <span className="figure__rooms">100 rooms</span>
         </h2>
-        <h3 className="heading-default figure__price">400$ night</h3>
+        <h2 className="heading-default figure__price">400$ night</h2>
       </a>
     </figure>
   );

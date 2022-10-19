@@ -1,0 +1,55 @@
+.booking-date-popup {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  width: 45rem;
+  border-radius: 5px;
+  align-items: center;
+  background-color: #fff;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  z-index: 200;
+  transform: translate(-50%, -30%);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.booking-date-popup__heading {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: var(--color-secondary);
+}
+
+.booking-date-popup__month {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.booking-date-popup__month-title {
+  font-size: 1.9rem;
+  font-weight: 300;
+  margin: 0 1.3rem;
+}
+
+.booking-date-popup__date-selection {
+  display: flex;
+  width: 80%;
+  overflow-x: scroll;
+  margin-bottom: 2rem;
+}
+
+.btn-date {
+  padding: 0.8rem;
+  margin: 2rem;
+  margin-bottom: 0.3rem;
+  background-color: #f2efee;
+  color: rgb(82, 77, 77);
+}
+.btn-date:hover {
+  color: var(--color-tertiary);
+}
+.btn-date:focus {
+  background-color: var(--color-tertiary);
+  color: #fff;
+}
