@@ -1,0 +1,14 @@
+.rating-menu {
+  padding: 0.3rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-secondary);
+}
+.review-menu__description {
+  padding: 1rem;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  font-family: inherit;
+  color: var(--color-secondary);
+}

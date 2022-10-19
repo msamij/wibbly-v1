@@ -8,11 +8,21 @@ import Message from '@message/Message';
 import NotificationList from '@notificationList/NotificationsList';
 import Overlay from '@overlay/Overlay';
 import ReviewMenu from '@reviewMenu/ReviewMenu';
-import Products from './pages/products/components/App';
-import './App.css';
 
-function App() {
-  return <Products />;
+function Products() {
+  return (
+    <div className="container">
+      <Overlay />
+      <Message />
+      <Form />
+      <BookingList />
+      <NotificationList />
+      <ReviewMenu />
+      <Header />
+      <Main />
+      <Footer />
+    </div>
+  );
 }
 
-export default App;
+export default Products;

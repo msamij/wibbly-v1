@@ -1,13 +1,13 @@
 import React from 'react';
 import './Input.css';
 
-interface InputMetaData {
-  type: 'text' | 'password' | 'number';
+interface InputConfig {
   placeholder: string;
+  type: 'text' | 'password' | 'number';
 }
 
-function Input(props: InputMetaData) {
-  return <input type={props.type} placeholder={props.placeholder} />;
+function Input(props: InputConfig) {
+  return <input className="input" type={props.type} placeholder={props.placeholder} />;
 }
 
 export default Input;

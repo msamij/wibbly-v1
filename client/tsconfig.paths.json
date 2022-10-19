@@ -15,6 +15,12 @@
       "@form/*": ["./src/pages/products/components/Form/*"],
       "@input/*": ["./src/pages/products/components/Input/*"],
       "@message/*": ["./src/common/components/Message/*"],
+      "@bookingList/*": ["./src/pages/products/components/Popups/BookingList/*"],
+      "@booking/*": ["./src/pages/products/components/Popups/BookingList/Booking/*"],
+      "@notificationList/*": ["./src/pages/products/components/Popups/NotificationList/*"],
+      "@notification/*": ["./src/pages/products/components/Popups/NotificationList/Notification/*"],
+      "@popupMessage/*": ["./src/pages/products/components/Popups/PopupMessage/*"],
+      "@reviewMenu/*": ["./src/pages/products/components/Popups/ReviewMenu/*"],
       "@footer/*": ["./src/pages/products/components/Footer/*"]
     }
   }

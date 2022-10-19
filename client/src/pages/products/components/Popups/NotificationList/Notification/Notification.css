@@ -1,0 +1,16 @@
+.notification {
+  font-family: inherit;
+  font-size: 1.6rem;
+  color: var(--color-secondary);
+  text-align: center;
+}
+.btn-rating {
+  transition: all 0.3s;
+  margin-left: 0.3rem;
+  color: var(--color-secondary);
+}
+.btn-rating:hover {
+  padding: 0.5rem 0.8rem;
+  color: var(--color-primary);
+  background-color: var(--color-tertiary);
+}

@@ -1,4 +1,7 @@
 .popup__message {
+  font-family: inherit;
+  font-weight: 300;
+  color: var(--color-secondary);
   font-size: 2rem;
   text-align: center;
 }
