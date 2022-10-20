@@ -4,7 +4,7 @@ import ProductDetails from './pages/productDetails/components/App';
 import './App.css';
 
 function App() {
-  return <ProductDetails />;
+  return <Products />;
 }
 
 export default App;

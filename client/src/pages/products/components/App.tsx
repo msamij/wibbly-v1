@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BookingList from '@bookingList/BookingList';
 import Footer from '@footer/Footer';
 import Form from '@form/Form';
@@ -10,15 +10,17 @@ import Overlay from '@overlay/Overlay';
 import ReviewMenu from '@reviewMenu/ReviewMenu';
 
 function Products() {
+  const [buttonType, setButtonType] = useState('');
+
   return (
     <div className="container">
-      <Overlay />
+      {buttonType ? <Overlay onProfileButtonClick={setButtonType} /> : ''}
       <Message />
-      <Form />
+      {buttonType ? <Form buttonType={buttonType} /> : ''}
       <BookingList />
       <NotificationList />
       <ReviewMenu />
-      <Header />
+      <Header onProfileButtonClick={setButtonType} />
       <Main />
       <Footer />
     </div>

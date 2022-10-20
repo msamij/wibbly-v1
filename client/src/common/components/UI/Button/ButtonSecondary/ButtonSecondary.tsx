@@ -2,8 +2,17 @@ import React from 'react';
 import '../App.css';
 import './ButtonSecondary.css';
 
-function ButtonSecondary(props: { btnText: string }) {
-  return <button className="btn btn-secondary">{props.btnText}</button>;
+interface ButtonConfig {
+  btnText: string;
+  onButtonClick?: any;
+}
+
+function ButtonSecondary(props: ButtonConfig) {
+  return (
+    <button className="btn btn-secondary" onClick={props.onButtonClick}>
+      {props.btnText}
+    </button>
+  );
 }
 
 export default ButtonSecondary;
