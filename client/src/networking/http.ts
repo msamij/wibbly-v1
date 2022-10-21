@@ -16,12 +16,12 @@ class HTTP {
     });
   }
 
-  static async get(url: string): Promise<JSON> {
-    return await (await this.httpFetch('GET', url)).json();
+  static async get(url: string): Promise<Response> {
+    return await this.httpFetch('GET', url);
   }
 
-  static async post(url: string, body?: RequestBody): Promise<JSON> {
-    return await (await this.httpFetch('POST', url, body)).json();
+  static async post(url: string, body?: RequestBody): Promise<Response> {
+    return await this.httpFetch('POST', url, body);
   }
 }
 

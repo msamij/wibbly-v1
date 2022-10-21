@@ -5,7 +5,13 @@ import Input from '@input/Input';
 import React, { useState } from 'react';
 import './Form.css';
 
-function Form(props: { buttonType: string }) {
+interface FormConfig {
+  buttonType: string;
+  upDateMessage: React.Dispatch<React.SetStateAction<string>>;
+  upDateButtonType: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function Form(props: FormConfig) {
   const [username, setUsername] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
@@ -29,15 +35,22 @@ function Form(props: { buttonType: string }) {
 
   const onFormSubmit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault();
-    let results = null;
 
     (async () => {
-      results = await HTTP.post(`${Urls.baseUrl}${Urls.authUrl}${props.buttonType.toLowerCase()}`, {
+      const response = await HTTP.post(`${Urls.baseUrl}${Urls.authUrl}${props.buttonType.toLowerCase()}`, {
         username,
         password1,
         password2,
         credit_card_no: +creditCardNo,
       });
+      setUsername('');
+      setPassword1('');
+      setPassword2('');
+      setCreditCardNo('');
+      const jsonResponse = await response.json();
+
+      props.upDateMessage(jsonResponse);
+      if (response.status === 200 || response.status === 201) props.upDateButtonType('Logout');
     })();
   };
 

@@ -14,6 +14,7 @@ function Input(props: InputConfig) {
       onChange={props.onInputChange}
       value={props.currentValue}
       className="input"
+      required
       type={props.type}
       placeholder={props.placeholder}
     />

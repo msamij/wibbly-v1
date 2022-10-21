@@ -11,16 +11,21 @@ import React, { useState } from 'react';
 
 function Products() {
   const [buttonType, setButtonType] = useState('');
+  const [message, setMessage] = useState('');
 
   return (
     <div className="container">
-      {buttonType ? <Overlay onProfileButtonClick={setButtonType} /> : ''}
-      <Message />
-      {buttonType ? <Form buttonType={buttonType} /> : ''}
+      {buttonType ? <Overlay onOverlayClick={setButtonType} /> : ''}
+      {message ? <Message message={message} setMessage={setMessage} /> : ''}
+      {buttonType === 'Signup' || buttonType === 'Login' ? (
+        <Form buttonType={buttonType} upDateMessage={setMessage} upDateButtonType={setButtonType} />
+      ) : (
+        ''
+      )}
       <BookingList />
       <NotificationList />
       <ReviewMenu />
-      <Header onProfileButtonClick={setButtonType} />
+      <Header buttonType={buttonType} onProfileButtonClick={setButtonType} />
       <Main />
       <Footer />
     </div>

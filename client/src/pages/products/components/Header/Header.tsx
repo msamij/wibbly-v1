@@ -3,11 +3,16 @@ import HeaderLogo from '@headerLogo/HeaderLogo';
 import HeaderNav from '@headerNav/HeaderNav';
 import './Header.css';
 
-function Header(props: { onProfileButtonClick: (btnType: string) => void }) {
+export interface HeaderConfig {
+  buttonType: string;
+  onProfileButtonClick: (btnType: string) => void;
+}
+
+function Header(props: HeaderConfig) {
   return (
     <header className="header">
       <HeaderLogo />
-      <HeaderNav onProfileButtonClick={props.onProfileButtonClick} />
+      <HeaderNav buttonType={props.buttonType} onProfileButtonClick={props.onProfileButtonClick} />
     </header>
   );
 }
