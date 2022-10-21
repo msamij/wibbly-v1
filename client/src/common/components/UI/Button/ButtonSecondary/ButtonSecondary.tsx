@@ -3,14 +3,14 @@ import '../App.css';
 import './ButtonSecondary.css';
 
 interface ButtonConfig {
-  btnText: string;
-  onButtonClick?: any;
+  buttonText: string;
+  onButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 function ButtonSecondary(props: ButtonConfig) {
   return (
     <button className="btn btn-secondary" onClick={props.onButtonClick}>
-      {props.btnText}
+      {props.buttonText}
     </button>
   );
 }

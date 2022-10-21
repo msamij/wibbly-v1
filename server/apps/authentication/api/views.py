@@ -2,14 +2,14 @@ import json
 
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
+from rest_framework.decorators import api_view
 from server.apps.users.forms import UserForm
 from server.apps.users.models import User
 
 
-@require_http_methods(["POST"])
+@api_view(['POST'])
 def signup_user(request):
+    print(request)
     parsed_json = json.load(request)
     registered_form = UserForm(parsed_json)
 
@@ -29,10 +29,9 @@ def signup_user(request):
     return JsonResponse("Signup successful", status=201, safe=False)
 
 
-@require_http_methods(["POST"])
+@api_view(['POST'])
 def login_user(request):
     parsed_json = json.load(request)
-    print(parsed_json)
     user = authenticate(request,
                         username=parsed_json['username'],
                         password=parsed_json['password1'])
@@ -43,7 +42,7 @@ def login_user(request):
     return JsonResponse('Username or password incorrect', status=400, safe=False)
 
 
-@require_http_methods(['POST'])
+@api_view(['POST'])
 def logout_user(request):
     logout(request)
     return JsonResponse('Logged out successfully', status=200, safe=False)

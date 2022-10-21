@@ -17,7 +17,7 @@ function ReviewMenu() {
         </select>
       </div>
       <textarea className="review-menu__description" cols={35} rows={3} placeholder="Description (Optional)"></textarea>
-      <ButtonSecondary btnText="Save" />
+      <ButtonSecondary buttonText="Save" />
     </div>
   );
 }

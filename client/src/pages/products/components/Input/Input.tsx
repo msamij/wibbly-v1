@@ -4,10 +4,20 @@ import './Input.css';
 interface InputConfig {
   placeholder: string;
   type: 'text' | 'password' | 'number';
+  currentValue: string;
+  onInputChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 function Input(props: InputConfig) {
-  return <input className="input" type={props.type} placeholder={props.placeholder} />;
+  return (
+    <input
+      onChange={props.onInputChange}
+      value={props.currentValue}
+      className="input"
+      type={props.type}
+      placeholder={props.placeholder}
+    />
+  );
 }
 
 export default Input;

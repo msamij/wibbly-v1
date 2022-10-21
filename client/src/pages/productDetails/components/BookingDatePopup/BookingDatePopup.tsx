@@ -7,16 +7,16 @@ function BookingDatePopup() {
     <div className="booking-date-popup">
       <h2 className="heading-default booking-date-popup__heading">Select Check in date</h2>
       <div className="booking-date-popup__month">
-        <ButtonSecondary btnText="prev ⇐" />
+        <ButtonSecondary buttonText="prev ⇐" />
         <h2 className="heading-default booking-date-popup__month-title">March 2022</h2>
-        <ButtonSecondary btnText="next ⇒" />
+        <ButtonSecondary buttonText="next ⇒" />
       </div>
       <div className="booking-date-popup__date-selection">
         <button className="btn btn-date">20, Mar</button>
         <button className="btn btn-date">20, Mar</button>
         <button className="btn btn-date">20, Mar</button>
       </div>
-      <ButtonSecondary btnText="Save" />
+      <ButtonSecondary buttonText="Save" />
     </div>
   );
 }

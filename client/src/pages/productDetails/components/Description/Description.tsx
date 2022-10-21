@@ -9,7 +9,7 @@ function Description() {
       <h2 className="heading-default description__text">
         Dracula runs a high-end resort for monsters, meet drac, mavis, jonathan and all the monsters there.
       </h2>
-      <ButtonSecondary btnText="Reserve Booking" />
+      <ButtonSecondary buttonText="Reserve Booking" />
     </section>
   );
 }

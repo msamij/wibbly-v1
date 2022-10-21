@@ -2,6 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@csrftoken/*": ["./src/utils/*"],
+
       "@header/*": ["./src/pages/products/components/Header/*"],
       "@main/*": ["./src/pages/products/components/Main/*"],
       "@headerLogo/*": ["./src/pages/products/components/Header/HeaderLogo/*"],

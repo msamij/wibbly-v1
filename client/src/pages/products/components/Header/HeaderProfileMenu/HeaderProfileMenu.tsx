@@ -5,8 +5,8 @@ import './HeaderProfileMenu.css';
 function HeaderProfileMenu(props: { onProfileButtonClick: (btnType: string) => void }) {
   return (
     <div className="header__profile-menu">
-      <ButtonSecondary btnText="Login" onButtonClick={() => props.onProfileButtonClick('Login')} />
-      <ButtonSecondary btnText="Signup" onButtonClick={() => props.onProfileButtonClick('Signup')} />
+      <ButtonSecondary buttonText="Login" onButtonClick={() => props.onProfileButtonClick('Login')} />
+      <ButtonSecondary buttonText="Signup" onButtonClick={() => props.onProfileButtonClick('Signup')} />
     </div>
   );
 }
