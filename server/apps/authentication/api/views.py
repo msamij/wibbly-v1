@@ -9,7 +9,6 @@ from server.apps.users.models import User
 
 @api_view(['POST'])
 def signup_user(request):
-    print(request)
     parsed_json = json.load(request)
     registered_form = UserForm(parsed_json)
 
@@ -38,7 +37,6 @@ def login_user(request):
     if user is not None:
         login(request, user)
         return JsonResponse('Logged in successfully', status=200, safe=False)
-
     return JsonResponse('Username or password incorrect', status=400, safe=False)
 
 
@@ -46,3 +44,10 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return JsonResponse('Logged out successfully', status=200, safe=False)
+
+
+@api_view(['GET'])
+def is_logged_in(request):
+    if request.user.is_active:
+        return JsonResponse('User is authenticated', status=200, safe=False)
+    return JsonResponse('User is not authenticated', status=403, safe=False)

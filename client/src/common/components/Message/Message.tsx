@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import './Message.css';
 
-function Message(props: { message: string; setMessage: Function }) {
+interface MessageConfig {
+  message: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function Message(props: MessageConfig) {
   useEffect(() => {
     setTimeout(() => {
       props.setMessage('');

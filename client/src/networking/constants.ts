@@ -4,6 +4,7 @@ enum Urls {
   signupUrl = 'signup',
   loginUrl = 'login',
   logoutUrl = 'logout',
+  isLoggedIn = 'isloggedin',
 }
 
 export default Urls;
