@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Input from '@input/Input';
 import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
-import { csrfToken } from '@csrftoken/token';
+import Urls from '@http/constants';
+import HTTP from '@http/http';
+import Input from '@input/Input';
+import React, { useState } from 'react';
 import './Form.css';
 
 function Form(props: { buttonType: string }) {
@@ -27,6 +27,20 @@ function Form(props: { buttonType: string }) {
     setCreditCardNo(event.target.value);
   };
 
+  const onFormSubmit: React.FormEventHandler<HTMLFormElement> = event => {
+    event.preventDefault();
+    let results = null;
+
+    (async () => {
+      results = await HTTP.post(`${Urls.baseUrl}${Urls.authUrl}${props.buttonType.toLowerCase()}`, {
+        username,
+        password1,
+        password2,
+        credit_card_no: +creditCardNo,
+      });
+    })();
+  };
+
   const getInputsForSignupForm = () => {
     return (
       <React.Fragment>
@@ -44,43 +58,6 @@ function Form(props: { buttonType: string }) {
         />
       </React.Fragment>
     );
-  };
-
-  const onFormSubmit: React.FormEventHandler<HTMLFormElement> = event => {
-    event.preventDefault();
-    let results;
-
-    (async () => {
-      results = await fetch('http://127.0.0.1:8000/api/v1/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          username: username,
-          password1: password1,
-          password2: password2,
-          credit_card_no: creditCardNo,
-        }),
-      });
-
-      // results = await axios.post(
-      //   'http://127.0.0.1:8000/api/v1/auth/signup',
-      //   {
-      //     username: username,
-      //     password1: password1,
-      //     password2: password2,
-      //     credit_card_no: creditCardNo,
-      //   },
-      //   {
-      //     headers: {
-      //       'X-CSRFToken': csrfToken('csrftoken'),
-      //       // 'Access-Control-Allow-Origin': '*',
-      //       // 'Access-Control-Allow-Headers': '*',
-      //     },
-      //   }
-      // );
-
-      const res = await results.json();
-      console.log(res);
-    })();
   };
 
   return (
