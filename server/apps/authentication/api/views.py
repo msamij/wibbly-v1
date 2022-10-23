@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from server.apps.users.forms import UserForm
@@ -30,12 +31,14 @@ def signup_user(request):
 
 @api_view(['POST'])
 def login_user(request):
+    print(request.user)
     parsed_json = json.load(request)
     user = authenticate(request,
                         username=parsed_json['username'],
                         password=parsed_json['password1'])
     if user is not None:
         login(request, user)
+        print(request.user)
         return JsonResponse('Logged in successfully', status=200, safe=False)
     return JsonResponse('Username or password incorrect', status=400, safe=False)
 
@@ -48,6 +51,7 @@ def logout_user(request):
 
 @api_view(['GET'])
 def is_logged_in(request):
-    if request.user.is_active:
+    print(request.user)
+    if request.user.is_authenticated:
         return JsonResponse('User is authenticated', status=200, safe=False)
     return JsonResponse('User is not authenticated', status=403, safe=False)

@@ -15,12 +15,12 @@ function Products() {
   const [buttonType, setButtonType] = useState('');
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    (async () => {
-      const response = await HTTP.get(`${Urls.baseUrl}${Urls.authUrl}${Urls.isLoggedIn}`);
-      if (response.status === 200) setButtonType('Logout');
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await HTTP.get(`${Urls.baseUrl}${Urls.authUrl}${Urls.isLoggedIn}`);
+  //     if (response.status === 200) setButtonType('Logout');
+  //   })();
+  // }, []);
 
   return (
     <div className="container">

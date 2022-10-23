@@ -1,15 +1,46 @@
 import React from 'react';
 import './Figure.css';
+import { FigureContainerConfig } from '../FigureContainer';
 
-function Figure() {
+interface HotelResponseData {
+  no_of_rooms: number;
+  price_per_night: number;
+  hotel_images: [string];
+}
+
+interface TourResponseData {
+  price: number;
+  duration: number;
+  tour_images: [string];
+}
+
+interface ActivityResponseData {
+  price: number;
+  activity_images: [string];
+}
+
+interface ResponseData extends HotelResponseData, TourResponseData, ActivityResponseData {
+  id: number;
+  name: string;
+}
+
+interface FigureConfig {
+  figureType?: any;
+  responseData?: any;
+  index?: number;
+}
+
+function Figure(props: FigureConfig) {
+  if (props.responseData) {
+    console.log(props.figureType);
+    console.log(props.responseData);
+    console.log(props.index);
+  }
+
   return (
     <figure className="figure">
       <a href="#" className="figure__link">
-        <img
-          src="https://images.unsplash.com/photo-1509558567730-6c838437b06b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80"
-          alt="Hotel Image"
-          className="figure__image"
-        />
+        <img src={``} alt="Hotel Image" className="figure__image" />
         <h2 className="heading-default figure__title">
           Transalvania, <span className="figure__rooms">100 rooms</span>
         </h2>

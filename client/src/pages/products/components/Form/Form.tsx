@@ -43,10 +43,12 @@ function Form(props: FormConfig) {
         password2,
         credit_card_no: +creditCardNo,
       });
+
       setUsername('');
       setPassword1('');
       setPassword2('');
       setCreditCardNo('');
+
       const jsonResponse = await response.json();
 
       props.upDateMessage(jsonResponse);
