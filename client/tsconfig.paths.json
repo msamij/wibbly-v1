@@ -12,6 +12,9 @@
       "@headerProfileMenu/*": ["./src/pages/products/components/Header/HeaderProfileMenu/*"],
       "@headingMain/*": ["./src/pages/products/components/Main/Heading/*"],
       "@figureContainer/*": ["./src/pages/products/components/Main/FigureContainer/*"],
+
+      "@responseData/*": ["./src/pages/products/components/Main/Models/*"],
+
       "@figure/*": ["./src/pages/products/components/Main/FigureContainer/Figure/*"],
       "@button/*": ["./src/common/components/UI/Button/*"],
       "@overlay/*": ["./src/common/components/Overlay/*"],

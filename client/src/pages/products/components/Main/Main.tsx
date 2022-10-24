@@ -1,44 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import FigureContainer from '@figureContainer/FigureContainer';
 import Heading from '@headingMain/Heading';
-import './Main.css';
 import Urls from '@http/constants';
 import HTTP from '@http/http';
-
-const figureTitle = {
-  hotels: 'Hotels 🏨',
-  tours: 'Tours ⛰️',
-  activities: 'Activities 🏊🏻‍♂️',
-};
-
-interface ResponseData {
-  id: number;
-  name: string;
-}
-
-interface HotelResponseData extends ResponseData {
-  noOfRooms: number;
-  price_per_night: number;
-  hotel_images: [string];
-}
-
-interface TourResponseData {
-  price: number;
-  duration: number;
-  tour_images: [string];
-}
-
-interface ActivityResponseData {
-  price: number;
-  activity_images: [string];
-}
-
-type hotelsResponse = [HotelResponseData];
+import { activityResponse, hotelsResponse, toursResponse } from '@responseData/ResponseData';
+import React, { useEffect, useState } from 'react';
+import './Main.css';
 
 type figureType = ['hotels', 'tours', 'activities'];
 
 function Main() {
-  // const [hotelsData, setHotelsData] = useState<hotelsResponse>([{id:0,name:'', noOfRooms:0,price_per_night:0,hotel_images:['']}]);
   const [hotelsData, setHotelsData] = useState([]);
   const [toursData, setToursData] = useState([]);
   const [activitiesData, setActivitiesData] = useState([]);
@@ -52,7 +22,6 @@ function Main() {
       let jsonResponse = await response.json();
 
       if (figureNameIndex === 0) {
-        console.log(jsonResponse);
         setHotelsData(jsonResponse);
       } else if (figureNameIndex === 1) {
         setToursData(jsonResponse);
@@ -69,11 +38,11 @@ function Main() {
       {hotelsData.length > 0 && toursData.length > 0 && activitiesData.length > 0 ? (
         <React.Fragment>
           <Heading headingTitle="Hotels 🏨" />
-          {/* <FigureContainer /> */}
+          <FigureContainer response={(hotelsData as unknown) as hotelsResponse} figureType={'hotels'} />
           <Heading headingTitle="Tours ⛰️" />
-          {/* <FigureContainer /> */}
+          <FigureContainer response={(toursData as unknown) as toursResponse} figureType={'tours'} />
           <Heading headingTitle="Activities 🏊🏻‍♂️" />
-          {/* <FigureContainer /> */}
+          <FigureContainer response={(activitiesData as unknown) as activityResponse} figureType={'activities'} />
         </React.Fragment>
       ) : (
         ''

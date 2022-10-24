@@ -1,39 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Figure from '@figure/Figure';
 import './FigureContainer.css';
-import HTTP from '@http/http';
-import Urls from '@http/constants';
+import { hotelsResponse, toursResponse, activityResponse } from '@responseData/ResponseData';
 
 export interface FigureContainerConfig {
   figureType?: 'hotels' | 'activities' | 'tours';
-  updateFigureTitle?: React.Dispatch<React.SetStateAction<string>>;
+  response: hotelsResponse | toursResponse | activityResponse;
 }
 
-interface ResponseData {
-  id: number;
-  name: string;
-  images: [string];
-  price: number;
-  duration?: number;
-  noOfRooms?: number;
-}
-
-function FigureContainer(props: ResponseData) {
-  const [responseData, setResponseData] = useState([]);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await HTTP.get(`${Urls.baseUrl}${Urls.baseApiUrl}${props.figureType}`);
-  //     let jsonResponse = await response.json();
-  //     setResponseData(jsonResponse);
-  //   })();
-  // }, []);
+function FigureContainer(props: FigureContainerConfig) {
+  const getFigureBasedOnFigureType = (response: any, index: number) => {
+    if (props.figureType === 'hotels') {
+      return (
+        <Figure
+          figureType="hotels"
+          id={response.id}
+          name={response.name}
+          price={response.price_per_night}
+          noOfRooms={response.no_of_rooms}
+          image={response.hotel_images[0]}
+        />
+      );
+    } else if (props.figureType === 'tours') {
+      return (
+        <Figure
+          figureType="tours"
+          id={response.id}
+          name={response.name}
+          price={response.price}
+          duration={response.duration}
+          image={response.tour_images[0]}
+        />
+      );
+    } else if (props.figureType === 'activities') {
+      return (
+        <Figure
+          figureType="activities"
+          id={response.id}
+          name={response.name}
+          price={response.price}
+          image={response.activity_images[0]}
+        />
+      );
+    }
+  };
 
   return (
     <div className="figure-container">
-      <Figure />
-      {/* {responseData.map((response: any, index: number) => { */}
-      {/* })} */}
+      {props.response.map((response: any, index: number) => {
+        return getFigureBasedOnFigureType(response, index);
+      })}
     </div>
   );
 }
