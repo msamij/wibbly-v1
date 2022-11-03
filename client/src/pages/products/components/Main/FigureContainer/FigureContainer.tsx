@@ -13,8 +13,8 @@ function FigureContainer(props: FigureContainerConfig) {
     if (props.figureType === 'hotels') {
       return (
         <Figure
+          key={response.id}
           figureType="hotels"
-          id={response.id}
           name={response.name}
           price={response.price_per_night}
           noOfRooms={response.no_of_rooms}
@@ -24,8 +24,8 @@ function FigureContainer(props: FigureContainerConfig) {
     } else if (props.figureType === 'tours') {
       return (
         <Figure
+          key={response.id}
           figureType="tours"
-          id={response.id}
           name={response.name}
           price={response.price}
           duration={response.duration}
@@ -35,8 +35,8 @@ function FigureContainer(props: FigureContainerConfig) {
     } else if (props.figureType === 'activities') {
       return (
         <Figure
+          key={response.id}
           figureType="activities"
-          id={response.id}
           name={response.name}
           price={response.price}
           image={response.activity_images[0]}

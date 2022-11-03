@@ -2,7 +2,6 @@ import React from 'react';
 import './Figure.css';
 
 interface ResponseData {
-  id: number;
   name: string;
   image: string;
   price: number;
