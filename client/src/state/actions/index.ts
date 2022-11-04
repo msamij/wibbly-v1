@@ -1,7 +1,7 @@
 import Urls from '@http/constants';
 import HTTP from '@http/http';
 import { Dispatch } from 'react';
-import { ActionTypes } from '../types/actions';
+import { ActionTypes } from 'types/actions';
 
 export const fetchHotels = () => async (dispatch: Dispatch<ActionTypes>) => {
   const response = await (await HTTP.get(`${Urls.baseUrl}${Urls.baseApiUrl}hotels`)).json();

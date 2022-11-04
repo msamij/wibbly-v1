@@ -1,15 +1,24 @@
 import React from 'react';
 import Figure from '@figure/Figure';
+import {
+  activityResponse,
+  hotelsResponse,
+  IActivityResponse,
+  IHotelResponse,
+  ITourResponse,
+  toursResponse,
+} from 'types/response';
 import './FigureContainer.css';
-import { hotelsResponse, toursResponse, activityResponse } from '@responseData/ResponseData';
 
-export interface FigureContainerConfig {
-  figureType?: 'hotels' | 'activities' | 'tours';
+export interface IFigureContainerConfig {
+  figureType: 'hotels' | 'activities' | 'tours';
   response: hotelsResponse | toursResponse | activityResponse;
 }
 
-function FigureContainer(props: FigureContainerConfig) {
-  const getFigureBasedOnFigureType = (response: any, index: number) => {
+interface IResponse extends IHotelResponse, ITourResponse, IActivityResponse {}
+
+function FigureContainer(props: IFigureContainerConfig) {
+  const getFigureBasedOnFigureType = (response: IResponse, index: number) => {
     if (props.figureType === 'hotels') {
       return (
         <Figure

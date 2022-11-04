@@ -1,6 +1,6 @@
-import { ActionTypes, FETCH_ACTIVITIES, FETCH_HOTELS, FETCH_TOURS } from '../types/actions';
-import { IActivityResponse, IHotelResponse, ITourResponse } from '../types/response';
-import { Store } from '../types/store';
+import { ActionTypes, FETCH_ACTIVITIES, FETCH_HOTELS, FETCH_TOURS } from 'types/actions';
+import { IActivityResponse, IHotelResponse, ITourResponse } from 'types/response';
+import { Store } from 'types/store';
 
 const INITIAL_ACTIVITY = {
   id: 0,

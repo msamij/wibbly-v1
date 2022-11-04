@@ -1,61 +1,10 @@
+import { fetchActivities, fetchHotels, fetchTours } from '@actions/index';
 import FigureContainer from '@figureContainer/FigureContainer';
 import Heading from '@headingMain/Heading';
-import Urls from '@http/constants';
-import HTTP from '@http/http';
-import { activityResponse, hotelsResponse, toursResponse } from '@responseData/ResponseData';
-import React, { useEffect, useState } from 'react';
+import { activityResponse, hotelsResponse, toursResponse } from 'types/response';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { ActionTypes } from 'src/state/types/actions';
-import { Store } from 'src/state/types/store';
-import { fetchActivities, fetchHotels, fetchTours } from '../../../../state/actions/index';
 import './Main.css';
-
-type figureType = ['hotels', 'tours', 'activities'];
-
-// function Main() {
-//   const [hotelsData, setHotelsData] = useState([]);
-//   const [toursData, setToursData] = useState([]);
-//   const [activitiesData, setActivitiesData] = useState([]);
-//   const [figureNameIndex, setFigureNameIndex] = useState(0);
-
-//   let figureNames: figureType = ['hotels', 'tours', 'activities'];
-
-//   useEffect(() => {
-//     (async () => {
-//       const response = await HTTP.get(`${Urls.baseUrl}${Urls.baseApiUrl}${figureNames[figureNameIndex]}`);
-//       let jsonResponse = await response.json();
-
-//       if (figureNameIndex === 0) {
-//         setHotelsData(jsonResponse);
-//       } else if (figureNameIndex === 1) {
-//         setToursData(jsonResponse);
-//       } else if (figureNameIndex === 2) {
-//         setActivitiesData(jsonResponse);
-//       }
-
-//       if (figureNameIndex < figureNames.length - 1) setFigureNameIndex(figureNameIndex + 1);
-//     })();
-//   }, [figureNameIndex]);
-
-//   return (
-//     <main className="main">
-//       {hotelsData.length > 0 && toursData.length > 0 && activitiesData.length > 0 ? (
-//         <React.Fragment>
-//           <Heading headingTitle="Hotels 🏨" />
-//           <FigureContainer response={(hotelsData as unknown) as hotelsResponse} figureType={'hotels'} />
-//           <Heading headingTitle="Tours ⛰️" />
-//           <FigureContainer response={(toursData as unknown) as toursResponse} figureType={'tours'} />
-//           <Heading headingTitle="Activities 🏊🏻‍♂️" />
-//           <FigureContainer response={(activitiesData as unknown) as activityResponse} figureType={'activities'} />
-//         </React.Fragment>
-//       ) : (
-//         ''
-//       )}
-//     </main>
-//   );
-// }
-
-// export default Main;
 
 interface IMainState {
   products: {
@@ -64,7 +13,6 @@ interface IMainState {
     hotels: hotelsResponse;
   };
 }
-
 interface IMainProps {
   fetchActivities: () => Promise<void>;
   fetchHotels: () => Promise<void>;
@@ -79,12 +27,11 @@ function Main(props: IMainProps) {
     props.fetchActivities();
   }, []);
 
-  console.log(props);
   return (
     <main className="main">
-      {props.state.products.activities.length > 0 &&
-      props.state.products.tours.length > 0 &&
-      props.state.products.hotels.length > 0 ? (
+      {props.state.products.activities.length > 1 &&
+      props.state.products.tours.length > 1 &&
+      props.state.products.hotels.length > 1 ? (
         <React.Fragment>
           <Heading headingTitle="Hotels 🏨" />
           <FigureContainer response={props.state.products.hotels} figureType={'hotels'} />

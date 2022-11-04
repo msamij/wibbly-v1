@@ -3,7 +3,11 @@
     "baseUrl": ".",
     "paths": {
       "@http/*": ["./src/networking/*"],
-      "@urls/*": ["./src/networking/*"],
+
+      "@actions/*": ["./src/state/actions/*"],
+      "@reducers/*": ["./src/state/reducers/*"],
+
+      "types/*": ["./src/state/types/*"],
 
       "@header/*": ["./src/pages/products/components/Header/*"],
       "@main/*": ["./src/pages/products/components/Main/*"],

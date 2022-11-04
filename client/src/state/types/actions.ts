@@ -1,4 +1,4 @@
-import { hotelsResponse, activityResponse, toursResponse } from './response';
+import { activityResponse, hotelsResponse, toursResponse } from './response';
 
 export const FETCH_HOTELS = 'FETCH_HOTELS';
 export const FETCH_TOURS = 'FETCH_TOURS';
