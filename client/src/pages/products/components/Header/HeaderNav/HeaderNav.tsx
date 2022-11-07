@@ -10,7 +10,7 @@ function HeaderNav(props: HeaderConfig) {
       <ButtonPrimary btnType="bookings" btnText="My Bookings" emoji={'🔖'}></ButtonPrimary>
       <ButtonPrimary btnType="notifications" btnText="Notifications" emoji={'🔔'}></ButtonPrimary>
       <ButtonPrimary btnType="profile" btnText="Profile" emoji={'👤'}></ButtonPrimary>
-      <HeaderProfileMenu buttonType={props.buttonType} onProfileButtonClick={props.onProfileButtonClick} />
+      <HeaderProfileMenu />
     </div>
   );
 }
