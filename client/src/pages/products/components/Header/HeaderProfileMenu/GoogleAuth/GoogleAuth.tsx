@@ -1,5 +1,6 @@
 import { changeAuth, trySignIn, trySignOut } from '@actions/auth';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import GoogleAuthButton from './GoogleAuthButton';
 import { connect } from 'react-redux';
 
 interface IGoogleAuthState {
@@ -7,50 +8,44 @@ interface IGoogleAuthState {
     isSignedIn: boolean;
   };
 }
-interface IMainProps {
+interface IGoogleAuthProps {
   state: IGoogleAuthState;
   trySignIn: (auth: any) => void;
   trySignOut: (auth: any) => void;
   changeAuth: (isSignedIn: boolean) => void;
 }
 
-class GoogleAuth extends React.Component<IMainProps> {
-  private auth: any;
+function GoogleAuth(props: IGoogleAuthProps) {
+  const [auth, setAuth] = useState<any>(null);
+  const [error, setError] = useState<any>(null);
 
-  componentDidMount(): void {
-    (window as any).gapi.load('client:auth2', async () => {
-      await (window as any).gapi.client.init({
-        clientId: '960507316821-h8tc4fapcfacfhd6tlikjpb88aodv9so.apps.googleusercontent.com',
-        scope: 'email',
-        plugin_name: 'wibbly-v1',
-      });
-      this.auth = (window as any).gapi.auth2.getAuthInstance();
-      this.props.changeAuth(this.auth.isSignedIn.get());
-      this.auth.isSignedIn.listen(this.props.changeAuth);
-    });
-  }
-
-  renderAuthButton() {
-    if (this.props.state.auth.isSignedIn) {
-      return (
-        <button onClick={() => this.props.trySignOut(this.auth)} className="ui red google button">
-          <i className="google icon"></i>
-          Sign out
-        </button>
-      );
-    } else {
-      return (
-        <button onClick={() => this.props.trySignIn(this.auth)} className="ui red google button">
-          <i className="google icon"></i>
-          Sign In with google
-        </button>
-      );
+  useEffect(() => {
+    if (auth) {
+      props.changeAuth(auth.isSignedIn.get());
+      auth.isSignedIn.listen(props.changeAuth);
     }
-  }
+  }, [auth]);
 
-  render(): React.ReactNode {
-    return this.renderAuthButton();
-  }
+  useEffect(() => {
+    try {
+      (window as any).gapi.load('client:auth2', async () => {
+        await (window as any).gapi.client.init({
+          clientId: '960507316821-h8tc4fapcfacfhd6tlikjpb88aodv9so.apps.googleusercontent.com',
+          scope: 'email',
+          plugin_name: 'wibbly-v1',
+        });
+        setAuth((window as any).gapi.auth2.getAuthInstance());
+      });
+    } catch (error) {
+      setError(error);
+    }
+  }, [error]);
+
+  return props.state.auth.isSignedIn ? (
+    <GoogleAuthButton callback={trySignOut(auth)} buttonText="Sign Out" />
+  ) : (
+    <GoogleAuthButton callback={trySignIn(auth)} buttonText="Sign in with Google" />
+  );
 }
 
 const mapStateToProps = (state: IGoogleAuthState) => {

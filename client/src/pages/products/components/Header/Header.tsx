@@ -3,12 +3,12 @@ import HeaderLogo from '@headerLogo/HeaderLogo';
 import HeaderNav from '@headerNav/HeaderNav';
 import './Header.css';
 
-export interface HeaderConfig {
+export interface IHeaderProps {
   buttonType: string;
   onProfileButtonClick: (btnType: string) => void;
 }
 
-function Header(props: HeaderConfig) {
+function Header(props: IHeaderProps) {
   return (
     <header className="header">
       <HeaderLogo />

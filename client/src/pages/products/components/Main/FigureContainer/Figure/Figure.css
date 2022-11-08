@@ -2,6 +2,7 @@
   padding: 2rem 3rem;
   border-radius: 3px;
   background-color: #f7f7f7;
+  margin: 0;
 }
 .figure:not(:last-of-type) {
   margin-right: 4rem;

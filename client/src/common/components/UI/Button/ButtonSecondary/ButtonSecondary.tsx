@@ -2,12 +2,12 @@ import React from 'react';
 import '../App.css';
 import './ButtonSecondary.css';
 
-interface ButtonConfig {
+interface IButtonSecondary {
   buttonText: string;
   onButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function ButtonSecondary(props: ButtonConfig) {
+function ButtonSecondary(props: IButtonSecondary) {
   return (
     <button className="btn btn-secondary" onClick={props.onButtonClick}>
       {props.buttonText}
