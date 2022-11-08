@@ -7,9 +7,6 @@
 .figure:not(:last-of-type) {
   margin-right: 4rem;
 }
-.figure__link {
-  text-decoration: none;
-}
 .figure__image {
   height: 20rem;
 }

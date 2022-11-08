@@ -4,7 +4,7 @@ import './Main.css';
 
 function Main() {
   return (
-    <main className="main">
+    <main className="product-detail-main">
       <Gallery />
     </main>
   );

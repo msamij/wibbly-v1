@@ -3,7 +3,7 @@ import './Header.css';
 
 function Header() {
   return (
-    <header className="header">
+    <header className="product-detail-header">
       <div>
         <h2 className="heading-default heading-primary--bold">Transalvania</h2>
         <h2 className="heading-default heading-secondary">

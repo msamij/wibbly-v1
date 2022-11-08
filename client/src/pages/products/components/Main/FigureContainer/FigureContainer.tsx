@@ -9,8 +9,9 @@ import {
   toursResponse,
 } from 'types/response';
 import './FigureContainer.css';
+import { Link } from 'react-router-dom';
 
-export interface IFigureContainerConfig {
+interface IFigureContainerConfig {
   figureType: 'hotels' | 'activities' | 'tours';
   response: hotelsResponse | toursResponse | activityResponse;
 }
@@ -21,35 +22,38 @@ function FigureContainer(props: IFigureContainerConfig) {
   const getFigureBasedOnFigureType = (response: IResponse, index: number) => {
     if (props.figureType === 'hotels') {
       return (
-        <Figure
-          key={response.id}
-          figureType="hotels"
-          name={response.name}
-          price={response.price_per_night}
-          noOfRooms={response.no_of_rooms}
-          image={response.hotel_images[0]}
-        />
+        <Link to={`/hotels/${response.name}`} key={response.id}>
+          <Figure
+            figureType="hotels"
+            name={response.name}
+            price={response.price_per_night}
+            noOfRooms={response.no_of_rooms}
+            image={response.hotel_images[0]}
+          />
+        </Link>
       );
     } else if (props.figureType === 'tours') {
       return (
-        <Figure
-          key={response.id}
-          figureType="tours"
-          name={response.name}
-          price={response.price}
-          duration={response.duration}
-          image={response.tour_images[0]}
-        />
+        <Link to={`/tours/${response.name}`} key={response.id}>
+          <Figure
+            figureType="tours"
+            name={response.name}
+            price={response.price}
+            duration={response.duration}
+            image={response.tour_images[0]}
+          />
+        </Link>
       );
     } else if (props.figureType === 'activities') {
       return (
-        <Figure
-          key={response.id}
-          figureType="activities"
-          name={response.name}
-          price={response.price}
-          image={response.activity_images[0]}
-        />
+        <Link to={`activities/${response.name}`} key={response.id}>
+          <Figure
+            figureType="activities"
+            name={response.name}
+            price={response.price}
+            image={response.activity_images[0]}
+          />
+        </Link>
       );
     }
   };

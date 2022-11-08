@@ -21,7 +21,7 @@ function Figure(props: IResponse) {
 
   return (
     <figure className="figure">
-      <a href={`/${props.figureType}/${props.name}`} className="figure__link">
+      <React.Fragment>
         <img src={props.image} alt="Image" className="figure__image" />
         <h2 className="heading-default figure__title">
           {props.name}, {getSubTitle()}
@@ -29,7 +29,7 @@ function Figure(props: IResponse) {
         <h2 className="heading-default figure__price">
           {props.price}$ {`${props.figureType === 'hotels' ? 'night' : ''}`}
         </h2>
-      </a>
+      </React.Fragment>
     </figure>
   );
 }

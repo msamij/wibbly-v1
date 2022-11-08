@@ -1,5 +1,6 @@
 .figure-container {
   display: flex;
+  justify-content: space-between;
 }
 .figure-container:not(:last-of-type) {
   margin-bottom: 5rem;

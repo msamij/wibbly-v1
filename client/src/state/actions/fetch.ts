@@ -1,7 +1,7 @@
 import Urls from '@http/constants';
 import HTTP from '@http/http';
 import { Dispatch } from 'react';
-import { ActionTypes, FETCH_ACTIVITIES, FETCH_HOTELS, FETCH_TOURS } from 'types/actions';
+import { ActionTypes, FETCH_ACTIVITIES, FETCH_HOTELS, FETCH_TOURS, FETCH_PRODUCT } from 'types/actions';
 
 export const fetchHotels = () => async (dispatch: Dispatch<ActionTypes>) => {
   const response = await (await HTTP.get(`${Urls.baseUrl}${Urls.baseApiUrl}hotels`)).json();
@@ -16,4 +16,9 @@ export const fetchTours = () => async (dispatch: Dispatch<ActionTypes>) => {
 export const fetchActivities = () => async (dispatch: Dispatch<ActionTypes>) => {
   const response = await (await HTTP.get(`${Urls.baseUrl}${Urls.baseApiUrl}activities`)).json();
   dispatch({ type: FETCH_ACTIVITIES, payload: response });
+};
+
+export const fetchProductDetails = (pathName: string) => async (dispatch: Dispatch<ActionTypes>) => {
+  const response = await (await HTTP.get(`${Urls.baseUrl}${Urls.baseApiUrl}${pathName}`)).json();
+  dispatch({ type: FETCH_PRODUCT, payload: response });
 };

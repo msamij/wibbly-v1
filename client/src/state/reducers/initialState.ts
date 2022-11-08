@@ -1,4 +1,4 @@
-import { IActivityResponse, IHotelResponse, ITourResponse } from 'types/response';
+import { IActivityDetailResponse, IActivityResponse, IHotelResponse, ITourResponse } from 'types/response';
 
 const INITIAL_ACTIVITY = {
   id: 0,
@@ -25,6 +25,7 @@ const INITIAL_HOTEL = {
 
 export const INITIAL_STATE = {
   isSignedIn: false,
+  productDetail: {} as IActivityDetailResponse,
   activities: [INITIAL_ACTIVITY] as [IActivityResponse],
   tours: [INITIAL_TOUR] as [ITourResponse],
   hotels: [INITIAL_HOTEL] as [IHotelResponse],
