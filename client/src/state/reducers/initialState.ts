@@ -1,4 +1,6 @@
-import { IActivityDetailResponse, IActivityResponse, IHotelResponse, ITourResponse } from 'types/response';
+import { activityResponse, IActivityDetailResponse } from '@models/Activity';
+import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
+import { ITourDetailResponse, toursResponse } from '@models/Tour';
 
 const INITIAL_ACTIVITY = {
   id: 0,
@@ -25,10 +27,10 @@ const INITIAL_HOTEL = {
 
 export const INITIAL_STATE = {
   isSignedIn: false,
-  productDetail: {} as IActivityDetailResponse,
-  activities: [INITIAL_ACTIVITY] as [IActivityResponse],
-  tours: [INITIAL_TOUR] as [ITourResponse],
-  hotels: [INITIAL_HOTEL] as [IHotelResponse],
   bookings: [''] as [string],
   notifications: [''] as [string],
+  tours: [INITIAL_TOUR] as toursResponse,
+  hotels: [INITIAL_HOTEL] as hotelsResponse,
+  activities: [INITIAL_ACTIVITY] as activityResponse,
+  productDetail: {} as IActivityDetailResponse | ITourDetailResponse | IHotelDetailResponse,
 };

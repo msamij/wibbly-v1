@@ -8,6 +8,7 @@
       "@reducers/*": ["./src/state/reducers/*"],
 
       "types/*": ["./src/state/types/*"],
+      "@models/*": ["./src/networking/Models/*"],
 
       "@header/*": ["./src/pages/products/components/Header/*"],
       "@main/*": ["./src/pages/products/components/Main/*"],

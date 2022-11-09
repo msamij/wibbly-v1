@@ -1,25 +1,19 @@
 import React from 'react';
 import Figure from '@figure/Figure';
-import {
-  activityResponse,
-  hotelsResponse,
-  IActivityResponse,
-  IHotelResponse,
-  ITourResponse,
-  toursResponse,
-} from 'types/response';
-import './FigureContainer.css';
+import { activityResponse, IActivityResponse } from '@models/Activity';
+import { hotelsResponse, IHotelResponse } from '@models/Hotel';
+import { ITourResponse, toursResponse } from '@models/Tour';
 import { Link } from 'react-router-dom';
+import './FigureContainer.css';
 
-interface IFigureContainerConfig {
+interface IFigureContainerProps {
   figureType: 'hotels' | 'activities' | 'tours';
   response: hotelsResponse | toursResponse | activityResponse;
 }
-
 interface IResponse extends IHotelResponse, ITourResponse, IActivityResponse {}
 
-function FigureContainer(props: IFigureContainerConfig) {
-  const getFigureBasedOnFigureType = (response: IResponse, index: number) => {
+function FigureContainer(props: IFigureContainerProps) {
+  const returnFigureBasedOnFigureType = (response: IResponse) => {
     if (props.figureType === 'hotels') {
       return (
         <Link to={`/hotels/${response.name}`} key={response.id}>
@@ -60,8 +54,8 @@ function FigureContainer(props: IFigureContainerConfig) {
 
   return (
     <div className="figure-container">
-      {props.response.map((response: any, index: number) => {
-        return getFigureBasedOnFigureType(response, index);
+      {props.response.map((response: any) => {
+        return returnFigureBasedOnFigureType(response);
       })}
     </div>
   );

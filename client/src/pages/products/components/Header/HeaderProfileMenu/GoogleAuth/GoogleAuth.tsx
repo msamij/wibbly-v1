@@ -53,4 +53,5 @@ const mapStateToProps = (state: IGoogleAuthState) => {
     state,
   };
 };
+
 export default connect(mapStateToProps, { trySignIn, trySignOut, changeAuth })(GoogleAuth);

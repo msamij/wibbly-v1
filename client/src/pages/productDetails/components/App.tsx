@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
+import BookingDatePopup from '@bookingDatePopup/BookingDatePopup';
 import Description from '@description/Description';
 import Main from '@productDetailsMain/Main';
 import Header from '@productsDetailsHeader/Header';
-import BookingDatePopup from '@bookingDatePopup/BookingDatePopup';
 import { useLocation } from 'react-router-dom';
 
 function ProductDetails() {

@@ -1,11 +1,6 @@
-import {
-  activityResponse,
-  hotelsResponse,
-  IActivityDetailResponse,
-  IHotelDetailResponse,
-  ITourDetailResponse,
-  toursResponse,
-} from './response';
+import { activityResponse, IActivityDetailResponse } from '@models/Activity';
+import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
+import { ITourDetailResponse, toursResponse } from '@models/Tour';
 
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';

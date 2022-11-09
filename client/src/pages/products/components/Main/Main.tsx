@@ -1,9 +1,11 @@
 import { fetchActivities, fetchHotels, fetchTours } from '@actions/fetch';
 import FigureContainer from '@figureContainer/FigureContainer';
 import Heading from '@headingMain/Heading';
+import { activityResponse } from '@models/Activity';
+import { hotelsResponse } from '@models/Hotel';
+import { toursResponse } from '@models/Tour';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { activityResponse, hotelsResponse, toursResponse } from 'types/response';
 import './Main.css';
 
 interface IMainState {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Figure.css';
 
-interface IResponse {
+interface IFigureResponseProps {
   name: string;
   image: string;
   price: number;
@@ -10,7 +10,7 @@ interface IResponse {
   figureType: 'hotels' | 'activities' | 'tours';
 }
 
-function Figure(props: IResponse) {
+function Figure(props: IFigureResponseProps) {
   const getSubTitle = () => {
     if (props.figureType === 'hotels') {
       return <span className="figure__title--sub">{props.noOfRooms} rooms</span>;
