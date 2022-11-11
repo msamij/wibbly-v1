@@ -1,10 +1,9 @@
 import React from 'react';
 import ButtonPrimary from '@button/ButtonPrimary/ButtonPrimary';
-import { IHeaderProps } from '@header/Header';
 import HeaderProfileMenu from '@headerProfileMenu/HeaderProfileMenu';
 import './HeaderNav.css';
 
-function HeaderNav(props: IHeaderProps) {
+function HeaderNav() {
   return (
     <div className="header__nav">
       <ButtonPrimary btnType="bookings" btnText="My Bookings" emoji={'🔖'}></ButtonPrimary>

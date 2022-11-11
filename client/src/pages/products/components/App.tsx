@@ -1,6 +1,5 @@
 import BookingList from '@bookingList/BookingList';
 import Footer from '@footer/Footer';
-import Form from '@form/Form';
 import Header from '@header/Header';
 import Main from '@main/Main';
 import Message from '@message/Message';
@@ -10,14 +9,12 @@ import ReviewMenu from '@reviewMenu/ReviewMenu';
 import React, { useState } from 'react';
 
 function Products() {
-  const [buttonType, setButtonType] = useState('');
-
   return (
     <div className="container">
       {/* <BookingList /> */}
       {/* <NotificationList /> */}
       {/* <ReviewMenu /> */}
-      <Header buttonType={buttonType} onProfileButtonClick={setButtonType} />
+      {/* <Header /> */}
       <Main />
       <Footer />
     </div>

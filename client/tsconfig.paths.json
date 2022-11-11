@@ -9,22 +9,19 @@
 
       "types/*": ["./src/state/types/*"],
       "@models/*": ["./src/networking/Models/*"],
+      "@responseData/*": ["./src/pages/products/components/Main/Models/*"],
 
-      "@header/*": ["./src/pages/products/components/Header/*"],
+      "@header/*": ["./src/common/components/Header/*"],
       "@main/*": ["./src/pages/products/components/Main/*"],
-      "@headerLogo/*": ["./src/pages/products/components/Header/HeaderLogo/*"],
-      "@headerNav/*": ["./src/pages/products/components/Header/HeaderNav/*"],
-      "@headerProfileMenu/*": ["./src/pages/products/components/Header/HeaderProfileMenu/*"],
+      "@headerLogo/*": ["./src/common/components/Header/HeaderLogo/*"],
+      "@headerNav/*": ["./src/common/components/Header/HeaderNav/*"],
+      "@headerProfileMenu/*": ["./src/common/components/Header/HeaderProfileMenu/*"],
       "@headingMain/*": ["./src/pages/products/components/Main/Heading/*"],
       "@figureContainer/*": ["./src/pages/products/components/Main/FigureContainer/*"],
-
-      "@responseData/*": ["./src/pages/products/components/Main/Models/*"],
 
       "@figure/*": ["./src/pages/products/components/Main/FigureContainer/Figure/*"],
       "@button/*": ["./src/common/components/UI/Button/*"],
       "@overlay/*": ["./src/common/components/Overlay/*"],
-      "@form/*": ["./src/pages/products/components/Form/*"],
-      "@input/*": ["./src/pages/products/components/Input/*"],
       "@message/*": ["./src/common/components/Message/*"],
       "@bookingList/*": ["./src/pages/products/components/Popups/BookingList/*"],
       "@booking/*": ["./src/pages/products/components/Popups/BookingList/Booking/*"],
@@ -34,7 +31,7 @@
       "@reviewMenu/*": ["./src/pages/products/components/Popups/ReviewMenu/*"],
       "@footer/*": ["./src/pages/products/components/Footer/*"],
 
-      "@productsDetailsHeader/*": ["./src/pages/productDetails/components/Header/*"],
+      "@productsDetailsHeader/*": ["./src/pages/productDetails/components/DetailHeader/*"],
       "@productDetailsMain/*": ["./src/pages/productDetails/components/Main/*"],
       "@gallery/*": ["./src/pages/productDetails/components/Main/Gallery/*"],
       "@description/*": ["./src/pages/productDetails/components/Description/*"],

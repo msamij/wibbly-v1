@@ -1,0 +1,19 @@
+.instructor {
+  padding: 2rem 0;
+}
+.instructor__heading {
+  font-size: 2.5rem;
+}
+.instructor__details {
+  margin-top: 0.5rem;
+}
+.instructor__image {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 100%;
+  object-fit: cover;
+}
+.instructor__name {
+  font-size: 1.4rem;
+  font-weight: 400;
+}

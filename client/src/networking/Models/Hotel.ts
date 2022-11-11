@@ -3,6 +3,7 @@ import { IResponse } from '@models/Model';
 export interface IHotelResponse extends IResponse {
   no_of_rooms: number;
   price_per_night: number;
+  description: string;
   hotel_images: [string];
 }
 export interface IHotelAddress {

@@ -2,17 +2,13 @@ import React from 'react';
 import HeaderLogo from '@headerLogo/HeaderLogo';
 import HeaderNav from '@headerNav/HeaderNav';
 import './Header.css';
+import { useEffect } from 'react';
 
-export interface IHeaderProps {
-  buttonType: string;
-  onProfileButtonClick: (btnType: string) => void;
-}
-
-function Header(props: IHeaderProps) {
+function Header() {
   return (
     <header className="header">
       <HeaderLogo />
-      <HeaderNav buttonType={props.buttonType} onProfileButtonClick={props.onProfileButtonClick} />
+      <HeaderNav />
     </header>
   );
 }
