@@ -19,25 +19,34 @@ interface IProductDetailMapState {
 }
 export interface IProductDetail extends ITourDetailResponse, IHotelDetailResponse, IActivityDetailResponse {}
 
+interface UrlMapping {
+  hotels: 'hotel';
+  tours: 'tour';
+  activities: 'activity';
+}
+const urlMapping: UrlMapping = {
+  hotels: 'hotel',
+  tours: 'tour',
+  activities: 'activity',
+};
+type pathName = 'hotels' | 'activities' | 'tours';
+
 function ProductDetails(props: IProductDetailProps) {
-  let pathname = useLocation().pathname.replace('/', '');
-  const [productType, setProductType] = useState('');
+  let url = useLocation().pathname.replace('/', '') as pathName;
+  let pathName = url.split('/')[0] as pathName;
 
   useEffect(() => {
-    setProductType(pathname.split('/')[0]);
-    props.fetchProductDetails(pathname);
+    props.fetchProductDetails(url);
   }, []);
 
   const returnComposedComponent = () => {
-    return <ComposeProductDetail product={props.state} productType={productType} />;
+    return <ComposeProductDetail product={props.state} productType={pathName} />;
   };
-
-  console.log(props.state);
 
   return (
     <React.Fragment>
       {/* <BookingDatePopup /> */}
-      {Object.keys(props.state).length > 0 && returnComposedComponent()}
+      {props.state[urlMapping[pathName]] && returnComposedComponent()}
     </React.Fragment>
   );
 }

@@ -9,21 +9,21 @@ interface IComposeProductDetailProps {
   product: IProductDetail;
 }
 
-function ComposeProductDetail(props: IComposeProductDetailProps) {
-  interface IComposedComponentArgs {
-    name: string;
-    price: number;
-    title1?: string;
-    title2?: string;
-    images: string[];
-    description: string;
-    instructorName?: string;
-    instructorImageUrl?: string;
-    instructor: boolean;
-    headerProductType?: 'hotel';
-    descriptionType: 'hotel' | 'tour' | 'activity';
-  }
+interface IComposedComponentArgs {
+  name: string;
+  price: number;
+  title1?: string;
+  title2?: string;
+  images: string[];
+  description: string;
+  instructorName?: string;
+  instructorImageUrl?: string;
+  instructor: boolean;
+  headerProductType?: 'hotel';
+  descriptionType: 'hotel' | 'tour' | 'activity';
+}
 
+function ComposeProductDetail(props: IComposeProductDetailProps) {
   const returnComposedComponent = (args: IComposedComponentArgs) => {
     return (
       <React.Fragment>
@@ -77,7 +77,11 @@ function ComposeProductDetail(props: IComposeProductDetailProps) {
           duration,
           tour_images,
         } = props.product.tour[0];
-        const { first_name, last_name, instructor_image } = props.product.tour_instructor[0].instructor;
+        const {
+          first_name: tourIF,
+          last_name: tourIL,
+          instructor_image: tourImages,
+        } = props.product.tour_instructor[0].instructor;
 
         return returnComposedComponent({
           name: tourName,
@@ -88,13 +92,23 @@ function ComposeProductDetail(props: IComposeProductDetailProps) {
           title1: `${duration} days tour`,
           title2: `${max_participants} max participants`,
           descriptionType: 'tour',
+          instructorName: `${tourIF} ${tourIL}`,
+          instructorImageUrl: tourImages,
+        });
+
+      case 'activities':
+        const { name, price, decription: aDescription, activity_images } = props.product.activity[0];
+        const { first_name, last_name, instructor_image } = props.product.activity_instructor[0].instructor;
+        return returnComposedComponent({
+          name,
+          price,
+          instructor: true,
+          images: activity_images,
+          description: aDescription,
+          descriptionType: 'activity',
           instructorName: `${first_name} ${last_name}`,
           instructorImageUrl: instructor_image,
         });
-      case 'activities':
-        const {} = props;
-
-        return <div></div>;
 
       default:
         return <div></div>;
