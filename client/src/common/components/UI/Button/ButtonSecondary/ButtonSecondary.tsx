@@ -4,12 +4,15 @@ import './ButtonSecondary.css';
 
 interface IButtonSecondary {
   buttonText: string;
-  onButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onButtonClick: Function;
 }
 
 function ButtonSecondary(props: IButtonSecondary) {
   return (
-    <button className="btn btn-secondary" onClick={props.onButtonClick}>
+    <button
+      className="btn btn-secondary"
+      onClick={() => props.onButtonClick() as React.MouseEventHandler<HTMLButtonElement>}
+    >
       {props.buttonText}
     </button>
   );

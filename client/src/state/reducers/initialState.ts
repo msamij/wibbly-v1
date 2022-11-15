@@ -2,6 +2,7 @@ import { activityResponse, IActivityDetailResponse } from '@models/Activity';
 import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
 import { ITourDetailResponse, toursResponse } from '@models/Tour';
 
+// Don't ever look at this stuff, or you'll get a panic attack.
 const INITIAL_ACTIVITY = {
   id: 0,
   name: '',
@@ -32,5 +33,6 @@ export const INITIAL_STATE = {
   tours: [INITIAL_TOUR] as toursResponse,
   hotels: [INITIAL_HOTEL] as hotelsResponse,
   activities: [INITIAL_ACTIVITY] as activityResponse,
+  bookingDates: { bookingDates: [''] as [string] },
   productDetail: {} as IActivityDetailResponse | ITourDetailResponse | IHotelDetailResponse,
 };

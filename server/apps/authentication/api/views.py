@@ -8,6 +8,7 @@ from server.apps.users.forms import UserForm
 from server.apps.users.models import User
 
 
+# Deprecated for wibbly client
 @api_view(['POST'])
 def signup_user(request):
     parsed_json = json.load(request)
@@ -29,6 +30,7 @@ def signup_user(request):
     return JsonResponse("Signup successful", status=201, safe=False)
 
 
+# Deprecated for wibbly client
 @api_view(['POST'])
 def login_user(request):
     print(request.user)
@@ -43,12 +45,14 @@ def login_user(request):
     return JsonResponse('Username or password incorrect', status=400, safe=False)
 
 
+# Deprecated for wibbly client
 @api_view(['POST'])
 def logout_user(request):
     logout(request)
     return JsonResponse('Logged out successfully', status=200, safe=False)
 
 
+# Deprecated for wibbly client
 @api_view(['GET'])
 def is_logged_in(request):
     print(request.user)

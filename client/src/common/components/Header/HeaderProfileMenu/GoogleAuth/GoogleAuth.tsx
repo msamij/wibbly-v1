@@ -1,7 +1,8 @@
-import { changeAuth, trySignIn, trySignOut } from '@actions/auth';
 import React, { useEffect, useState } from 'react';
-import GoogleAuthButton from './GoogleAuthButton';
+import { changeAuth, trySignIn, trySignOut } from '@actions/auth';
+import { GoogleAuthConfig } from '@http/constants';
 import { connect } from 'react-redux';
+import GoogleAuthButton from './GoogleAuthButton';
 
 interface IGoogleAuthState {
   auth: {
@@ -30,13 +31,15 @@ function GoogleAuth(props: IGoogleAuthProps) {
     try {
       (window as any).gapi.load('client:auth2', async () => {
         await (window as any).gapi.client.init({
-          clientId: '960507316821-h8tc4fapcfacfhd6tlikjpb88aodv9so.apps.googleusercontent.com',
-          scope: 'email',
-          plugin_name: 'wibbly-v1',
+          clientId: GoogleAuthConfig.clientId,
+          scope: GoogleAuthConfig.scope,
+          plugin_name: GoogleAuthConfig.plugin_name,
         });
+
         setAuth((window as any).gapi.auth2.getAuthInstance());
       });
     } catch (error) {
+      // Sometimes however gapi fails to load up, in that case it'll try to load again.
       setError(error);
     }
   }, [error]);
