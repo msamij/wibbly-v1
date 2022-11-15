@@ -4,6 +4,8 @@ import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
 import { connect } from 'react-redux';
 import './Description.css';
 import { BookingDates } from '@models/BookingDates';
+import { Dispatch } from 'redux';
+import { renderOverlay } from '@actions/render';
 
 interface IBookingDatePopupProps {
   products: {
@@ -13,29 +15,36 @@ interface IBookingDatePopupProps {
 interface IDescriptionProps {
   description: string;
   productType: 'hotel' | 'tour' | 'activity';
-  state: any;
+  // onButtonClick: () => {
+  //   type: string;
+  //   payload: boolean;
+  // };
   fetchBookingDates: (pathName: string, month: string, year: string) => void;
 }
 
 function Description(props: IDescriptionProps) {
-  const onClick = () => {
-    props.fetchBookingDates('tours/Snowy Mountains', '12', '2022');
-  };
-
-  console.log(props.state);
+  console.log(props);
 
   return (
     <section className="description">
       <h2 className="heading-default description__heading">About this {props.productType}</h2>
       <h2 className="heading-default description__text">{props.description}</h2>
-      <ButtonSecondary onButtonClick={() => onClick()} buttonText="Reserve Booking" />
+      <ButtonSecondary
+        onButtonClick={() => props.fetchBookingDates('tours/Cozy Camping', '11', '2022')}
+        buttonText="Reserve Booking"
+      />
     </section>
   );
 }
 
-const mapStateToProps = (state: IBookingDatePopupProps) => {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onButtonClick: () => dispatch(renderOverlay(true)),
+});
+
+const mapStateToProps = (state: any) => {
   return {
-    state: state.products,
+    state,
   };
 };
+
 export default connect(mapStateToProps, { fetchBookingDates })(Description);

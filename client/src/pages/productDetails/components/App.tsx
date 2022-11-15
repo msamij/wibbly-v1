@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchProductDetails } from '@actions/fetch';
+import { fetchProductDetails, fetchBookingDates } from '@actions/fetch';
 import BookingDatePopup from '@bookingDatePopup/BookingDatePopup';
 import { IActivityDetailResponse } from '@models/Activity';
 import { IHotelDetailResponse } from '@models/Hotel';
@@ -40,28 +40,24 @@ function ProductDetails(props: IProductDetailProps) {
     props.fetchProductDetails(url);
   }, []);
 
+  // const onReserveBookingButtonClicked = () => {
+  //   props.fetchBookingDates('tours/Snowy Mountains', '12', '2022');
+  // };
+
   const returnComposedComponent = () => {
     return <ComposeProductDetail product={props.state} productType={pathName} />;
   };
 
-  const returnBookingDatePopupComponent = () => {
-    return <BookingDatePopup />;
-  };
-
   console.log(props.state);
 
-  return (
-    <React.Fragment>
-      {/* {returnBookingDatePopupComponent} */}
-      {props.state[urlMapping[pathName]] && returnComposedComponent()}
-    </React.Fragment>
-  );
+  return <React.Fragment>{props.state[urlMapping[pathName]] && returnComposedComponent()}</React.Fragment>;
 }
 
 const mapStateToProps = (state: IProductDetailMapState) => {
+  console.log(state);
   return {
     state: state.products.productDetail,
   };
 };
 
-export default connect(mapStateToProps, { fetchProductDetails })(ProductDetails);
+export default connect(mapStateToProps, { fetchProductDetails, fetchBookingDates })(ProductDetails);

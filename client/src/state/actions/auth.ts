@@ -8,16 +8,7 @@ export const trySignIn = (auth: any) => async () => {
 
 export const trySignOut = (auth: any) => () => auth.signOut();
 
-export const changeAuth = (isSignedIn: boolean) => {
-  if (isSignedIn) {
-    return {
-      type: SIGN_IN,
-      payload: true,
-    };
-  } else {
-    return {
-      type: SIGN_OUT,
-      payload: false,
-    };
-  }
-};
+export const changeAuth = (isSignedIn: boolean) => ({
+  type: SIGN_IN,
+  payload: isSignedIn,
+});

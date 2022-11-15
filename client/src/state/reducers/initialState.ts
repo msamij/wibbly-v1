@@ -32,6 +32,8 @@ export const INITIAL_STATE = {
   notifications: [''] as [string],
   tours: [INITIAL_TOUR] as toursResponse,
   hotels: [INITIAL_HOTEL] as hotelsResponse,
+  renderOverlay: false,
+  renderBookingDatesPopup: false,
   activities: [INITIAL_ACTIVITY] as activityResponse,
   bookingDates: { bookingDates: [''] as [string] },
   productDetail: {} as IActivityDetailResponse | ITourDetailResponse | IHotelDetailResponse,

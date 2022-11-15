@@ -1,16 +1,18 @@
 import { activityResponse, IActivityDetailResponse } from '@models/Activity';
+import { BookingDates } from '@models/BookingDates';
 import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
 import { ITourDetailResponse, toursResponse } from '@models/Tour';
-import { BookingDates } from '@models/BookingDates';
 import { bookings, notifications } from 'types/uiState';
 
 export interface Store {
+  bookings: [string];
+  notifications: [string];
   isSignedIn: boolean;
-  bookings: bookings;
   tours: toursResponse;
   hotels: hotelsResponse;
-  notifications: notifications;
-  activities: activityResponse;
+  renderOverlay: boolean;
   bookingDates: BookingDates;
+  activities: activityResponse;
+  renderBookingDatesPopup: boolean;
   productDetail: ITourDetailResponse | IHotelDetailResponse | IActivityDetailResponse;
 }
