@@ -42,4 +42,4 @@ def booking_dates(request, tour):
         dates = construct_dates(int(month), int(year))
     else:
         response = 'Found'
-    return JsonResponse({'BookingDates:': dates}, status=200, safe=False)
+    return JsonResponse({'bookingDates': dates}, status=200, safe=False)

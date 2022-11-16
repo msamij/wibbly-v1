@@ -1,31 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { fetchProductDetails, fetchBookingDates } from '@actions/fetch';
+import React, { useEffect } from 'react';
+import { fetchProductDetails } from '@actions/fetch';
 import BookingDatePopup from '@bookingDatePopup/BookingDatePopup';
 import { IActivityDetailResponse } from '@models/Activity';
 import { IHotelDetailResponse } from '@models/Hotel';
 import { ITourDetailResponse } from '@models/Tour';
 import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import ComposeProductDetail from './ComposeProductDetail';
-import { BookingDates } from '@models/BookingDates';
+import ComposeProductDetail from './ComposedProductDetail/ComposeProductDetail';
 
 interface IProductDetailProps {
-  state: IProductDetail;
+  state: IProductDetailMapState;
   fetchProductDetails: (pathName: string) => void;
-}
-interface IProductDetailMapState {
-  products: {
-    productDetail: IProductDetail;
-  };
 }
 export interface IProductDetail extends ITourDetailResponse, IHotelDetailResponse, IActivityDetailResponse {}
 
-interface UrlMapping {
+interface IUrlMapping {
   hotels: 'hotel';
   tours: 'tour';
   activities: 'activity';
 }
-const urlMapping: UrlMapping = {
+const urlMapping: IUrlMapping = {
   hotels: 'hotel',
   tours: 'tour',
   activities: 'activity',
@@ -40,24 +34,26 @@ function ProductDetails(props: IProductDetailProps) {
     props.fetchProductDetails(url);
   }, []);
 
-  // const onReserveBookingButtonClicked = () => {
-  //   props.fetchBookingDates('tours/Snowy Mountains', '12', '2022');
-  // };
-
-  const returnComposedComponent = () => {
-    return <ComposeProductDetail product={props.state} productType={pathName} />;
-  };
-
-  console.log(props.state);
-
-  return <React.Fragment>{props.state[urlMapping[pathName]] && returnComposedComponent()}</React.Fragment>;
+  return (
+    <React.Fragment>
+      {props.state.uiChange.toggleBookingDatesPopup && <BookingDatePopup />}
+      {props.state.fetchedData.productDetail[urlMapping[pathName]] && (
+        <ComposeProductDetail product={props.state.fetchedData.productDetail} productType={pathName} />
+      )}
+    </React.Fragment>
+  );
 }
 
-const mapStateToProps = (state: IProductDetailMapState) => {
-  console.log(state);
-  return {
-    state: state.products.productDetail,
+interface IProductDetailMapState {
+  fetchedData: {
+    productDetail: IProductDetail;
   };
+  uiChange: {
+    toggleBookingDatesPopup: boolean;
+  };
+}
+const mapStateToProps = (state: IProductDetailMapState) => {
+  return { state: state };
 };
 
-export default connect(mapStateToProps, { fetchProductDetails, fetchBookingDates })(ProductDetails);
+export default connect(mapStateToProps, { fetchProductDetails })(ProductDetails);

@@ -1,5 +1,5 @@
-import { SIGN_IN, SIGN_OUT } from 'types/actions';
-import { saveUserOnSignIn } from './saveUser';
+import { SIGN_IN, SIGN_OUT } from 'types/index';
+import { saveUserOnSignIn } from '@http/utils';
 
 export const trySignIn = (auth: any) => async () => {
   await auth.signIn();
@@ -9,6 +9,6 @@ export const trySignIn = (auth: any) => async () => {
 export const trySignOut = (auth: any) => () => auth.signOut();
 
 export const changeAuth = (isSignedIn: boolean) => ({
-  type: SIGN_IN,
+  type: isSignedIn ? SIGN_IN : SIGN_OUT,
   payload: isSignedIn,
 });

@@ -20,6 +20,7 @@
       "@figureContainer/*": ["./src/pages/products/components/Main/FigureContainer/*"],
 
       "@figure/*": ["./src/pages/products/components/Main/FigureContainer/Figure/*"],
+      "@common/*": ["./src/common/components/*"],
       "@button/*": ["./src/common/components/UI/Button/*"],
       "@overlay/*": ["./src/common/components/Overlay/*"],
       "@message/*": ["./src/common/components/Message/*"],

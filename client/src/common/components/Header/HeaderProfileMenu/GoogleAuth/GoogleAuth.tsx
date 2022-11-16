@@ -4,13 +4,8 @@ import { GoogleAuthConfig } from '@http/constants';
 import { connect } from 'react-redux';
 import GoogleAuthButton from './GoogleAuthButton';
 
-interface IGoogleAuthState {
-  auth: {
-    isSignedIn: boolean;
-  };
-}
 interface IGoogleAuthProps {
-  state: IGoogleAuthState;
+  state: IGoogleAuthMapState;
   trySignIn: (auth: any) => void;
   trySignOut: (auth: any) => void;
   changeAuth: (isSignedIn: boolean) => void;
@@ -51,7 +46,12 @@ function GoogleAuth(props: IGoogleAuthProps) {
   );
 }
 
-const mapStateToProps = (state: IGoogleAuthState) => {
+interface IGoogleAuthMapState {
+  auth: {
+    isSignedIn: boolean;
+  };
+}
+const mapStateToProps = (state: IGoogleAuthMapState) => {
   return {
     state,
   };

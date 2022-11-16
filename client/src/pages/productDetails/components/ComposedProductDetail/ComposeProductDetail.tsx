@@ -2,7 +2,7 @@ import React from 'react';
 import Main from '@productDetailsMain/Main';
 import DetailHeader from '@productsDetailsHeader/DetailHeader';
 import Description from '@description/Description';
-import { IProductDetail } from './App';
+import { IProductDetail } from '../App';
 
 interface IComposeProductDetailProps {
   productType: string;

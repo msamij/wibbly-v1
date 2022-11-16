@@ -8,18 +8,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './Main.css';
 
-interface IMainState {
-  products: {
-    activities: activityResponse;
-    tours: toursResponse;
-    hotels: hotelsResponse;
-  };
-}
 interface IMainProps {
   fetchActivities: () => Promise<void>;
   fetchHotels: () => Promise<void>;
   fetchTours: () => Promise<void>;
-  state: IMainState;
+  state: IMainMapState['fetchedData'];
 }
 
 function Main(props: IMainProps) {
@@ -31,26 +24,29 @@ function Main(props: IMainProps) {
 
   return (
     <main className="main">
-      {props.state.products.activities.length > 1 &&
-        props.state.products.tours.length > 1 &&
-        props.state.products.hotels.length > 1 && (
-          <React.Fragment>
-            <Heading headingTitle="Hotels 🏨" />
-            <FigureContainer response={props.state.products.hotels} figureType={'hotels'} />
-            <Heading headingTitle="Tours ⛰️" />
-            <FigureContainer response={props.state.products.tours} figureType={'tours'} />
-            <Heading headingTitle="Activities 🏊🏻‍♂️" />
-            <FigureContainer response={props.state.products.activities} figureType={'activities'} />
-          </React.Fragment>
-        )}
+      {props.state.activities.length > 1 && props.state.tours.length > 1 && props.state.hotels.length > 1 && (
+        <React.Fragment>
+          <Heading headingTitle="Hotels 🏨" />
+          <FigureContainer response={props.state.hotels} figureType={'hotels'} />
+          <Heading headingTitle="Tours ⛰️" />
+          <FigureContainer response={props.state.tours} figureType={'tours'} />
+          <Heading headingTitle="Activities 🏊🏻‍♂️" />
+          <FigureContainer response={props.state.activities} figureType={'activities'} />
+        </React.Fragment>
+      )}
     </main>
   );
 }
 
-const mapStateToProps = (state: IMainState) => {
-  return {
-    state,
+interface IMainMapState {
+  fetchedData: {
+    activities: activityResponse;
+    tours: toursResponse;
+    hotels: hotelsResponse;
   };
-};
+}
+const mapStateToProps = (state: IMainMapState) => ({
+  state: state.fetchedData,
+});
 
 export default connect(mapStateToProps, { fetchActivities, fetchHotels, fetchTours })(Main);
