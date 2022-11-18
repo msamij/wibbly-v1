@@ -1,6 +1,6 @@
 from django.db import models
-from server.apps.activities.models import Activity
 
+from server.apps.activities.models import Activity
 
 DAYS_OF_WEEK = (
     ('Monday', 0),

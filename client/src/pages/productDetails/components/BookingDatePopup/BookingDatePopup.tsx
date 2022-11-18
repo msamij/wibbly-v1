@@ -7,12 +7,13 @@ import './BookingDatePopup.css';
 
 interface IBookingDateProps {
   state: IBookingDateMapState;
+  pathName: string;
   fetchBookingDates: (pathName: string, month: string, year: string) => void;
 }
 
 function BookingDatePopup(props: IBookingDateProps) {
   useEffect(() => {
-    props.fetchBookingDates('tours/Snowy Mountains', '12', '2022');
+    props.fetchBookingDates(props.pathName, new Date().getMonth() + 1 + '', new Date().getFullYear() + '');
   }, []);
 
   const returnBookingDates = () => {

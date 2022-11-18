@@ -5,117 +5,124 @@ import Description from '@description/Description';
 import { IProductDetail } from '../App';
 
 interface IComposeProductDetailProps {
-  productType: string;
   product: IProductDetail;
+  productType: 'hotels' | 'activities' | 'tours';
 }
 
-interface IComposedComponentArgs {
+interface IDetailHeaderArgs {
   name: string;
   price: number;
   title1?: string;
   title2?: string;
+  hotelType?: 'hotel';
+}
+interface IMainArgs {
   images: string[];
   description: string;
   instructorName?: string;
-  instructorImageUrl?: string;
-  instructor: boolean;
-  headerProductType?: 'hotel';
+  instructorImage?: string;
+  instructorExists: boolean;
+}
+interface IDescriptionArgs {
+  description: string;
   descriptionType: 'hotel' | 'tour' | 'activity';
 }
+interface IComposedComponentArgs extends IDetailHeaderArgs, IMainArgs, IDescriptionArgs {}
 
-function ComposeProductDetail(props: IComposeProductDetailProps) {
-  const returnComposedComponent = (args: IComposedComponentArgs) => {
+class ComposeProductDetail extends React.Component<IComposeProductDetailProps> {
+  buildAndReturnComposedComponent() {
+    if (this.props.productType === 'hotels') {
+      const hotel = { ...this.props.product.hotel[0] };
+      const hotelAddress = { ...this.props.product.hotel_address[0] };
+
+      return this.returnComposedComponent({
+        name: hotel.name,
+        hotelType: 'hotel',
+        instructorExists: false,
+        descriptionType: 'hotel',
+        images: hotel.hotel_images,
+        price: hotel.price_per_night,
+        description: hotel.description,
+        title1: hotelAddress.street_name,
+        title2: `${hotelAddress.country_name} ${hotelAddress.city_name}`,
+      });
+    }
+    //
+    else if (this.props.productType === 'tours') {
+      const tour = { ...this.props.product.tour[0] };
+      const tourInstructor = { ...this.props.product.tour_instructor[0].instructor };
+
+      return this.returnComposedComponent({
+        name: tour.name,
+        price: tour.price,
+        descriptionType: 'tour',
+        instructorExists: true,
+        images: tour.tour_images,
+        description: tour.description,
+        title1: `${tour.duration} days tour`,
+        instructorImage: tourInstructor.instructor_image,
+        title2: `${tour.max_participants} max participants`,
+        instructorName: `${tourInstructor.first_name} ${tourInstructor.last_name}`,
+      });
+    }
+    //
+    else if (this.props.productType === 'activities') {
+      const activity = { ...this.props.product.activity[0] };
+      const activityInstructor = { ...this.props.product.activity_instructor[0].instructor };
+
+      return this.returnComposedComponent({
+        name: activity.name,
+        price: activity.price,
+        instructorExists: true,
+        descriptionType: 'activity',
+        images: activity.activity_images,
+        description: activity.description,
+        instructorImage: activityInstructor.instructor_image,
+        instructorName: `${activityInstructor.first_name} ${activityInstructor.last_name}`,
+      });
+    }
+  }
+
+  returnComposedComponent(args: IComposedComponentArgs) {
     return (
       <React.Fragment>
-        <DetailHeader
-          name={args.name}
-          price={args.price}
-          type={args.headerProductType}
-          title1={args.title1 && args.title1}
-          title2={args.title2 && args.title2}
-        />
-        <Main
-          images={args.images}
-          instructor={args.instructor}
-          instructorName={args.instructorName && args.instructorName}
-          imageUrl={args.instructorImageUrl && args.instructorImageUrl}
-        />
-        <Description productType={args.descriptionType} description={args.description} />
+        {this.returnDetailHeader(args)}
+        {this.returnMain(args)}
+        {this.returnDescription(args)}
       </React.Fragment>
     );
-  };
+  }
 
-  const buildAndReturnComponentBasedOnProductType = () => {
-    switch (props.productType) {
-      case 'hotels':
-        const {
-          name: hotelName,
-          price_per_night,
-          description: hotelDescription,
-          hotel_images,
-        } = props.product.hotel[0];
-        const { country_name, city_name, street_name } = props.product.hotel_address[0];
+  returnDetailHeader(args: IDetailHeaderArgs) {
+    return (
+      <DetailHeader
+        name={args.name}
+        price={args.price}
+        hotel={args.hotelType}
+        title1={args.title1}
+        title2={args.title2}
+      />
+    );
+  }
 
-        return returnComposedComponent({
-          name: hotelName,
-          price: price_per_night,
-          title1: street_name,
-          instructor: false,
-          title2: `${country_name} ${city_name}`,
-          images: hotel_images,
-          description: hotelDescription,
-          headerProductType: 'hotel',
-          descriptionType: 'hotel',
-        });
+  returnMain(args: IMainArgs) {
+    return (
+      <Main
+        productImages={args.images}
+        instructorExists={args.instructorExists}
+        instructorName={args.instructorName}
+        instructorImage={args.instructorImage}
+      />
+    );
+  }
 
-      case 'tours':
-        const {
-          name: tourName,
-          price: tourPrice,
-          description: tourDescription,
-          max_participants,
-          duration,
-          tour_images,
-        } = props.product.tour[0];
-        const {
-          first_name: tourIF,
-          last_name: tourIL,
-          instructor_image: tourImages,
-        } = props.product.tour_instructor[0].instructor;
+  returnDescription(args: IDescriptionArgs) {
+    return <Description productType={args.descriptionType} description={args.description} />;
+  }
 
-        return returnComposedComponent({
-          name: tourName,
-          price: tourPrice,
-          instructor: true,
-          description: tourDescription,
-          images: tour_images,
-          title1: `${duration} days tour`,
-          title2: `${max_participants} max participants`,
-          descriptionType: 'tour',
-          instructorName: `${tourIF} ${tourIL}`,
-          instructorImageUrl: tourImages,
-        });
-
-      case 'activities':
-        const { name, price, decription: aDescription, activity_images } = props.product.activity[0];
-        const { first_name, last_name, instructor_image } = props.product.activity_instructor[0].instructor;
-        return returnComposedComponent({
-          name,
-          price,
-          instructor: true,
-          images: activity_images,
-          description: aDescription,
-          descriptionType: 'activity',
-          instructorName: `${first_name} ${last_name}`,
-          instructorImageUrl: instructor_image,
-        });
-
-      default:
-        return <div></div>;
-    }
-  };
-
-  return buildAndReturnComponentBasedOnProductType();
+  render(): React.ReactNode {
+    return this.buildAndReturnComposedComponent();
+  }
 }
 
 export default ComposeProductDetail;

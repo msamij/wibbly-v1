@@ -4,7 +4,7 @@ import './DetailHeader.css';
 interface IHeaderProps {
   name: string;
   price: number;
-  type?: 'hotel';
+  hotel?: 'hotel';
   title1?: string;
   title2?: string;
 }
@@ -28,7 +28,7 @@ function DetailHeader(props: IHeaderProps) {
         <h2 className="heading-default heading-primary--bold">{props.name}</h2>
         {returnSecondaryHeading()}
         <h2 className="heading-default heading-price">
-          {props.price}$ {props.type && 'per night'}
+          {props.price}$ {props.hotel ? 'per night' : 'per person'}
         </h2>
       </div>
     </header>

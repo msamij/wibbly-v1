@@ -4,18 +4,18 @@ import Instructor from '@productDetailsMain/Instructor/Instructor';
 import './Main.css';
 
 interface IMainProps {
-  instructor: boolean;
-  images: string[];
+  productImages: string[];
+  instructorImage?: string;
   instructorName?: string;
-  imageUrl?: string;
+  instructorExists: boolean;
 }
 
 function Main(props: IMainProps) {
   return (
     <main className="product-detail-main">
-      <Gallery images={props.images} />
-      {props.instructor && (
-        <Instructor imageUrl={props.imageUrl as string} instructorName={props.instructorName as string} />
+      <Gallery images={props.productImages} />
+      {props.instructorExists && (
+        <Instructor imageUrl={props.instructorImage as string} instructorName={props.instructorName as string} />
       )}
     </main>
   );

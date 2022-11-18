@@ -36,7 +36,7 @@ function ProductDetails(props: IProductDetailProps) {
 
   return (
     <React.Fragment>
-      {props.state.uiChange.toggleBookingDatesPopup && <BookingDatePopup />}
+      {props.state.uiChange.toggleBookingDatesPopup && <BookingDatePopup pathName={url} />}
       {props.state.fetchedData.productDetail[urlMapping[pathName]] && (
         <ComposeProductDetail product={props.state.fetchedData.productDetail} productType={pathName} />
       )}

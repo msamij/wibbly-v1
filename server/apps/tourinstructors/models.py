@@ -1,4 +1,5 @@
 from django.db import models
+
 from server.apps.instructors.models import Instructor
 from server.apps.tours.models import Tour
 

@@ -2,7 +2,7 @@ import { IResponse, IInstructor } from '@models/Model';
 
 export interface IActivityResponse extends IResponse {
   price: number;
-  decription: string;
+  description: string;
   activity_images: [string];
 }
 export interface IActivityDetailResponse {

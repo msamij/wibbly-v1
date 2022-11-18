@@ -1,4 +1,7 @@
 from rest_framework import serializers
+
+from server.apps.activitybookingdays.models import ActivityBookingDay
+
 from ..models import Activity
 
 
@@ -11,4 +14,12 @@ class ActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activity
-        fields = ['id', 'name', 'price', 'description', 'activity_images']
+        fields = ['id', 'name', 'price', 'description',
+                  'activity_images']
+
+
+# class ActivityBookingDaysSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = ActivityBookingDay
+#         fields = ['week_day']
+#         depth = 1
