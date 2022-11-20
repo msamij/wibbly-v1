@@ -1,6 +1,6 @@
 import { Urls } from '@http/constants';
 import HTTP from '@http/http';
-import { Dispatch } from 'react';
+import { Dispatch } from 'redux';
 import {
   FetchActionTypes,
   FETCH_ACTIVITIES,

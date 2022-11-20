@@ -1,5 +1,10 @@
-import { SIGN_IN, SIGN_OUT } from 'types/index';
 import { saveUserOnSignIn } from '@http/utils';
+import { GAPI_LOAD_SUCCESS, SIGN_IN, SIGN_OUT } from 'types/index';
+
+export const saveGoogleAuthInstance = (gapiAuth: any) => ({
+  type: GAPI_LOAD_SUCCESS,
+  payload: gapiAuth,
+});
 
 export const trySignIn = (auth: any) => async () => {
   await auth.signIn();

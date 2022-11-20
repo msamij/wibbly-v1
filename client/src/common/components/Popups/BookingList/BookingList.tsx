@@ -1,5 +1,5 @@
 import React from 'react';
-import Booking from '@booking/Booking';
+import Booking from '@bookingList/Booking/Booking';
 import PopupMessage from '@popupMessage/PopupMessage';
 import '../App.css';
 

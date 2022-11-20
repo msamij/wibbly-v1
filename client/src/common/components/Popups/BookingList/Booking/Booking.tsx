@@ -1,13 +1,13 @@
 import React from 'react';
 import './Booking.css';
 
-interface BookingConfig {
+interface IBookingProps {
   bookingTitleText: string;
   bookingDateText: string;
   bookingImageUrl: string;
 }
 
-function Booking(props: BookingConfig) {
+function Booking(props: IBookingProps) {
   return (
     <a className="booking">
       <img src={props.bookingImageUrl} className="booking__image" alt="Booking item image" />

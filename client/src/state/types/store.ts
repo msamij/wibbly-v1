@@ -4,6 +4,7 @@ import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
 import { ITourDetailResponse, toursResponse } from '@models/Tour';
 
 export interface Store {
+  gapiAuth: any;
   bookings: [string];
   notifications: [string];
   isSignedIn: boolean;

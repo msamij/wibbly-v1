@@ -23,9 +23,9 @@ function BookingDatePopup(props: IBookingDateProps) {
           <div className="booking-date-popup">
             <h2 className="heading-default booking-date-popup__heading">Select Check in date</h2>
             <div className="booking-date-popup__month">
-              <ButtonSecondary onButtonClick={() => console.log('Prev')} buttonText="prev ⇐" />
+              {/* <ButtonSecondary onButtonClick={() => console.log('Prev')} buttonText="prev ⇐" /> */}
               <h2 className="heading-default booking-date-popup__month-title">March 2022</h2>
-              <ButtonSecondary onButtonClick={() => console.log('Next')} buttonText="next ⇒" />
+              {/* <ButtonSecondary onButtonClick={() => console.log('Next')} buttonText="next ⇒" /> */}
             </div>
 
             <div className="booking-date-popup__date-selection">
@@ -53,8 +53,8 @@ interface IBookingDateMapState {
     toggleBookingDatesPopup: boolean;
   };
 }
-const mapStateToProps = (state: IBookingDateMapState) => {
-  return { state };
-};
+const mapStateToProps = (state: IBookingDateMapState) => ({
+  state,
+});
 
 export default connect(mapStateToProps, { fetchBookingDates })(BookingDatePopup);

@@ -8,6 +8,7 @@ from server.apps.tourinstructors.models import TourInstructor
 from server.utils.construct_dates import construct_dates
 
 from ..models import Tour
+from server.apps.tourbookings.models import TourBooking
 from .serializers import TourSerializer
 
 
@@ -38,5 +39,7 @@ def booking_dates(request, tour):
     if not tour_booking_dates:
         dates = construct_dates(int(month), int(year))
     else:
-        response = 'Found'
+        tour_bookings = TourBooking.objects.filter(
+            tour=tour[0].id, tour_booking_date=tour_booking_dates[0].id).all()
+
     return JsonResponse({'bookingDates': dates}, status=200, safe=False)

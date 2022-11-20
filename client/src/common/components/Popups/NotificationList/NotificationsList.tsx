@@ -1,5 +1,5 @@
 import React from 'react';
-import Notification from '@notification/Notification';
+import Notification from '@notificationList/Notification/Notification';
 import PopupMessage from '@popupMessage/PopupMessage';
 import '../App.css';
 

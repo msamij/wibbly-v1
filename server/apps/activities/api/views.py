@@ -1,3 +1,5 @@
+import json
+
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
@@ -42,3 +44,10 @@ def booking_dates(request, activity):
         week_days.append(a.week_day.week_day)
 
     return JsonResponse({"bookingDates": week_days}, status=200, safe=False)
+
+
+@api_view(['POST'])
+def save_booking(request, activity):
+    parse_json = json.load(request)
+
+    return JsonResponse({'Text': 'Hello, world'})

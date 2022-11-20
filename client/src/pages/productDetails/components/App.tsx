@@ -52,8 +52,8 @@ interface IProductDetailMapState {
     toggleBookingDatesPopup: boolean;
   };
 }
-const mapStateToProps = (state: IProductDetailMapState) => {
-  return { state: state };
-};
+const mapStateToProps = (state: IProductDetailMapState) => ({
+  state,
+});
 
 export default connect(mapStateToProps, { fetchProductDetails })(ProductDetails);

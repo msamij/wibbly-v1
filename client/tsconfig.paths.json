@@ -9,7 +9,6 @@
 
       "types/*": ["./src/state/types/*"],
       "@models/*": ["./src/networking/Models/*"],
-      "@responseData/*": ["./src/pages/products/components/Main/Models/*"],
 
       "@header/*": ["./src/common/components/Header/*"],
       "@main/*": ["./src/pages/products/components/Main/*"],
@@ -24,12 +23,10 @@
       "@button/*": ["./src/common/components/UI/Button/*"],
       "@overlay/*": ["./src/common/components/Overlay/*"],
       "@message/*": ["./src/common/components/Message/*"],
-      "@bookingList/*": ["./src/pages/products/components/Popups/BookingList/*"],
-      "@booking/*": ["./src/pages/products/components/Popups/BookingList/Booking/*"],
-      "@notificationList/*": ["./src/pages/products/components/Popups/NotificationList/*"],
-      "@notification/*": ["./src/pages/products/components/Popups/NotificationList/Notification/*"],
-      "@popupMessage/*": ["./src/pages/products/components/Popups/PopupMessage/*"],
-      "@reviewMenu/*": ["./src/pages/products/components/Popups/ReviewMenu/*"],
+      "@bookingList/*": ["./src/common/components/Popups/BookingList/*"],
+      "@notificationList/*": ["./src/common/components/Popups/NotificationList/*"],
+      "@popupMessage/*": ["./src/common/components/Popups/PopupMessage/*"],
+      "@reviewMenu/*": ["./src/common/components/Popups/ReviewMenu/*"],
       "@footer/*": ["./src/pages/products/components/Footer/*"],
 
       "@productsDetailsHeader/*": ["./src/pages/productDetails/components/DetailHeader/*"],

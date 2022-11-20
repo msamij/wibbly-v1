@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '@header/Header';
 import Overlay from '@overlay/Overlay';
 import { connect } from 'react-redux';
@@ -27,10 +27,8 @@ interface IAppMapStore {
     toggleOverlay: boolean;
   };
 }
-const mapStateToProps = (state: IAppMapStore) => {
-  return {
-    toggleOverlay: state.uiChange.toggleOverlay,
-  };
-};
+const mapStateToProps = (state: IAppMapStore) => ({
+  toggleOverlay: state.uiChange.toggleOverlay,
+});
 
 export default connect(mapStateToProps)(App);

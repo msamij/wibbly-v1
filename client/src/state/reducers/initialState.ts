@@ -27,6 +27,7 @@ const INITIAL_HOTEL = {
 };
 
 export const INITIAL_STATE = {
+  gapiAuth: null,
   isSignedIn: false,
   bookings: [''] as [string],
   notifications: [''] as [string],

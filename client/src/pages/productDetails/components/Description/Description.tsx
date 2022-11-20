@@ -1,12 +1,15 @@
 import React from 'react';
-import { toggleOverlay, toggleBookingDatePopup } from '@actions/uiChange';
+import { trySignIn } from '@actions/auth';
+import { toggleBookingDatePopup, toggleOverlay } from '@actions/uiChange';
 import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
 import { connect } from 'react-redux';
 import './Description.css';
 
 interface IDescriptionProps {
+  state: IGoogleAuthMapState['auth'];
   description: string;
   productType: 'hotel' | 'tour' | 'activity';
+  trySignIn: (auth: any) => void;
   toggleOverlay: (
     toggle: boolean
   ) => {
@@ -23,8 +26,12 @@ interface IDescriptionProps {
 
 function Description(props: IDescriptionProps) {
   const onReserveBookingButtonClicked = () => {
-    props.toggleOverlay(true);
-    props.toggleBookingDatePopup(true);
+    if (props.state.isSignedIn) {
+      props.toggleOverlay(true);
+      props.toggleBookingDatePopup(true);
+    } else {
+      props.trySignIn(props.state.gapiAuth);
+    }
   };
 
   return (
@@ -36,4 +43,14 @@ function Description(props: IDescriptionProps) {
   );
 }
 
-export default connect(null, { toggleOverlay, toggleBookingDatePopup })(Description);
+interface IGoogleAuthMapState {
+  auth: {
+    gapiAuth: any;
+    isSignedIn: boolean;
+  };
+}
+const mapStateToProps = (state: IGoogleAuthMapState) => ({
+  state: state.auth,
+});
+
+export default connect(mapStateToProps, { toggleOverlay, toggleBookingDatePopup, trySignIn })(Description);

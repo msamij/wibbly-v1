@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { changeAuth, trySignIn, trySignOut } from '@actions/auth';
+import { changeAuth, trySignIn, trySignOut, saveGoogleAuthInstance } from '@actions/auth';
 import { GoogleAuthConfig } from '@http/constants';
 import { connect } from 'react-redux';
 import GoogleAuthButton from './GoogleAuthButton';
@@ -8,6 +8,12 @@ interface IGoogleAuthProps {
   state: IGoogleAuthMapState;
   trySignIn: (auth: any) => void;
   trySignOut: (auth: any) => void;
+  saveGoogleAuthInstance: (
+    gapiAuth: any
+  ) => {
+    type: string;
+    payload: any;
+  };
   changeAuth: (isSignedIn: boolean) => void;
 }
 
@@ -19,6 +25,7 @@ function GoogleAuth(props: IGoogleAuthProps) {
     if (auth) {
       props.changeAuth(auth.isSignedIn.get());
       auth.isSignedIn.listen(props.changeAuth);
+      props.saveGoogleAuthInstance(auth);
     }
   }, [auth]);
 
@@ -30,7 +37,6 @@ function GoogleAuth(props: IGoogleAuthProps) {
           scope: GoogleAuthConfig.scope,
           plugin_name: GoogleAuthConfig.plugin_name,
         });
-
         setAuth((window as any).gapi.auth2.getAuthInstance());
       });
     } catch (error) {
@@ -51,10 +57,8 @@ interface IGoogleAuthMapState {
     isSignedIn: boolean;
   };
 }
-const mapStateToProps = (state: IGoogleAuthMapState) => {
-  return {
-    state,
-  };
-};
+const mapStateToProps = (state: IGoogleAuthMapState) => ({
+  state,
+});
 
-export default connect(mapStateToProps, { trySignIn, trySignOut, changeAuth })(GoogleAuth);
+export default connect(mapStateToProps, { trySignIn, trySignOut, changeAuth, saveGoogleAuthInstance })(GoogleAuth);
