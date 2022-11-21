@@ -2,7 +2,7 @@ import { Urls } from '@http/constants';
 import HTTP from '@http/http';
 
 export const saveUserOnSignIn = async (userId: string) => {
-  await HTTP.post(`${Urls.baseUrl}${Urls.baseApiUrl}${Urls.usersUrl}${Urls.saveUser}`, {
+  await HTTP.post(`${Urls.baseUrl}${Urls.baseApiUrl}${Urls.usersUrl}${Urls.signin}`, {
     userId,
   });
 };

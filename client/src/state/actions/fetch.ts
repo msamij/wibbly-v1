@@ -8,10 +8,15 @@ import {
   FETCH_HOTELS,
   FETCH_PRODUCT_DETAILS,
   FETCH_TOURS,
+  USER_TOUR_BOOKING_EXISTS,
 } from 'types/index';
 
 async function fetch(pathName: string): Promise<any> {
   return await (await HTTP.get(`${Urls.baseUrl}${Urls.baseApiUrl}${pathName}`)).json();
+}
+
+async function post(pathName: string, userId: any): Promise<any> {
+  return await (await HTTP.post(`${Urls.baseUrl}${Urls.baseApiUrl}${pathName}`, { userId })).json();
 }
 
 export const fetchHotels = () => async (dispatch: Dispatch<FetchActionTypes>) => {
@@ -39,4 +44,9 @@ export const fetchBookingDates = (pathName: string, month: string, year: string)
 ) => {
   const response = await fetch(`${pathName}/${Urls.getBookingDates}month=${month}&year=${year}`);
   dispatch({ type: FETCH_BOOKING_DATES, payload: response });
+};
+
+export const fetchBookingExistsFlag = (userId: any) => async (dispatch: Dispatch<FetchActionTypes>) => {
+  const response = await post(`${Urls.usersUrl}${Urls.tourBookings}/${Urls.exists}`, userId);
+  dispatch({ type: USER_TOUR_BOOKING_EXISTS, payload: response });
 };

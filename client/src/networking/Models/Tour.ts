@@ -11,5 +11,8 @@ export interface ITourDetailResponse {
   tour: [ITourResponse];
   tour_instructor: [{ instructor: IInstructor }];
 }
+export interface IUserTourBookingExists {
+  userTourBookingsExists: boolean;
+}
 
 export type toursResponse = [ITourResponse];

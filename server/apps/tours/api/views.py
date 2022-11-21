@@ -2,13 +2,13 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
 from server.apps.tourbookingdates.models import TourBookingDate
+from server.apps.tourbookings.models import TourBooking
 from server.apps.tourinstructors.api.serializers import \
     TourInstructorSerializer
 from server.apps.tourinstructors.models import TourInstructor
 from server.utils.construct_dates import construct_dates
 
 from ..models import Tour
-from server.apps.tourbookings.models import TourBooking
 from .serializers import TourSerializer
 
 

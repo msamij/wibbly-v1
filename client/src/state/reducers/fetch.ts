@@ -6,6 +6,7 @@ import {
   FETCH_HOTELS,
   FETCH_PRODUCT_DETAILS,
   FETCH_TOURS,
+  USER_TOUR_BOOKING_EXISTS,
 } from 'types/index';
 import { Store } from 'types/store';
 
@@ -21,6 +22,8 @@ export const fetchReducer = (state: Store = INITIAL_STATE, action: FetchActionTy
       return { ...state, productDetail: action.payload };
     case FETCH_BOOKING_DATES:
       return { ...state, bookingDates: action.payload };
+    case USER_TOUR_BOOKING_EXISTS:
+      return { ...state, userTourBookingExists: action.payload };
     default:
       return state;
   }

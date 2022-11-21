@@ -1,19 +1,33 @@
 import React, { useEffect } from 'react';
+import { toggleMessage, setMessageText } from '@actions/uiChange';
+import { connect } from 'react-redux';
 import './Message.css';
 
-interface MessageConfig {
+interface IMessageProps {
   message: string;
-  setMessage: React.Dispatch<React.SetStateAction<string>>;
+  setMessageText: (
+    message: string
+  ) => {
+    type: string;
+    payload: string;
+  };
+  toggleMessage: (
+    toggle: boolean
+  ) => {
+    type: string;
+    payload: boolean;
+  };
 }
 
-function Message(props: MessageConfig) {
+function Message(props: IMessageProps) {
   useEffect(() => {
     setTimeout(() => {
-      props.setMessage('');
+      props.setMessageText('');
+      props.toggleMessage(false);
     }, 5000);
   }, []);
 
   return <div className="message">{props.message}</div>;
 }
 
-export default Message;
+export default connect(null, { toggleMessage, setMessageText })(Message);

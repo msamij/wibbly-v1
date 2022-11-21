@@ -1,10 +1,12 @@
 export enum Urls {
   baseUrl = 'http://127.0.0.1:8000/',
   baseApiUrl = 'api/v1/',
-  usersUrl = 'users/',
+  usersUrl = 'user/',
   toursUrl = 'tours/',
+  tourBookings = 'tour-bookings',
+  exists = 'exists',
   getBookingDates = 'booking-dates?',
-  saveUser = 'save',
+  signin = 'signin',
 }
 
 export enum GoogleAuthConfig {

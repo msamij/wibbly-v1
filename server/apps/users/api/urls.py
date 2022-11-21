@@ -1,6 +1,6 @@
-from django.urls import include, path
-from .views import save
+from django.urls import path
+from .views import sign_in
 
 urlpatterns = [
-    path('save', save),
+    path('signin', sign_in),
 ]
