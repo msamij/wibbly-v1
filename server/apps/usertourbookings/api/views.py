@@ -3,8 +3,6 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from server.apps.tourbookings.models import TourBooking
-from server.apps.tours.models import Tour
 from server.apps.users.models import User
 
 from ..models import UserTourBooking

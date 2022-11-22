@@ -1,3 +1,5 @@
+import json
+
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
@@ -6,6 +8,8 @@ from server.apps.tourbookings.models import TourBooking
 from server.apps.tourinstructors.api.serializers import \
     TourInstructorSerializer
 from server.apps.tourinstructors.models import TourInstructor
+from server.apps.users.models import User
+from server.apps.usertourbookings.models import UserTourBooking
 from server.utils.construct_dates import construct_dates
 
 from ..models import Tour
@@ -43,3 +47,33 @@ def booking_dates(request, tour):
             tour=tour[0].id, tour_booking_date=tour_booking_dates[0].id).all()
 
     return JsonResponse({'bookingDates': dates}, status=200, safe=False)
+
+
+@api_view(['POST'])
+def reserve_booking(request, tour):
+    parsed_json = json.load(request)
+    tour = Tour.objects.filter(name=tour)
+
+    if TourBookingDate.objects.filter(tour_booking_date=parsed_json['bookingDate']).exists():
+        tour_booking_date = TourBookingDate.objects.filter(
+            tour_booking_date=parsed_json['bookingDate'])
+
+        tour_booking = TourBooking.objects.filter(
+            tour_id=tour[0].id, tour_booking_date_id=tour_booking_date[0].id)[0]
+
+        tour_booking.tour_participants += 1
+        tour_booking.save()
+    else:
+        tour_booking_date = TourBookingDate(
+            tour_booking_date=parsed_json['bookingDate'])
+        tour_booking_date.save()
+
+        tour_booking = TourBooking(
+            tour=tour[0], tour_booking_date=tour_booking_date, tour_participants=1)
+        tour_booking.save()
+
+        user_id = User.objects.filter(
+            google_auth_id=parsed_json['userId'])[0].id
+        UserTourBooking(
+            user_id=user_id, tour_booking=tour_booking).save()
+    return JsonResponse('Booking saved successfully', status=201, safe=False)
