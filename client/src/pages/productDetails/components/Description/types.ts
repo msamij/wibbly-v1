@@ -32,11 +32,11 @@ interface IHttp {
 }
 interface IDescription {
   description: string;
-  state: IGoogleAuthMapState;
+  state: IDescriptionMapState;
   productType: 'hotel' | 'tour' | 'activity';
 }
 
-export interface IGoogleAuthMapState {
+export interface IDescriptionMapState {
   auth: {
     gapiAuth: any;
     isSignedIn: boolean;
@@ -47,32 +47,3 @@ export interface IGoogleAuthMapState {
 }
 
 export interface IDescriptionProps extends IUIChange, IHttp, IDescription {}
-// description: string;
-// state: IGoogleAuthMapState;
-// trySignIn: (auth: any) => void;
-// productType: 'hotel' | 'tour' | 'activity';
-// setMessageText: (
-//   message: string
-// ) => {
-//   type: string;
-//   payload: string;
-// };
-// toggleMessage: (
-//   toggle: boolean
-// ) => {
-//   type: string;
-//   payload: boolean;
-// };
-// toggleOverlay: (
-//   toggle: boolean
-// ) => {
-//   type: string;
-//   payload: boolean;
-// };
-// toggleBookingDatePopup: (
-//   toggle: boolean
-// ) => {
-//   type: string;
-//   payload: boolean;
-// };
-// fetchBookingExistsFlag: (userId: any) => void;

@@ -43,6 +43,6 @@ export const fetchBookingDates = (pathName: string, month: string, year: string)
 };
 
 export const fetchBookingExistsFlag = (userId: any) => async (dispatch: Dispatch<FetchActionTypes>) => {
-  const response = await httpGET(`${Urls.user}${userId}/${Urls.tourBookings}/${Urls.exists}`);
+  const response = await httpGET(`${Urls.users}${userId}/${Urls.tourBookings}/${Urls.exists}`);
   dispatch({ type: USER_TOUR_BOOKING_EXISTS, payload: response });
 };

@@ -5,13 +5,13 @@ import { setMessageText, toggleBookingDatePopup, toggleMessage, toggleOverlay } 
 import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
 import { connect } from 'react-redux';
 import './Description.css';
-import { IDescriptionProps, IGoogleAuthMapState } from './types';
+import { IDescriptionProps, IDescriptionMapState } from './types';
 
 function Description(props: IDescriptionProps) {
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
-    // When this first time renders user might have a signin session, but since gapi takes some to load
+    // When this component first time renders, User might have a signin session, but since gapi takes some to load
     // We need this condition!
     if (isClicked && props.state.auth.isSignedIn) {
       if (!props.state.fetchedData.userTourBookingExists.userTourBookingsExists) {
@@ -19,7 +19,7 @@ function Description(props: IDescriptionProps) {
         props.toggleBookingDatePopup(true);
       } else {
         props.toggleMessage(true);
-        props.setMessageText('Already have a booking');
+        props.setMessageText('Already have a booking for this product!');
       }
     }
   }, [props.state.fetchedData.userTourBookingExists]);
@@ -44,7 +44,7 @@ function Description(props: IDescriptionProps) {
   );
 }
 
-const mapStateToProps = (state: IGoogleAuthMapState) => ({
+const mapStateToProps = (state: IDescriptionMapState) => ({
   state,
 });
 

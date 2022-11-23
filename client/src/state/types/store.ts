@@ -39,18 +39,3 @@ export interface Store
     IProductsStore,
     IToggleStateStore,
     IProductDetailsStore {}
-
-// gapiAuth: any;
-// bookings: [string];
-// notifications: [string];
-// isSignedIn: boolean;
-// tours: toursResponse;
-// hotels: hotelsResponse;
-// toggleOverlay: boolean;
-// toggleMessage: boolean;
-// bookingDates: BookingDates;
-// activities: activityResponse;
-// messageText: string;
-// toggleBookingDatesPopup: boolean;
-// userTourBookingExists: IUserTourBookingExists;
-// productDetail: ITourDetailResponse | IHotelDetailResponse | IActivityDetailResponse;

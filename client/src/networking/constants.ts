@@ -1,7 +1,7 @@
 export enum Urls {
   baseUrl = 'http://127.0.0.1:8000/',
   baseApiUrl = 'api/v1/',
-  user = 'user/',
+  users = 'users/',
   tours = 'tours/',
   tourBookings = 'tour-bookings',
   exists = 'exists',

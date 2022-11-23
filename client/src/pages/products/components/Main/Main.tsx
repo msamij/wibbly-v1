@@ -24,6 +24,7 @@ function Main(props: IMainProps) {
 
   return (
     <main className="main">
+      {/* We could've used some kind of loaders for it to appear until data is fetched, But this how it is :) */}
       {props.state.activities.length > 1 && props.state.tours.length > 1 && props.state.hotels.length > 1 && (
         <React.Fragment>
           <Heading headingTitle="Hotels 🏨" />

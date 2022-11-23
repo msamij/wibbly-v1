@@ -1,10 +1,10 @@
 import { Urls } from '@http/constants';
-import HTTP from '@http/http';
+import HTTP, { RequestBody } from '@http/http';
 import { Dispatch } from 'redux';
 import { HttpPostActionTypes, SAVE_BOOKING } from 'types/index';
 
-async function HttpPOST(pathName: string, userId: any): Promise<any> {
-  return await (await HTTP.post(`${Urls.baseUrl}${Urls.baseApiUrl}${pathName}`, { userId })).json();
+async function HttpPOST(pathName: string, body: RequestBody): Promise<any> {
+  return await (await HTTP.post(`${Urls.baseUrl}${Urls.baseApiUrl}${pathName}`, body)).json();
 }
 
 /**
@@ -13,7 +13,9 @@ async function HttpPOST(pathName: string, userId: any): Promise<any> {
  * @example url = tours/tourName
  *
  **/
-export const saveBooking = (url: string, userId: string) => async (dispatch: Dispatch<HttpPostActionTypes>) => {
-  const response = await HttpPOST(`${url}/${Urls.reserveBooking}`, userId);
+export const saveBooking = (url: string, userId: string, bookingDate: string) => async (
+  dispatch: Dispatch<HttpPostActionTypes>
+) => {
+  const response = await HttpPOST(`${url}/${Urls.reserveBooking}`, { userId, bookingDate });
   dispatch({ type: SAVE_BOOKING, payload: response });
 };

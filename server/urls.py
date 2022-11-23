@@ -23,7 +23,7 @@ urlpatterns = [
     path('api/v1/tours/', include('server.apps.tours.api.urls')),
     path('api/v1/hotels/', include('server.apps.hotels.api.urls')),
     path('api/v1/activities/', include('server.apps.activities.api.urls')),
-    path('api/v1/user/', include('server.apps.users.api.urls')),
+    path('api/v1/users/', include('server.apps.users.api.urls')),
     path('api/v1/users/<str:user>/tour-bookings/',
          include('server.apps.usertourbookings.api.urls')),
 
