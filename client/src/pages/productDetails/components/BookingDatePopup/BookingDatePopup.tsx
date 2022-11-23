@@ -3,41 +3,9 @@ import { fetchBookingDates } from '@actions/httpGet';
 import { saveBooking } from '@actions/httpPost';
 import { setMessageText, toggleBookingDatePopup, toggleMessage, toggleOverlay } from '@actions/uiChange';
 import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
-import { BookingDates } from '@models/BookingDates';
 import { connect } from 'react-redux';
 import './BookingDatePopup.css';
-
-interface IBookingDateProps {
-  pathName: string;
-  state: IBookingDateMapState;
-
-  setMessageText: (
-    message: string
-  ) => {
-    type: string;
-    payload: string;
-  };
-  toggleMessage: (
-    toggle: boolean
-  ) => {
-    type: string;
-    payload: boolean;
-  };
-  toggleOverlay: (
-    toggle: boolean
-  ) => {
-    type: string;
-    payload: boolean;
-  };
-  toggleBookingDatePopup: (
-    toggle: boolean
-  ) => {
-    type: string;
-    payload: boolean;
-  };
-  saveBooking: (url: string, userId: string, bookingDate: string) => void;
-  fetchBookingDates: (pathName: string, month: string, year: string) => void;
-}
+import { IBookingDateMapState, IBookingDateProps } from './types';
 
 function BookingDatePopup(props: IBookingDateProps) {
   const [isClicked, setIsClicked] = useState(false);
@@ -94,20 +62,6 @@ function BookingDatePopup(props: IBookingDateProps) {
   return returnBookingDates();
 }
 
-interface IBookingDateMapState {
-  auth: {
-    gapiAuth: any;
-  };
-  fetchedData: {
-    bookingDates: BookingDates;
-  };
-  postData: {
-    bookingStatusMessage: string;
-  };
-  uiChange: {
-    toggleBookingDatesPopup: boolean;
-  };
-}
 const mapStateToProps = (state: IBookingDateMapState) => ({
   state,
 });

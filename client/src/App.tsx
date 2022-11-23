@@ -14,7 +14,7 @@ function App(props: { state: IAppMapStore['uiChange'] }) {
       <BrowserRouter>
         <Header />
         {props.state.toggleOverlay && <Overlay />}
-        {props.state.toggleMessage && <Message message="" />}
+        {props.state.toggleMessage && <Message />}
         <Route path="/" exact component={Products} />
         <Route path="/hotels/:id" exact component={ProductDetails} />
         <Route path="/tours/:id" exact component={ProductDetails} />

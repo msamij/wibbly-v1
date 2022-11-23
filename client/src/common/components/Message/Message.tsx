@@ -1,16 +1,10 @@
 import React, { useEffect } from 'react';
-import { toggleMessage, setMessageText } from '@actions/uiChange';
+import { toggleMessage } from '@actions/uiChange';
 import { connect } from 'react-redux';
 import './Message.css';
 
 interface IMessageProps {
-  message: string;
-  setMessageText: (
-    message: string
-  ) => {
-    type: string;
-    payload: string;
-  };
+  state: IMessageMapState['uiChange'];
   toggleMessage: (
     toggle: boolean
   ) => {
@@ -22,12 +16,20 @@ interface IMessageProps {
 function Message(props: IMessageProps) {
   useEffect(() => {
     setTimeout(() => {
-      props.setMessageText('');
       props.toggleMessage(false);
     }, 5000);
   }, []);
 
-  return <div className="message">{props.message}</div>;
+  return <div className="message">{props.state.messageText}</div>;
 }
 
-export default connect(null, { toggleMessage, setMessageText })(Message);
+interface IMessageMapState {
+  uiChange: {
+    messageText: string;
+  };
+}
+const mapStateToProps = (state: IMessageMapState) => ({
+  state: state.uiChange,
+});
+
+export default connect(mapStateToProps, { toggleMessage })(Message);
