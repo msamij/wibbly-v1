@@ -24,7 +24,7 @@ urlpatterns = [
     path('api/v1/hotels/', include('server.apps.hotels.api.urls')),
     path('api/v1/activities/', include('server.apps.activities.api.urls')),
     path('api/v1/user/', include('server.apps.users.api.urls')),
-    path('api/v1/user/tour-bookings/',
+    path('api/v1/users/<str:user>/tour-bookings/',
          include('server.apps.usertourbookings.api.urls')),
 
     # This api is no longer used by wibbly client, and have been replaced by gapi on client side for authorization.

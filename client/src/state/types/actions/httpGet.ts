@@ -1,7 +1,7 @@
 import { activityResponse, IActivityDetailResponse } from '@models/Activity';
 import { BookingDates } from '@models/BookingDates';
 import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
-import { ITourDetailResponse, toursResponse, IUserTourBookingExists } from '@models/Tour';
+import { ITourDetailResponse, IUserTourBookingExists, toursResponse } from '@models/Tour';
 
 export const FETCH_TOURS = 'FETCH_TOURS';
 export const FETCH_HOTELS = 'FETCH_HOTELS';

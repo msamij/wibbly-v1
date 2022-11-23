@@ -1,43 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { trySignIn } from '@actions/auth';
-import { fetchBookingExistsFlag } from '@actions/fetch';
-import { toggleBookingDatePopup, toggleOverlay, toggleMessage, setMessageText } from '@actions/uiChange';
+import { fetchBookingExistsFlag } from '@actions/httpGet';
+import { setMessageText, toggleBookingDatePopup, toggleMessage, toggleOverlay } from '@actions/uiChange';
 import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
-import { IUserTourBookingExists } from '@http/Models/Tour';
 import { connect } from 'react-redux';
 import './Description.css';
-
-interface IDescriptionProps {
-  description: string;
-  state: IGoogleAuthMapState;
-  productType: 'hotel' | 'tour' | 'activity';
-  setMessageText: (
-    message: string
-  ) => {
-    type: string;
-    payload: string;
-  };
-  toggleMessage: (
-    toggle: boolean
-  ) => {
-    type: string;
-    payload: boolean;
-  };
-  trySignIn: (auth: any) => void;
-  toggleOverlay: (
-    toggle: boolean
-  ) => {
-    type: string;
-    payload: boolean;
-  };
-  toggleBookingDatePopup: (
-    toggle: boolean
-  ) => {
-    type: string;
-    payload: boolean;
-  };
-  fetchBookingExistsFlag: (userId: any) => void;
-}
+import { IDescriptionProps, IGoogleAuthMapState } from './types';
 
 function Description(props: IDescriptionProps) {
   const [isClicked, setIsClicked] = useState(false);
@@ -76,24 +44,15 @@ function Description(props: IDescriptionProps) {
   );
 }
 
-interface IGoogleAuthMapState {
-  auth: {
-    gapiAuth: any;
-    isSignedIn: boolean;
-  };
-  fetchedData: {
-    userTourBookingExists: IUserTourBookingExists;
-  };
-}
 const mapStateToProps = (state: IGoogleAuthMapState) => ({
   state,
 });
 
 export default connect(mapStateToProps, {
-  toggleOverlay,
-  toggleBookingDatePopup,
   trySignIn,
-  fetchBookingExistsFlag,
+  toggleOverlay,
   toggleMessage,
   setMessageText,
+  fetchBookingExistsFlag,
+  toggleBookingDatePopup,
 })(Description);

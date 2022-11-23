@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
+import { fetchBookingDates } from '@actions/httpGet';
 import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
 import { BookingDates } from '@models/BookingDates';
 import { connect } from 'react-redux';
-import { fetchBookingDates } from '@actions/fetch';
 import './BookingDatePopup.css';
 
 interface IBookingDateProps {
-  state: IBookingDateMapState;
   pathName: string;
+  state: IBookingDateMapState;
   fetchBookingDates: (pathName: string, month: string, year: string) => void;
 }
 

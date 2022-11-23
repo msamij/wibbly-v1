@@ -20,26 +20,26 @@ interface IToggleStateStore {
   toggleMessage: boolean;
   toggleBookingDatesPopup: boolean;
 }
-
 // Couldn't come up with a better name for this :)
 interface UIStore {
   bookings: [string];
   messageText: string;
   notifications: [string];
   bookingDates: BookingDates;
+  bookingStatusMessage: string;
 }
-
 interface UIStoreFlags {
   userTourBookingExists: IUserTourBookingExists;
 }
 
 export interface Store
-  extends IAuthStore,
+  extends UIStore,
+    IAuthStore,
+    UIStoreFlags,
     IProductsStore,
-    IProductDetailsStore,
     IToggleStateStore,
-    UIStore,
-    UIStoreFlags {}
+    IProductDetailsStore {}
+
 // gapiAuth: any;
 // bookings: [string];
 // notifications: [string];

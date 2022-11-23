@@ -1,4 +1,4 @@
-import { fetchActivities, fetchHotels, fetchTours } from '@actions/fetch';
+import { fetchActivities, fetchHotels, fetchTours } from '@actions/httpGet';
 import FigureContainer from '@figureContainer/FigureContainer';
 import Heading from '@headingMain/Heading';
 import { activityResponse } from '@models/Activity';

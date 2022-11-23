@@ -1,33 +1,14 @@
 import React from 'react';
+import Description from '@description/Description';
 import Main from '@productDetailsMain/Main';
 import DetailHeader from '@productsDetailsHeader/DetailHeader';
-import Description from '@description/Description';
-import { IProductDetail } from '../App';
-
-interface IComposeProductDetailProps {
-  product: IProductDetail;
-  productType: 'hotels' | 'activities' | 'tours';
-}
-
-interface IDetailHeaderArgs {
-  name: string;
-  price: number;
-  title1?: string;
-  title2?: string;
-  hotelType?: 'hotel';
-}
-interface IMainArgs {
-  images: string[];
-  description: string;
-  instructorName?: string;
-  instructorImage?: string;
-  instructorExists: boolean;
-}
-interface IDescriptionArgs {
-  description: string;
-  descriptionType: 'hotel' | 'tour' | 'activity';
-}
-interface IComposedComponentArgs extends IDetailHeaderArgs, IMainArgs, IDescriptionArgs {}
+import {
+  IComposedComponentArgs,
+  IComposeProductDetailProps,
+  IDescriptionArgs,
+  IDetailHeaderArgs,
+  IMainArgs,
+} from './types';
 
 class ComposeProductDetail extends React.Component<IComposeProductDetailProps> {
   buildAndReturnComposedComponent() {
