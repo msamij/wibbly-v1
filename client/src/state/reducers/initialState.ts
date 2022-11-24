@@ -2,7 +2,7 @@ import { activityResponse, IActivityDetailResponse } from '@models/Activity';
 import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
 import { ITourDetailResponse, toursResponse } from '@models/Tour';
 
-// Don't ever look at this stuff, or you'll get a panic attack. (I am really sorry that I did this)
+// Don't ever look at this stuff, or you'll get a panic attack.
 const INITIAL_ACTIVITY = {
   id: 0,
   name: '',

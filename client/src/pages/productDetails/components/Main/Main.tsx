@@ -5,8 +5,8 @@ import './Main.css';
 
 interface IMainProps {
   productImages: string[];
-  instructorImage?: string;
   instructorName?: string;
+  instructorImage?: string;
   instructorExists: boolean;
 }
 

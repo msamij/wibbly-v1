@@ -2,8 +2,8 @@ import React from 'react';
 import './Instructor.css';
 
 interface IInstructorProps {
-  instructorName: string;
   imageUrl: string;
+  instructorName: string;
 }
 
 function Instructor(props: IInstructorProps) {

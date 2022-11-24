@@ -1,4 +1,5 @@
-import { BaseUrls, Resources, ResourceEndPoints } from '@http/constants';
+import { productTypePlural } from '@globalTypes/types';
+import { BaseUrls, ResourceEndPoints, Resources } from '@http/constants';
 import HTTP from '@http/http';
 import { Dispatch } from 'redux';
 import {
@@ -10,7 +11,6 @@ import {
   FETCH_TOURS,
   FETCH_USER_BOOKING_EXISTS_FLAG,
 } from 'types/index';
-import { productTypePlural } from '@globalTypes/types';
 
 async function httpGET(pathName: string): Promise<any> {
   return await (await HTTP.get(`${BaseUrls.localHost}${BaseUrls.baseApi}${pathName}`)).json();
@@ -43,7 +43,7 @@ export const fetchBookingDates = (pathName: string, month: string, year: string)
   dispatch({ type: FETCH_BOOKING_DATES, payload: response });
 };
 
-export const fetchBookingExistsFlag = (productType: 'hotels' | 'tours' | 'activities', userId: any) => async (
+export const fetchBookingExistsFlag = (productType: productTypePlural, userId: any) => async (
   dispatch: Dispatch<FetchActionTypes>
 ) => {
   const selectedProduct = {
