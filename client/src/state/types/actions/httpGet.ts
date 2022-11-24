@@ -9,7 +9,7 @@ export const FETCH_HOTELS = 'FETCH_HOTELS';
 export const FETCH_ACTIVITIES = 'FETCH_ACTIVITIES';
 export const FETCH_BOOKING_DATES = 'FETCH_BOOKING_DATES';
 export const FETCH_PRODUCT_DETAILS = 'FETCH_PRODUCT_DETAILS';
-export const USER_BOOKING_EXISTS = 'USER_TOUR_BOOKING_EXISTS';
+export const FETCH_USER_BOOKING_EXISTS_FLAG = 'FETCH_USER_TOUR_BOOKING_EXISTS_FLAG';
 
 export type FetchActionTypes =
   | { type: typeof FETCH_TOURS; payload: toursResponse }
@@ -20,4 +20,4 @@ export type FetchActionTypes =
       type: typeof FETCH_PRODUCT_DETAILS;
       payload: IActivityDetailResponse | IHotelDetailResponse | ITourDetailResponse;
     }
-  | { type: typeof USER_BOOKING_EXISTS; payload: IUserBookingExists };
+  | { type: typeof FETCH_USER_BOOKING_EXISTS_FLAG; payload: IUserBookingExists };

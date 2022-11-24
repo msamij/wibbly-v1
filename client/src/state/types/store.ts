@@ -19,6 +19,7 @@ interface IProductDetailsStore {
 interface IToggleStateStore {
   toggleOverlay: boolean;
   toggleMessage: boolean;
+  toggleBookingListPopup: boolean;
   toggleBookingDatesPopup: boolean;
 }
 // Couldn't come up with a better name for this :)

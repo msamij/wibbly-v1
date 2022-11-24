@@ -1,4 +1,5 @@
 import { IActivityDetailResponse } from '@models/Activity';
+import { productTypePlural } from '@globalTypes/types';
 import { IHotelDetailResponse } from '@models/Hotel';
 import { ITourDetailResponse } from '@models/Tour';
 
@@ -6,7 +7,7 @@ export interface IProductDetailProps {
   state: IProductDetailMapState;
   fetchProductDetails: (pathName: string) => void;
   updateSelectedProduct: (
-    productType: string
+    productType: productTypePlural
   ) => {
     type: string;
     payload: string;

@@ -54,12 +54,16 @@ def booking_dates(request, activity):
 def reserve_booking(request, activity):
     parse_json = json.load(request)
     activity = Activity.objects.filter(name=activity)
-    week_day = WeekDay.objects.filter(week_day=parse_json['weekDay'])
+    week_day = WeekDay.objects.filter(week_day=parse_json['bookingDate'])
     user = User.objects.filter(google_auth_id=parse_json['userId'])
+
+    if not ActivityBooking.objects.filter(activity_id=activity[0].id, activity_booking_day_id=week_day[0].id).exists():
+        ActivityBooking(
+            activity=activity[0], activity_booking_day=week_day[0]).save()
+
     activity_booking = ActivityBooking.objects.filter(
         activity_id=activity[0].id, activity_booking_day_id=week_day[0].id)
+    UserActivityBooking(
+        user_id=user[0].id, activity_booking=activity_booking[0]).save()
 
-    UserActivityBooking.objects.filter(
-        user_id=user[0].id, activity_booking_id=activity_booking[0].id)
-
-    return JsonResponse({'Text': 'Hello, world'})
+    return JsonResponse('Booking saved successfully', status=201, safe=False)

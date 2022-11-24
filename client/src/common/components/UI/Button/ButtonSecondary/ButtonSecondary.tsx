@@ -9,13 +9,11 @@ interface IButtonSecondary {
 
 function ButtonSecondary(props: IButtonSecondary) {
   return (
-    <button
-      className="btn btn-secondary"
-      onClick={() => props.onButtonClick() as React.MouseEventHandler<HTMLButtonElement>}
-    >
+    <button className="btn btn-secondary" onClick={() => props.onButtonClick()}>
       {props.buttonText}
     </button>
   );
 }
 
 export default ButtonSecondary;
+// as React.MouseEventHandler<HTMLButtonElement>

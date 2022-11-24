@@ -10,6 +10,8 @@
       "types/*": ["./src/state/types/*"],
       "@models/*": ["./src/networking/Models/*"],
 
+      "@globalTypes/*": ["./src/common/types/*"],
+
       "@header/*": ["./src/common/components/Header/*"],
       "@main/*": ["./src/pages/products/components/Main/*"],
       "@headerLogo/*": ["./src/common/components/Header/HeaderLogo/*"],

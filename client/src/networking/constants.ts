@@ -1,16 +1,35 @@
-export enum Urls {
-  baseUrl = 'http://127.0.0.1:8000/',
-  baseApiUrl = 'api/v1/',
+// export enum Urls {
+//   baseUrl = 'http://127.0.0.1:8000/',
+//   baseApiUrl = 'api/v1/',
+//   users = 'users/',
+//   tours = 'tours/',
+//   hotels = 'hotels/',
+//   hotelBookings = 'hotel-bookings',
+//   tourBookings = 'tour-bookings',
+//   activityBookings = 'activity-bookings',
+//   exists = 'exists',
+//   bookingDates = 'booking-dates',
+//   reserveBooking = 'reserve-booking',
+//   signin = 'signin',
+// }
+
+export enum BaseUrls {
+  localHost = 'http://127.0.0.1:8000/',
+  baseApi = 'api/v1/',
+}
+export enum Resources {
   users = 'users/',
   tours = 'tours/',
   hotels = 'hotels/',
-  hotelBookings = 'hotel-bookings',
-  tourBookings = 'tour-bookings',
-  activityBookings = 'activity-bookings',
+  tourBookings = 'tour-bookings/',
+  hotelBookings = 'hotel-bookings/',
+  activityBookings = 'activity-bookings/',
+}
+export enum ResourceEndPoints {
   exists = 'exists',
+  signin = 'signin',
   bookingDates = 'booking-dates',
   reserveBooking = 'reserve-booking',
-  signin = 'signin',
 }
 
 export enum GoogleAuthConfig {

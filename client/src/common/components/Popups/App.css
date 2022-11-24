@@ -11,6 +11,4 @@
   transform: translate(-50%, -20%);
   padding: 2rem 3rem;
   overflow-y: scroll;
-  opacity: 0;
-  visibility: hidden;
 }

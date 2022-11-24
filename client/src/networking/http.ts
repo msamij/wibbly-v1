@@ -1,6 +1,6 @@
 export interface RequestBody {
   userId?: string;
-  bookingDate?: string;
+  selectedDate?: string;
 }
 
 class HTTP {

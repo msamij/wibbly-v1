@@ -30,7 +30,6 @@ function Description(props: IDescriptionProps) {
     // Wait until it loads, then proceed
     if (props.state.auth.gapiAuth) {
       if (props.state.auth.isSignedIn) {
-        // console.log('ss');
         props.fetchBookingExistsFlag(
           props.state.uiChange.selectedProductType as 'hotels' | 'tours' | 'activities',
           props.state.auth.gapiAuth.currentUser.get().getId()

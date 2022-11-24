@@ -1,4 +1,4 @@
-import { Urls } from '@http/constants';
+import { BaseUrls, Resources, ResourceEndPoints } from '@http/constants';
 import HTTP from '@http/http';
 import { Dispatch } from 'redux';
 import {
@@ -8,11 +8,12 @@ import {
   FETCH_HOTELS,
   FETCH_PRODUCT_DETAILS,
   FETCH_TOURS,
-  USER_BOOKING_EXISTS,
+  FETCH_USER_BOOKING_EXISTS_FLAG,
 } from 'types/index';
+import { productTypePlural } from '@globalTypes/types';
 
 async function httpGET(pathName: string): Promise<any> {
-  return await (await HTTP.get(`${Urls.baseUrl}${Urls.baseApiUrl}${pathName}`)).json();
+  return await (await HTTP.get(`${BaseUrls.localHost}${BaseUrls.baseApi}${pathName}`)).json();
 }
 
 export const fetchHotels = () => async (dispatch: Dispatch<FetchActionTypes>) => {
@@ -38,7 +39,7 @@ export const fetchProductDetails = (pathName: string) => async (dispatch: Dispat
 export const fetchBookingDates = (pathName: string, month: string, year: string) => async (
   dispatch: Dispatch<FetchActionTypes>
 ) => {
-  const response = await httpGET(`${pathName}/${Urls.bookingDates}?month=${month}&year=${year}`);
+  const response = await httpGET(`${pathName}/${ResourceEndPoints.bookingDates}?month=${month}&year=${year}`);
   dispatch({ type: FETCH_BOOKING_DATES, payload: response });
 };
 
@@ -46,10 +47,13 @@ export const fetchBookingExistsFlag = (productType: 'hotels' | 'tours' | 'activi
   dispatch: Dispatch<FetchActionTypes>
 ) => {
   const selectedProduct = {
-    tours: Urls.tourBookings,
-    hotels: Urls.hotelBookings,
-    activities: Urls.activityBookings,
+    tours: Resources.tourBookings,
+    hotels: Resources.hotelBookings,
+    activities: Resources.activityBookings,
   };
-  const response = await httpGET(`${Urls.users}${userId}/${selectedProduct[productType]}/${Urls.exists}`);
-  dispatch({ type: USER_BOOKING_EXISTS, payload: response });
+
+  const response = await httpGET(
+    `${Resources.users}${userId}/${selectedProduct[productType]}${ResourceEndPoints.exists}`
+  );
+  dispatch({ type: FETCH_USER_BOOKING_EXISTS_FLAG, payload: response });
 };
