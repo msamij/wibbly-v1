@@ -1,5 +1,6 @@
 import { INITIAL_STATE } from '@reducers/initialState';
 import {
+  SELECTED_PRODUCT_TYPE,
   SET_MESSAGE_TEXT,
   TOGGLE_BOOKING_DATES_POPUP,
   TOGGLE_MESSAGE_POPUP,
@@ -18,6 +19,8 @@ export const uiChangeReducer = (state: Store = INITIAL_STATE, action: UIChangeAc
       return { ...state, toggleMessage: action.payload };
     case SET_MESSAGE_TEXT:
       return { ...state, messageText: action.payload };
+    case SELECTED_PRODUCT_TYPE:
+      return { ...state, selectedProductType: action.payload };
     default:
       return state;
   }

@@ -8,7 +8,7 @@ import {
   FETCH_HOTELS,
   FETCH_PRODUCT_DETAILS,
   FETCH_TOURS,
-  USER_TOUR_BOOKING_EXISTS,
+  USER_BOOKING_EXISTS,
 } from 'types/index';
 
 async function httpGET(pathName: string): Promise<any> {
@@ -42,7 +42,14 @@ export const fetchBookingDates = (pathName: string, month: string, year: string)
   dispatch({ type: FETCH_BOOKING_DATES, payload: response });
 };
 
-export const fetchBookingExistsFlag = (userId: any) => async (dispatch: Dispatch<FetchActionTypes>) => {
-  const response = await httpGET(`${Urls.users}${userId}/${Urls.tourBookings}/${Urls.exists}`);
-  dispatch({ type: USER_TOUR_BOOKING_EXISTS, payload: response });
+export const fetchBookingExistsFlag = (productType: 'hotels' | 'tours' | 'activities', userId: any) => async (
+  dispatch: Dispatch<FetchActionTypes>
+) => {
+  const selectedProduct = {
+    tours: Urls.tourBookings,
+    hotels: Urls.hotelBookings,
+    activities: Urls.activityBookings,
+  };
+  const response = await httpGET(`${Urls.users}${userId}/${selectedProduct[productType]}/${Urls.exists}`);
+  dispatch({ type: USER_BOOKING_EXISTS, payload: response });
 };

@@ -5,6 +5,12 @@ import { ITourDetailResponse } from '@models/Tour';
 export interface IProductDetailProps {
   state: IProductDetailMapState;
   fetchProductDetails: (pathName: string) => void;
+  updateSelectedProduct: (
+    productType: string
+  ) => {
+    type: string;
+    payload: string;
+  };
 }
 export interface IProductDetail extends ITourDetailResponse, IHotelDetailResponse, IActivityDetailResponse {}
 

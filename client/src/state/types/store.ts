@@ -1,7 +1,8 @@
 import { activityResponse, IActivityDetailResponse } from '@models/Activity';
 import { BookingDates } from '@models/BookingDates';
 import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
-import { ITourDetailResponse, IUserTourBookingExists, toursResponse } from '@models/Tour';
+import { IUserBookingExists } from '@models/Model';
+import { ITourDetailResponse, toursResponse } from '@models/Tour';
 
 interface IAuthStore {
   gapiAuth: any;
@@ -26,10 +27,11 @@ interface UIStore {
   messageText: string;
   notifications: [string];
   bookingDates: BookingDates;
+  selectedProductType: string;
   bookingStatusMessage: string;
 }
 interface UIStoreFlags {
-  userTourBookingExists: IUserTourBookingExists;
+  userBookingExists: IUserBookingExists;
 }
 
 export interface Store

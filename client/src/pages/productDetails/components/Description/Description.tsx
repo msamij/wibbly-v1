@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import { trySignIn } from '@actions/auth';
 import { fetchBookingExistsFlag } from '@actions/httpGet';
 import { setMessageText, toggleBookingDatePopup, toggleMessage, toggleOverlay } from '@actions/uiChange';
 import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import './Description.css';
-import { IDescriptionProps, IDescriptionMapState } from './types';
+import { IDescriptionMapState, IDescriptionProps } from './types';
 
 function Description(props: IDescriptionProps) {
   const [isClicked, setIsClicked] = useState(false);
@@ -14,7 +14,7 @@ function Description(props: IDescriptionProps) {
     // When this component first time renders, User might have a signin session, but since gapi takes some to load
     // We need this condition!
     if (isClicked && props.state.auth.isSignedIn) {
-      if (!props.state.fetchedData.userTourBookingExists.userTourBookingsExists) {
+      if (!props.state.fetchedData.userBookingExists.userBookingsExists) {
         props.toggleOverlay(true);
         props.toggleBookingDatePopup(true);
       } else {
@@ -22,15 +22,20 @@ function Description(props: IDescriptionProps) {
         props.setMessageText('Already have a booking for this product!');
       }
     }
-  }, [props.state.fetchedData.userTourBookingExists]);
+  }, [props.state.fetchedData.userBookingExists]);
 
   const onReserveBookingButtonClicked = () => {
+    // console.log(props.state.uiChange);
     // We have to account for that the user instantly clicks on this button, however gapi is not loaded
     // Wait until it loads, then proceed
     if (props.state.auth.gapiAuth) {
-      if (props.state.auth.isSignedIn)
-        props.fetchBookingExistsFlag(props.state.auth.gapiAuth.currentUser.get().getId());
-      else props.trySignIn(props.state.auth.gapiAuth);
+      if (props.state.auth.isSignedIn) {
+        // console.log('ss');
+        props.fetchBookingExistsFlag(
+          props.state.uiChange.selectedProductType as 'hotels' | 'tours' | 'activities',
+          props.state.auth.gapiAuth.currentUser.get().getId()
+        );
+      } else props.trySignIn(props.state.auth.gapiAuth);
     }
     setIsClicked(true);
   };

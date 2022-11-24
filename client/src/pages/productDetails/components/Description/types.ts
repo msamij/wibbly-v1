@@ -1,4 +1,4 @@
-import { IUserTourBookingExists } from '@http/Models/Tour';
+import { IUserBookingExists } from '@models/Model';
 
 interface IUIChange {
   setMessageText: (
@@ -28,7 +28,7 @@ interface IUIChange {
 }
 interface IHttp {
   trySignIn: (auth: any) => void;
-  fetchBookingExistsFlag: (userId: any) => void;
+  fetchBookingExistsFlag: (productType: 'hotels' | 'tours' | 'activities', userId: any) => void;
 }
 interface IDescription {
   description: string;
@@ -42,7 +42,10 @@ export interface IDescriptionMapState {
     isSignedIn: boolean;
   };
   fetchedData: {
-    userTourBookingExists: IUserTourBookingExists;
+    userBookingExists: IUserBookingExists;
+  };
+  uiChange: {
+    selectedProductType: string;
   };
 }
 

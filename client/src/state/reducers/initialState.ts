@@ -2,7 +2,7 @@ import { activityResponse, IActivityDetailResponse } from '@models/Activity';
 import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
 import { ITourDetailResponse, toursResponse } from '@models/Tour';
 
-// Don't ever look at this stuff, or you'll get a panic attack.
+// Don't ever look at this stuff, or you'll get a panic attack. (I am really sorry that I did this)
 const INITIAL_ACTIVITY = {
   id: 0,
   name: '',
@@ -32,6 +32,7 @@ export const INITIAL_STATE = {
   isSignedIn: false,
   toggleOverlay: false,
   toggleMessage: false,
+  selectedProductType: '',
   bookingStatusMessage: '',
   bookings: [''] as [string],
   toggleBookingDatesPopup: false,
@@ -39,7 +40,7 @@ export const INITIAL_STATE = {
   tours: [INITIAL_TOUR] as toursResponse,
   hotels: [INITIAL_HOTEL] as hotelsResponse,
   bookingDates: { bookingDates: [''] as [string] },
+  userBookingExists: { userBookingsExists: null },
   activities: [INITIAL_ACTIVITY] as activityResponse,
-  userTourBookingExists: { userTourBookingsExists: false },
   productDetail: {} as IActivityDetailResponse | ITourDetailResponse | IHotelDetailResponse,
 };

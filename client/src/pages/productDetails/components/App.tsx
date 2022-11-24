@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { fetchProductDetails } from '@actions/httpGet';
+import { updateSelectedProduct } from '@actions/uiChange';
 import BookingDatePopup from '@bookingDatePopup/BookingDatePopup';
 import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -12,6 +13,10 @@ function ProductDetails(props: IProductDetailProps) {
 
   useEffect(() => {
     props.fetchProductDetails(url);
+
+    // This is so that when user tries to do a booking we can then check if they already had a booking.
+    // By doing this redux would know what product is currently being viewed that user is trying to book.
+    props.updateSelectedProduct(pathName);
   }, []);
 
   return (
@@ -28,4 +33,4 @@ const mapStateToProps = (state: IProductDetailMapState) => ({
   state,
 });
 
-export default connect(mapStateToProps, { fetchProductDetails })(ProductDetails);
+export default connect(mapStateToProps, { fetchProductDetails, updateSelectedProduct })(ProductDetails);

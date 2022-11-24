@@ -1,4 +1,5 @@
 from django.db import models
+
 from server.apps.activitybookings.models import ActivityBooking
 from server.apps.users.models import User
 
