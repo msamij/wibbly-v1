@@ -20,7 +20,7 @@ function BookingDatePopup(props: IBookingDateProps) {
     props.saveBooking(props.pathName, props.state.auth.gapiAuth.currentUser.get().getId(), date);
   };
 
-  const onDateSelectButtonClicked: MouseEventHandler<HTMLButtonElement> = e => {
+  const onSelectDateButtonClicked: MouseEventHandler<HTMLButtonElement> = e => {
     setDate((e.target as HTMLButtonElement).textContent as string);
   };
 
@@ -47,7 +47,7 @@ function BookingDatePopup(props: IBookingDateProps) {
 
             <div className="booking-date-popup__date-selection">
               {props.state.fetchedData.bookingDates.bookingDates.map((date: string, index: number) => (
-                <button key={index} className="btn btn-date" onClick={onDateSelectButtonClicked}>
+                <button key={index} className="btn btn-date" onClick={onSelectDateButtonClicked}>
                   {date}
                 </button>
               ))}

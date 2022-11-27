@@ -6,3 +6,7 @@ export const saveUserOnSignIn = async (userId: string) => {
     userId,
   });
 };
+
+export const isSignedIn = (auth: { gapiAuth: any; isSignedIn: boolean }) => {
+  if (auth.gapiAuth) if (auth.isSignedIn) return true;
+};

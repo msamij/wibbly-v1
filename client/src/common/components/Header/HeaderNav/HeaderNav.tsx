@@ -1,12 +1,13 @@
 import React from 'react';
 import { toggleBookingListPopup, toggleOverlay } from '@actions/uiChange';
 import ButtonPrimary from '@button/ButtonPrimary/ButtonPrimary';
-import { IToggleBookingList, IToggleOverlay } from '@globalTypes/types';
+import { isSignedIn } from '@http/utils';
+import { IState, IToggleBookingList, IToggleOverlay } from '@globalTypes/types';
 import HeaderProfileMenu from '@headerProfileMenu/HeaderProfileMenu';
 import { connect } from 'react-redux';
 import './HeaderNav.css';
 
-interface IHeaderNavProps extends IToggleOverlay, IToggleBookingList {}
+interface IHeaderNavProps extends IState<IDescriptionMapState>, IToggleOverlay, IToggleBookingList {}
 
 function HeaderNav(props: IHeaderNavProps) {
   const onMyBookingsButtonClick = () => {
@@ -16,17 +17,31 @@ function HeaderNav(props: IHeaderNavProps) {
 
   return (
     <div className="header__nav">
-      <ButtonPrimary
-        btnType="bookings"
-        btnText="My Bookings"
-        emoji={'🔖'}
-        onButtonClick={() => onMyBookingsButtonClick()}
-      ></ButtonPrimary>
-      <ButtonPrimary btnType="notifications" btnText="Notifications" emoji={'🔔'}></ButtonPrimary>
+      {isSignedIn(props.state.auth) && (
+        <React.Fragment>
+          <ButtonPrimary
+            btnType="bookings"
+            btnText="My Bookings"
+            emoji={'🔖'}
+            onButtonClick={() => onMyBookingsButtonClick()}
+          />
+          <ButtonPrimary btnType="notifications" btnText="Notifications" emoji={'🔔'}></ButtonPrimary>
+        </React.Fragment>
+      )}
       <ButtonPrimary btnType="profile" btnText="Profile" emoji={'👤'}></ButtonPrimary>
       <HeaderProfileMenu />
     </div>
   );
 }
 
-export default connect(null, { toggleBookingListPopup, toggleOverlay })(HeaderNav);
+interface IDescriptionMapState {
+  auth: {
+    gapiAuth: any;
+    isSignedIn: boolean;
+  };
+}
+const mapStateToProps = (state: IDescriptionMapState) => ({
+  state,
+});
+
+export default connect(mapStateToProps, { toggleBookingListPopup, toggleOverlay })(HeaderNav);

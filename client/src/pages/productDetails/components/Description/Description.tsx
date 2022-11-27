@@ -3,6 +3,7 @@ import { fetchBookingExistsFlag } from '@actions/httpGet';
 import { setMessageText, toggleBookingDatePopup, toggleMessage, toggleOverlay } from '@actions/uiChange';
 import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
 import React, { useEffect, useState } from 'react';
+import { isSignedIn } from '@http/utils';
 import { connect } from 'react-redux';
 import './Description.css';
 import { IDescriptionMapState, IDescriptionProps } from './types';
@@ -27,14 +28,20 @@ function Description(props: IDescriptionProps) {
   const onReserveBookingButtonClicked = () => {
     // We have to account for that the user instantly clicks on this button, however gapi is not loaded.
     // Wait until it loads, then proceed.
-    if (props.state.auth.gapiAuth) {
-      if (props.state.auth.isSignedIn) {
-        props.fetchBookingExistsFlag(
-          props.state.uiChange.selectedProductType as 'hotels' | 'tours' | 'activities',
-          props.state.auth.gapiAuth.currentUser.get().getId()
-        );
-      } else props.trySignIn(props.state.auth.gapiAuth);
-    }
+    // if (props.state.auth.gapiAuth) {
+    //   if (props.state.auth.isSignedIn) {
+    //     props.fetchBookingExistsFlag(
+    //       props.state.uiChange.selectedProductType as 'hotels' | 'tours' | 'activities',
+    //       props.state.auth.gapiAuth.currentUser.get().getId()
+    //     );
+    //   } else props.trySignIn(props.state.auth.gapiAuth);
+    // }
+    if (isSignedIn(props.state.auth)) {
+      props.fetchBookingExistsFlag(
+        props.state.uiChange.selectedProductType as 'hotels' | 'tours' | 'activities',
+        props.state.auth.gapiAuth.currentUser.get().getId()
+      );
+    } else props.trySignIn(props.state.auth.gapiAuth);
     setIsClicked(true);
   };
 

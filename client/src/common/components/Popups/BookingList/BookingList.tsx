@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { fetchUserBookings } from '@actions/httpGet';
 import Booking from '@bookingList/Booking/Booking';
+import { IState } from '@globalTypes/types';
+import { IUserBookingsList } from '@http/Models/Bookings';
 import PopupMessage from '@popupMessage/PopupMessage';
 import { connect } from 'react-redux';
 import '../App.css';
-import { IUserBookingsList } from '@http/Models/Bookings';
-import { IState } from '@globalTypes/types';
 
 interface IBookingListProps extends IState<IBookingListMapStore> {
   fetchUserBookings: (userId: string) => void;

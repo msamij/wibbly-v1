@@ -1,8 +1,3 @@
-import { IUserBookingsList } from '@http/Models/Bookings';
-import { activityResponse, IActivityDetailResponse } from '@models/Activity';
-import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
-import { ITourDetailResponse, toursResponse } from '@models/Tour';
-
 // Don't ever look at this stuff, or you'll get a panic attack.
 const INITIAL_ACTIVITY = {
   id: 0,
@@ -41,13 +36,13 @@ export const INITIAL_STATE = {
   selectedProductType: '',
   bookingStatusMessage: '',
   bookings: [''] as any,
+  productDetail: {} as any,
+  tours: [INITIAL_TOUR] as any,
   toggleBookingListPopup: false,
   toggleBookingDatesPopup: false,
-  tours: [INITIAL_TOUR] as any,
   hotels: [INITIAL_HOTEL] as any,
-  userBookingExists: { userBookingsExists: null },
-  bookingDates: { bookingDates: [''] as any },
   activities: [INITIAL_ACTIVITY] as any,
+  bookingDates: { bookingDates: [''] as any },
   userBookingsList: INITIAL_USER_BOOKINGS as any,
-  productDetail: {} as any,
+  userBookingExists: { userBookingsExists: null },
 };
