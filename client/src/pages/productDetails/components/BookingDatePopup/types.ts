@@ -1,33 +1,13 @@
-import { BookingDates } from '@models/BookingDates';
-import { IUIChange, IState } from '@globalTypes/types';
+import { IBookingDates } from '@http/Models/Bookings';
+import { IToggleBookingDate, IToggleMessage, IToggleOverlay, IUIChange, IState } from '@globalTypes/types';
 
-export interface IBookingDateProps extends IUIChange, IState<IBookingDateMapState> {
+export interface IBookingDateProps
+  extends IUIChange,
+    IToggleMessage,
+    IToggleOverlay,
+    IToggleBookingDate,
+    IState<IBookingDateMapState> {
   pathName: string;
-  // state: IBookingDateMapState;
-  // setMessageText: (
-  //   message: string
-  // ) => {
-  //   type: string;
-  //   payload: string;
-  // };
-  // toggleMessage: (
-  //   toggle: boolean
-  // ) => {
-  //   type: string;
-  //   payload: boolean;
-  // };
-  // toggleOverlay: (
-  //   toggle: boolean
-  // ) => {
-  //   type: string;
-  //   payload: boolean;
-  // };
-  // toggleBookingDatePopup: (
-  //   toggle: boolean
-  // ) => {
-  //   type: string;
-  //   payload: boolean;
-  // };
   saveBooking: (url: string, userId: string, bookingDate: string) => void;
   fetchBookingDates: (pathName: string, month: string, year: string) => void;
 }
@@ -37,7 +17,7 @@ export interface IBookingDateMapState {
     gapiAuth: any;
   };
   fetchedData: {
-    bookingDates: BookingDates;
+    bookingDates: IBookingDates;
   };
   postData: {
     bookingStatusMessage: string;

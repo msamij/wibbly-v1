@@ -1,4 +1,5 @@
 import React from 'react';
+import { productTypePlural } from '@globalTypes/types';
 import './Figure.css';
 
 interface IFigureResponseProps {
@@ -7,14 +8,14 @@ interface IFigureResponseProps {
   price: number;
   duration?: number;
   noOfRooms?: number;
-  figureType: 'hotels' | 'activities' | 'tours';
+  productType: productTypePlural;
 }
 
 function Figure(props: IFigureResponseProps) {
   const getSubTitle = () => {
-    if (props.figureType === 'hotels') {
+    if (props.productType === 'hotels') {
       return <span className="figure__title--sub">{props.noOfRooms} rooms</span>;
-    } else if (props.figureType === 'tours') {
+    } else if (props.productType === 'tours') {
       return <span className="figure__title--sub">{props.duration} days tour</span>;
     }
   };
@@ -27,7 +28,7 @@ function Figure(props: IFigureResponseProps) {
           {props.name}, {getSubTitle()}
         </h2>
         <h2 className="heading-default figure__price">
-          {props.price}$ {`${props.figureType === 'hotels' ? 'night' : ''}`}
+          {props.price}$ {`${props.productType === 'hotels' ? 'night' : ''}`}
         </h2>
       </React.Fragment>
     </figure>

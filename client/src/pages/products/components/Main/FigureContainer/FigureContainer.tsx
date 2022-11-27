@@ -1,5 +1,6 @@
 import React from 'react';
 import Figure from '@figure/Figure';
+import { productTypePlural } from '@globalTypes/types';
 import { activityResponse, IActivityResponse } from '@models/Activity';
 import { hotelsResponse, IHotelResponse } from '@models/Hotel';
 import { ITourResponse, toursResponse } from '@models/Tour';
@@ -7,7 +8,7 @@ import { Link } from 'react-router-dom';
 import './FigureContainer.css';
 
 interface IFigureContainerProps {
-  figureType: 'hotels' | 'activities' | 'tours';
+  figureType: productTypePlural;
   response: hotelsResponse | toursResponse | activityResponse;
 }
 interface IResponse extends IHotelResponse, ITourResponse, IActivityResponse {}
@@ -18,7 +19,7 @@ function FigureContainer(props: IFigureContainerProps) {
       return (
         <Link to={`/hotels/${response.name}`} key={response.id}>
           <Figure
-            figureType="hotels"
+            productType="hotels"
             name={response.name}
             price={response.price_per_night}
             noOfRooms={response.no_of_rooms}
@@ -30,7 +31,7 @@ function FigureContainer(props: IFigureContainerProps) {
       return (
         <Link to={`/tours/${response.name}`} key={response.id}>
           <Figure
-            figureType="tours"
+            productType="tours"
             name={response.name}
             price={response.price}
             duration={response.duration}
@@ -42,7 +43,7 @@ function FigureContainer(props: IFigureContainerProps) {
       return (
         <Link to={`activities/${response.name}`} key={response.id}>
           <Figure
-            figureType="activities"
+            productType="activities"
             name={response.name}
             price={response.price}
             image={response.activity_images[0]}

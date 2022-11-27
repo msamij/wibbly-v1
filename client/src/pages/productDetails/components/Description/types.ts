@@ -1,41 +1,21 @@
-import { IUIChange, productTypePlural } from '@globalTypes/types';
+import {
+  ISignIn,
+  IState,
+  IToggleBookingDate,
+  IToggleMessage,
+  IToggleOverlay,
+  IUIChange,
+  productTypePlural,
+  productTypeSingular,
+} from '@globalTypes/types';
 import { IUserBookingExists } from '@models/Model';
 
-// interface IUIChange {
-//   setMessageText: (
-//     message: string
-//   ) => {
-//     type: string;
-//     payload: string;
-//   };
-//   toggleMessage: (
-//     toggle: boolean
-//   ) => {
-//     type: string;
-//     payload: boolean;
-//   };
-//   toggleOverlay: (
-//     toggle: boolean
-//   ) => {
-//     type: string;
-//     payload: boolean;
-//   };
-//   toggleBookingDatePopup: (
-//     toggle: boolean
-//   ) => {
-//     type: string;
-//     payload: boolean;
-//   };
-// }
-
-interface IHttp {
-  trySignIn: (auth: any) => void;
-  fetchBookingExistsFlag: (productType: productTypePlural, userId: any) => void;
+interface IHttp extends ISignIn {
+  fetchBookingExistsFlag: (productType: productTypePlural, userId: string) => void;
 }
-interface IDescription {
+interface IDescription extends IState<IDescriptionMapState> {
   description: string;
-  state: IDescriptionMapState;
-  productType: 'hotel' | 'tour' | 'activity';
+  productType: productTypeSingular;
 }
 
 export interface IDescriptionMapState {
@@ -51,4 +31,10 @@ export interface IDescriptionMapState {
   };
 }
 
-export interface IDescriptionProps extends IUIChange, IHttp, IDescription {}
+export interface IDescriptionProps
+  extends IHttp,
+    IUIChange,
+    IDescription,
+    IToggleOverlay,
+    IToggleMessage,
+    IToggleBookingDate {}

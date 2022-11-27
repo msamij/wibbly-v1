@@ -1,3 +1,4 @@
+import { IUserBookingsList } from '@http/Models/Bookings';
 import { activityResponse, IActivityDetailResponse } from '@models/Activity';
 import { hotelsResponse, IHotelDetailResponse } from '@models/Hotel';
 import { ITourDetailResponse, toursResponse } from '@models/Tour';
@@ -25,6 +26,11 @@ const INITIAL_HOTEL = {
   no_of_rooms: 0,
   hotel_images: [''],
 };
+const INITIAL_USER_BOOKINGS = {
+  tourBookings: [],
+  hotelBookings: [],
+  activityBookings: [],
+};
 
 export const INITIAL_STATE = {
   gapiAuth: null,
@@ -34,14 +40,14 @@ export const INITIAL_STATE = {
   toggleMessage: false,
   selectedProductType: '',
   bookingStatusMessage: '',
-  bookings: [''] as [string],
+  bookings: [''] as any,
   toggleBookingListPopup: false,
   toggleBookingDatesPopup: false,
-  notifications: [''] as [string],
-  tours: [INITIAL_TOUR] as toursResponse,
-  hotels: [INITIAL_HOTEL] as hotelsResponse,
+  tours: [INITIAL_TOUR] as any,
+  hotels: [INITIAL_HOTEL] as any,
   userBookingExists: { userBookingsExists: null },
-  bookingDates: { bookingDates: [''] as [string] },
-  activities: [INITIAL_ACTIVITY] as activityResponse,
-  productDetail: {} as IActivityDetailResponse | ITourDetailResponse | IHotelDetailResponse,
+  bookingDates: { bookingDates: [''] as any },
+  activities: [INITIAL_ACTIVITY] as any,
+  userBookingsList: INITIAL_USER_BOOKINGS as any,
+  productDetail: {} as any,
 };

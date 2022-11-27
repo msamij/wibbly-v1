@@ -1,28 +1,10 @@
 import React from 'react';
-import { toggleBookingDatePopup, toggleOverlay, toggleBookingListPopup } from '@actions/uiChange';
+import { toggleBookingDatePopup, toggleBookingListPopup, toggleOverlay } from '@actions/uiChange';
+import { IToggleBookingDate, IToggleBookingList, IToggleOverlay } from '@globalTypes/types';
 import { connect } from 'react-redux';
 import './Overlay.css';
 
-interface IOverlayProps {
-  toggleOverlay: (
-    toggle: boolean
-  ) => {
-    type: string;
-    payload: boolean;
-  };
-  toggleBookingDatePopup: (
-    toggle: boolean
-  ) => {
-    type: string;
-    payload: boolean;
-  };
-  toggleBookingListPopup: (
-    toggle: boolean
-  ) => {
-    type: string;
-    payload: boolean;
-  };
-}
+interface IOverlayProps extends IToggleOverlay, IToggleBookingDate, IToggleBookingList {}
 
 function Overlay(props: IOverlayProps) {
   const onOverlayClick = () => {

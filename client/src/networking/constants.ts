@@ -13,6 +13,7 @@ export enum Resources {
 export enum ResourceEndPoints {
   exists = 'exists',
   signin = 'signin',
+  bookings = 'bookings',
   bookingDates = 'booking-dates',
   reserveBooking = 'reserve-booking',
 }

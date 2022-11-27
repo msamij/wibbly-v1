@@ -11,7 +11,7 @@ function Description(props: IDescriptionProps) {
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
-    // When this component first time renders, User might have a signin session, but since gapi takes some to load
+    // When this component first time renders, User might have a signin session, but since gapi takes some to load.
     // We need this condition!
     if (isClicked && props.state.auth.isSignedIn) {
       if (!props.state.fetchedData.userBookingExists.userBookingsExists) {
@@ -25,9 +25,8 @@ function Description(props: IDescriptionProps) {
   }, [props.state.fetchedData.userBookingExists]);
 
   const onReserveBookingButtonClicked = () => {
-    // console.log(props.state.uiChange);
-    // We have to account for that the user instantly clicks on this button, however gapi is not loaded
-    // Wait until it loads, then proceed
+    // We have to account for that the user instantly clicks on this button, however gapi is not loaded.
+    // Wait until it loads, then proceed.
     if (props.state.auth.gapiAuth) {
       if (props.state.auth.isSignedIn) {
         props.fetchBookingExistsFlag(

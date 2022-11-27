@@ -1,8 +1,9 @@
 import { IProductDetail } from '../types';
+import { productTypeSingular, productTypePlural } from '@globalTypes/types';
 
 export interface IComposeProductDetailProps {
   product: IProductDetail;
-  productType: 'hotels' | 'activities' | 'tours';
+  productType: productTypePlural;
 }
 export interface IDetailHeaderArgs {
   name: string;
@@ -20,6 +21,6 @@ export interface IMainArgs {
 }
 export interface IDescriptionArgs {
   description: string;
-  descriptionType: 'hotel' | 'tour' | 'activity';
+  descriptionType: productTypeSingular;
 }
 export interface IComposedComponentArgs extends IDetailHeaderArgs, IMainArgs, IDescriptionArgs {}

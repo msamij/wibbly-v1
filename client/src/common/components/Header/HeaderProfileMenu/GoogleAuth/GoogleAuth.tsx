@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { changeAuth, trySignIn, trySignOut, saveGoogleAuthInstance } from '@actions/auth';
 import { GoogleAuthConfig } from '@http/constants';
+import { ISignIn, IState } from '@globalTypes/types';
 import { connect } from 'react-redux';
 import GoogleAuthButton from './GoogleAuthButton';
 
-interface IGoogleAuthProps {
-  state: IGoogleAuthMapState;
-  trySignIn: (auth: any) => void;
+interface IGoogleAuthProps extends ISignIn, IState<IGoogleAuthMapState> {
   trySignOut: (auth: any) => void;
   saveGoogleAuthInstance: (
     gapiAuth: any

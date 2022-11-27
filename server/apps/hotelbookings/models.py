@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+
 from server.apps.hotelbookingdates.models import HotelBookingDate
 from server.apps.hotels.models import Hotel
 

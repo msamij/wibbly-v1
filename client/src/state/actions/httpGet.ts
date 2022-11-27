@@ -9,6 +9,7 @@ import {
   FETCH_HOTELS,
   FETCH_PRODUCT_DETAILS,
   FETCH_TOURS,
+  FETCH_USER_BOOKINGS,
   FETCH_USER_BOOKING_EXISTS_FLAG,
 } from 'types/index';
 
@@ -43,7 +44,12 @@ export const fetchBookingDates = (pathName: string, month: string, year: string)
   dispatch({ type: FETCH_BOOKING_DATES, payload: response });
 };
 
-export const fetchBookingExistsFlag = (productType: productTypePlural, userId: any) => async (
+export const fetchUserBookings = (userId: string) => async (dispatch: Dispatch<FetchActionTypes>) => {
+  const response = await httpGET(`${Resources.users}${userId}/${ResourceEndPoints.bookings}`);
+  dispatch({ type: FETCH_USER_BOOKINGS, payload: response });
+};
+
+export const fetchBookingExistsFlag = (productType: productTypePlural, userId: string) => async (
   dispatch: Dispatch<FetchActionTypes>
 ) => {
   const selectedProduct = {

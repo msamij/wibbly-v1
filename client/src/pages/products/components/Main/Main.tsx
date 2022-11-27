@@ -1,5 +1,6 @@
 import { fetchActivities, fetchHotels, fetchTours } from '@actions/httpGet';
 import FigureContainer from '@figureContainer/FigureContainer';
+import { IState } from '@globalTypes/types';
 import Heading from '@headingMain/Heading';
 import { activityResponse } from '@models/Activity';
 import { hotelsResponse } from '@models/Hotel';
@@ -8,11 +9,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './Main.css';
 
-interface IMainProps {
-  fetchActivities: () => Promise<void>;
-  fetchHotels: () => Promise<void>;
+interface IMainProps extends IState<IMainMapState['fetchedData']> {
   fetchTours: () => Promise<void>;
-  state: IMainMapState['fetchedData'];
+  fetchHotels: () => Promise<void>;
+  fetchActivities: () => Promise<void>;
 }
 
 function Main(props: IMainProps) {
