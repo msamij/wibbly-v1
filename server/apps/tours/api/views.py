@@ -54,7 +54,7 @@ def reserve_booking(request, tour):
     parsed_json = json.load(request)
     tour = Tour.objects.filter(name=tour)
 
-    if TourBookingDate.objects.filter(tour_booking_date=parsed_json['bookingDate']).exists():
+    if TourBookingDate.objects.filter(tour_booking_date=parsed_json['selectedDate']).exists():
         tour_booking_date = TourBookingDate.objects.filter(
             tour_booking_date=parsed_json['bookingDate'])
 
@@ -63,6 +63,7 @@ def reserve_booking(request, tour):
 
         tour_booking.tour_participants += 1
         tour_booking.save()
+        # We must also save userTourBookings here.
     else:
         tour_booking_date = TourBookingDate(
             tour_booking_date=parsed_json['bookingDate'])

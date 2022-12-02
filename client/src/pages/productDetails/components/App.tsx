@@ -15,13 +15,13 @@ function ProductDetails(props: IProductDetailProps) {
   useEffect(() => {
     props.fetchProductDetails(url);
     // By doing this redux would know what product is currently being viewed that user is trying to book.
-    // So we can fetch selected product bookings of a user, And if they had any then obviously we don't let them do another.
+    // So we can fetch selected product bookings of a user, And if they had any booking in progress then we don't let them do another.
     props.updateSelectedProduct(pathName);
   }, []);
 
   return (
     <React.Fragment>
-      {props.state.uiChange.toggleBookingDatesPopup && <BookingDatePopup pathName={url} />}
+      {props.state.uiChange.toggleBookingDatesPopup && <BookingDatePopup pathName={url} productType={pathName} />}
       {props.state.fetchedData.productDetail[urlMapping[pathName]] && (
         <ComposeProductDetail product={props.state.fetchedData.productDetail} productType={pathName} />
       )}

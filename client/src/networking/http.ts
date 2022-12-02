@@ -1,5 +1,8 @@
 export interface RequestBody {
   userId?: string;
+  noOfRooms?: number;
+  checkInDate?: string;
+  checkOutDate?: string;
   selectedDate?: string;
 }
 

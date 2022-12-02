@@ -54,7 +54,7 @@ def booking_dates(request, activity):
 def reserve_booking(request, activity):
     parse_json = json.load(request)
     activity = Activity.objects.filter(name=activity)
-    week_day = WeekDay.objects.filter(week_day=parse_json['bookingDate'])
+    week_day = WeekDay.objects.filter(week_day=parse_json['selectedDate'])
     user = User.objects.filter(google_auth_id=parse_json['userId'])
 
     if not ActivityBooking.objects.filter(activity_id=activity[0].id, activity_booking_day_id=week_day[0].id).exists():

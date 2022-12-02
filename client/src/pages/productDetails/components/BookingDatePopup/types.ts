@@ -1,5 +1,13 @@
+import {
+  IState,
+  IToggleBookingDate,
+  IToggleMessage,
+  IToggleOverlay,
+  IUIChange,
+  productTypePlural,
+} from '@globalTypes/types';
+import { RequestBody } from '@http/http';
 import { IBookingDates } from '@http/Models/Bookings';
-import { IToggleBookingDate, IToggleMessage, IToggleOverlay, IUIChange, IState } from '@globalTypes/types';
 
 export interface IBookingDateProps
   extends IUIChange,
@@ -8,7 +16,8 @@ export interface IBookingDateProps
     IToggleBookingDate,
     IState<IBookingDateMapState> {
   pathName: string;
-  saveBooking: (url: string, userId: string, bookingDate: string) => void;
+  productType: productTypePlural;
+  saveBooking: (url: string, data: RequestBody) => void;
   fetchBookingDates: (pathName: string, month: string, year: string) => void;
 }
 

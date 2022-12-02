@@ -10,12 +10,10 @@ async function HttpPOST(pathName: string, body: RequestBody): Promise<any> {
 /**
  *
  * @param url End point at which this function should send http post.
- * @example url = tours/tourName
+ * @example url = tours/{tourName}
  *
  **/
-export const saveBooking = (url: string, userId: string, selectedDate: string) => async (
-  dispatch: Dispatch<HttpPostActionTypes>
-) => {
-  const response = await HttpPOST(`${url}/${ResourceEndPoints.reserveBooking}`, { userId, selectedDate });
+export const saveBooking = (url: string, data: RequestBody) => async (dispatch: Dispatch<HttpPostActionTypes>) => {
+  const response = await HttpPOST(`${url}/${ResourceEndPoints.reserveBooking}`, data);
   dispatch({ type: SAVE_BOOKING, payload: response });
 };
