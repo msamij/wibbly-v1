@@ -1,6 +1,7 @@
 import { fetchBookingDates } from '@actions/httpGet';
 import { saveBooking } from '@actions/httpPost';
 import { setMessageText, toggleBookingDatePopup, toggleMessage, toggleOverlay } from '@actions/uiChange';
+import NoOfRoomsInput from '@bookingDatePopup/Input/NoOfRooms';
 import ButtonSecondary from '@button/ButtonSecondary/ButtonSecondary';
 import React, { MouseEventHandler, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
@@ -13,6 +14,11 @@ enum HOTEL_BOOKING_STATUS {
   selectCheckOutDate = 'Select check out date',
 }
 
+const currentDate = {
+  currentMonth: new Date().getMonth() + 1 + '',
+  currentYear: new Date().getFullYear() + '',
+};
+
 function BookingDatePopup(props: IBookingDateProps) {
   const [noOfRooms, setNoOfRooms] = useState('');
   const [isClicked, setIsClicked] = useState(false);
@@ -24,12 +30,19 @@ function BookingDatePopup(props: IBookingDateProps) {
   );
 
   useEffect(() => {
-    props.fetchBookingDates(props.pathName, new Date().getMonth() + 1 + '', new Date().getFullYear() + '');
+    props.fetchBookingDates(props.pathName, currentDate.currentMonth, currentDate.currentYear);
   }, []);
 
-  const saveBooking = (data: any) => {
-    props.saveBooking(props.pathName, data);
-  };
+  useEffect(() => {
+    if (isClicked && props.state.postData.bookingStatusMessage.length > 1) {
+      props.toggleOverlay(false);
+      props.toggleMessage(true);
+      props.toggleBookingDatePopup(false);
+      props.setMessageText(props.state.postData.bookingStatusMessage);
+    }
+  }, [props.state.postData.bookingStatusMessage]);
+
+  const saveBooking = (data: any) => props.saveBooking(props.pathName, data);
 
   const saveHotelBookingStatus = () => {
     if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectCheckInDate && checkInDate.length > 1) {
@@ -50,14 +63,9 @@ function BookingDatePopup(props: IBookingDateProps) {
 
   const onSaveBookingButtonClicked = () => {
     setIsClicked(true);
+    // Since we have multiple input fields for hotel booking we need inputs of all those fields only then we can do booking.
     if (props.productType === 'hotels') saveHotelBookingStatus();
     else saveBooking({ userId: props.state.auth.gapiAuth.currentUser.get().getId(), selectedDate });
-  };
-
-  const selectHotelBookingDates = (date: string) => {
-    if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectCheckInDate) setCheckInDate(date);
-    else if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectCheckOutDate) setCheckOutDate(date);
-    else if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectRooms) setNoOfRooms(date);
   };
 
   const onSelectDateButtonClicked: MouseEventHandler<HTMLButtonElement> = e => {
@@ -68,14 +76,15 @@ function BookingDatePopup(props: IBookingDateProps) {
     else setSelectedDate(date);
   };
 
-  useEffect(() => {
-    if (isClicked && props.state.postData.bookingStatusMessage.length > 1) {
-      props.toggleOverlay(false);
-      props.toggleMessage(true);
-      props.toggleBookingDatePopup(false);
-      props.setMessageText(props.state.postData.bookingStatusMessage);
+  const selectHotelBookingDates = (date: string) => {
+    // Move on to next selection once we select one input.
+    if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectCheckInDate) setCheckInDate(date);
+    else if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectCheckOutDate) setCheckOutDate(date);
+    else if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectRooms) {
+      console.log(date);
+      setNoOfRooms(date);
     }
-  }, [props.state.postData.bookingStatusMessage]);
+  };
 
   const returnBookingDatePopupTitle = () => {
     switch (props.productType) {
@@ -90,6 +99,25 @@ function BookingDatePopup(props: IBookingDateProps) {
     }
   };
 
+  const returnMonthTitle = () =>
+    props.productType === 'hotels' ? `Available rooms:` : `${currentDate.currentMonth} ${currentDate.currentYear}`;
+
+  const returnAvailableDates = () => {
+    if (props.productType === 'hotels' && hotelBookingStatus === HOTEL_BOOKING_STATUS.selectRooms) {
+      return <NoOfRoomsInput onInputChange={selectHotelBookingDates} />;
+    } else {
+      return (
+        <div className="booking-date-popup__date-selection">
+          {props.state.fetchedData.bookingDates.bookingDates.map((date: string, index: number) => (
+            <button key={index} className="btn btn-date" onClick={onSelectDateButtonClicked}>
+              {date}
+            </button>
+          ))}
+        </div>
+      );
+    }
+  };
+
   const returnBookingDates = () => {
     return (
       <React.Fragment>
@@ -97,16 +125,9 @@ function BookingDatePopup(props: IBookingDateProps) {
           <div className="booking-date-popup">
             <h2 className="heading-default booking-date-popup__heading">{returnBookingDatePopupTitle()}</h2>
             <div className="booking-date-popup__month">
-              <h2 className="heading-default booking-date-popup__month-title">Nov 2022</h2>
+              <h2 className="heading-default booking-date-popup__month-title">{returnMonthTitle()}</h2>
             </div>
-
-            <div className="booking-date-popup__date-selection">
-              {props.state.fetchedData.bookingDates.bookingDates.map((date: string, index: number) => (
-                <button key={index} className="btn btn-date" onClick={onSelectDateButtonClicked}>
-                  {date}
-                </button>
-              ))}
-            </div>
+            {returnAvailableDates()}
             <ButtonSecondary onButtonClick={() => onSaveBookingButtonClicked()} buttonText="Save" />
           </div>
         )}

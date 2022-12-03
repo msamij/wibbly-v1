@@ -4,13 +4,13 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
 from server.apps.activitybookingdays.models import ActivityBookingDay, WeekDay
+from server.apps.activitybookings.models import ActivityBooking
 from server.apps.activityinstructors.api.serializers import \
     ActivityInstructorSerializer
-
-from server.apps.useractivitybookings.models import UserActivityBooking
 from server.apps.activityinstructors.models import ActivityInstructor
-from server.apps.activitybookings.models import ActivityBooking
+from server.apps.useractivitybookings.models import UserActivityBooking
 from server.apps.users.models import User
+from server.utils.generic_view import *
 
 from ..models import Activity
 from .serializers import ActivitySerializer
@@ -18,9 +18,10 @@ from .serializers import ActivitySerializer
 
 @api_view(['GET'])
 def activities(request):
-    activity = Activity.objects.all()[:4]
-    activity_serializer = ActivitySerializer(activity, many=True)
-    return JsonResponse(activity_serializer.data, safe=False)
+    # print(type(Activity))
+    # activity = Activity.objects.all()[:4]
+    # activity_serializer = ActivitySerializer(activity, many=True)
+    return JsonResponse(return_product(Activity, ActivitySerializer), safe=False)
 
 
 @api_view(['GET'])

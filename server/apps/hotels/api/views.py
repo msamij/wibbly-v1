@@ -8,6 +8,7 @@ from server.apps.hotelbookings.models import HotelBooking
 from server.apps.userhotelbookings.models import UserHotelBooking
 from server.apps.users.models import User
 from server.utils.construct_dates import construct_dates
+from server.utils.generic_view import *
 
 from ..models import Hotel, HotelAddress
 from .serializers import HotelAddressSerializer, HotelSerializer
@@ -15,9 +16,9 @@ from .serializers import HotelAddressSerializer, HotelSerializer
 
 @api_view(['GET'])
 def hotels(request):
-    hotels = Hotel.objects.all()[:4]
-    hotels_serializer = HotelSerializer(hotels, many=True)
-    return JsonResponse(hotels_serializer.data, safe=False)
+    # hotels = Hotel.objects.all()[:4]
+    # hotels_serializer = HotelSerializer(hotels, many=True)
+    return JsonResponse(return_product(Hotel, HotelSerializer), safe=False)
 
 
 @api_view(['GET'])

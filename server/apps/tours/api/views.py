@@ -11,6 +11,7 @@ from server.apps.tourinstructors.models import TourInstructor
 from server.apps.users.models import User
 from server.apps.usertourbookings.models import UserTourBooking
 from server.utils.construct_dates import construct_dates
+from server.utils.generic_view import *
 
 from ..models import Tour
 from .serializers import TourSerializer
@@ -18,9 +19,9 @@ from .serializers import TourSerializer
 
 @api_view(['GET'])
 def tours(request):
-    tours = Tour.objects.all()[:4]
-    tours_serializer = TourSerializer(tours, many=True)
-    return JsonResponse(tours_serializer.data, safe=False)
+    # tours = Tour.objects.all()[:4]
+    # tours_serializer = TourSerializer(tours, many=True)
+    return JsonResponse(return_product(Tour, TourSerializer), safe=False)
 
 
 @api_view(['GET'])
