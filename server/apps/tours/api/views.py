@@ -19,14 +19,14 @@ from .serializers import TourSerializer
 
 @api_view(['GET'])
 def tours(request):
-    # tours = Tour.objects.all()[:4]
-    # tours_serializer = TourSerializer(tours, many=True)
     return JsonResponse(return_product(Tour, TourSerializer), safe=False)
 
 
 @api_view(['GET'])
 def tour(request, tour):
-    tour = Tour.objects.filter(name=tour)
+    # tour = Tour.objects.filter(name=tour)
+
+    tour = return_tour_instance(Tour, tour)
     tour_instructor = TourInstructor.objects.filter(tour_id=tour[0].id)
     tour_serializer = TourSerializer(tour, many=True)
     tour_instructor_serializer = TourInstructorSerializer(
@@ -38,7 +38,10 @@ def tour(request, tour):
 def booking_dates(request, tour):
     month = request.GET.get('month')
     year = request.GET.get('year')
-    tour = Tour.objects.filter(name=tour)
+
+    # tour = Tour.objects.filter(name=tour)
+
+    tour = return_tour_instance(Tour, tour)
     tour_booking_dates = TourBookingDate.objects.filter(
         tour_booking_date__month=month, tour_booking_date__year=year)
     if not tour_booking_dates:
@@ -53,7 +56,9 @@ def booking_dates(request, tour):
 @api_view(['POST'])
 def reserve_booking(request, tour):
     parsed_json = json.load(request)
-    tour = Tour.objects.filter(name=tour)
+    # tour = Tour.objects.filter(name=tour)
+
+    tour = return_tour_instance(Tour, tour)
 
     if TourBookingDate.objects.filter(tour_booking_date=parsed_json['selectedDate']).exists():
         tour_booking_date = TourBookingDate.objects.filter(

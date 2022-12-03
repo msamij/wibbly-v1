@@ -16,14 +16,14 @@ from .serializers import HotelAddressSerializer, HotelSerializer
 
 @api_view(['GET'])
 def hotels(request):
-    # hotels = Hotel.objects.all()[:4]
-    # hotels_serializer = HotelSerializer(hotels, many=True)
     return JsonResponse(return_product(Hotel, HotelSerializer), safe=False)
 
 
 @api_view(['GET'])
 def hotel(request, hotel):
-    hotel = Hotel.objects.filter(name=hotel)
+    # hotel = Hotel.objects.filter(name=hotel)
+
+    hotel = return_hotel_instance(Hotel, hotel)
     hotel_address = HotelAddress.objects.filter(hotel_id=hotel[0].id)
     hotel_seriazlizer = HotelSerializer(hotel, many=True)
     hotel_address_serializer = HotelAddressSerializer(hotel_address, many=True)
@@ -34,7 +34,10 @@ def hotel(request, hotel):
 def booking_dates(request, hotel):
     month = request.GET.get('month')
     year = request.GET.get('year')
-    hotel = Hotel.objects.filter(name=hotel)
+
+    # hotel = Hotel.objects.filter(name=hotel)
+
+    hotel = return_hotel_instance(Hotel, hotel)
     hotel_booking_dates = HotelBookingDate.objects.filter(
         check_in_date__month=month)
 
@@ -49,6 +52,8 @@ def booking_dates(request, hotel):
 def reserve_booking(request, hotel):
     parsed_json = json.load(request)
     # hotel = Hotel.objects.filter(name=hotel)
+    hotel = return_hotel_instance(Hotel, hotel)
+
     # if HotelBookingDate.objects.filter(check_in_date=parsed_json['checkInDate'], check_out_date=parsed_json['checkOutDate']).exists():
     #     hotel_booking_date = HotelBookingDate.objects.filter(
     #         check_in_date=parsed_json['checkInDate'], check_out_date=parsed_json['checkOutDate'])

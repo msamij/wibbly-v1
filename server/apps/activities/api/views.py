@@ -18,16 +18,14 @@ from .serializers import ActivitySerializer
 
 @api_view(['GET'])
 def activities(request):
-    # print(type(Activity))
-    # activity = Activity.objects.all()[:4]
-    # activity_serializer = ActivitySerializer(activity, many=True)
     return JsonResponse(return_product(Activity, ActivitySerializer), safe=False)
 
 
 @api_view(['GET'])
 def activity(request, activity):
-    activity = Activity.objects.filter(name=activity)
+    # activity = Activity.objects.filter(name=activity)
 
+    activity = return_activity_instance(Activity, activity)
     activity_instructor = ActivityInstructor.objects.filter(
         activity_id=activity[0].id)
 
@@ -40,11 +38,13 @@ def activity(request, activity):
 
 @api_view(['GET'])
 def booking_dates(request, activity):
-    week_days = []
-    activity = Activity.objects.filter(name=activity)
+    # activity = Activity.objects.filter(name=activity)
+
+    activity = return_activity_instance(Activity, activity)
     activity_booking_days = ActivityBookingDay.objects.filter(
         activity_id=activity[0].id)
 
+    week_days = []
     for a in activity_booking_days:
         week_days.append(a.week_day.week_day)
 
@@ -54,7 +54,9 @@ def booking_dates(request, activity):
 @api_view(['POST'])
 def reserve_booking(request, activity):
     parse_json = json.load(request)
-    activity = Activity.objects.filter(name=activity)
+    # activity = Activity.objects.filter(name=activity)
+
+    activity = return_activity_instance(Activity, activity)
     week_day = WeekDay.objects.filter(week_day=parse_json['selectedDate'])
     user = User.objects.filter(google_auth_id=parse_json['userId'])
 
