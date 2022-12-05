@@ -1,11 +1,4 @@
 import json
-from typing import TypeVar
-
-from django.db import models
-from rest_framework import serializers
-
-# T = TypeVar('T', bound=models.Model)
-# S = TypeVar('S', bound=serializers.ModelSerializer)
 
 
 def return_product(Model, Serializer):
@@ -26,5 +19,21 @@ def return_hotel_instance(Hotel, hotel):
     return Hotel.objects.filter(name=hotel)
 
 
+def return_user_instance(User, userId):
+    return User.objects.filter(google_auth_id=userId)
+
+
 def return_json_parsed_request(request):
     return json.load(request)
+
+
+def return_request_month(request):
+    return request.GET.get('month')
+
+
+def return_request_year(request):
+    return request.GET.get('year')
+
+
+def tour_booking_date_exists():
+    pass

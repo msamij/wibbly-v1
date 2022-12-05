@@ -52,6 +52,7 @@ function BookingDatePopup(props: IBookingDateProps) {
     }
 
     if (checkInDate.length > 1 && checkOutDate.length > 1 && noOfRooms.length > 1) {
+      console.log(typeof checkInDate, typeof checkOutDate, typeof noOfRooms);
       saveBooking({
         userId: props.state.auth.gapiAuth.currentUser.get().getId(),
         checkInDate,
@@ -80,10 +81,11 @@ function BookingDatePopup(props: IBookingDateProps) {
     // Move on to next selection once we select one input.
     if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectCheckInDate) setCheckInDate(date);
     else if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectCheckOutDate) setCheckOutDate(date);
-    else if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectRooms) {
-      console.log(date);
-      setNoOfRooms(date);
-    }
+    else if (hotelBookingStatus === HOTEL_BOOKING_STATUS.selectRooms) selectNoOfRooms(date);
+  };
+
+  const selectNoOfRooms = (val: string) => {
+    setNoOfRooms(val);
   };
 
   const returnBookingDatePopupTitle = () => {
