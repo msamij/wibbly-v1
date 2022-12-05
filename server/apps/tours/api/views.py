@@ -1,13 +1,8 @@
-import json
-
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
 from server.apps.tourbookingdates.models import TourBookingDate
 from server.apps.tourbookings.models import TourBooking
-from server.apps.tourinstructors.api.serializers import \
-    TourInstructorSerializer
-from server.apps.tourinstructors.models import TourInstructor
 from server.apps.users.models import User
 from server.apps.usertourbookings.models import UserTourBooking
 from server.utils.construct_dates import construct_booking_dates
@@ -25,12 +20,13 @@ def tours(request):
 @api_view(['GET'])
 def tour(request, tour):
     tour_instance = return_tour_instance(Tour, tour)
-    tour_instructor_instance = TourInstructor.objects.filter(
-        tour_id=tour_instance[0].id)
+    tour_instructor_instance = return_tour_instructor_instance(
+        tour_instance[0].id)
 
-    tour_instance_serializer = TourSerializer(tour_instance, many=True)
-    tour_instructor_serializer = TourInstructorSerializer(
-        tour_instructor_instance, many=True)
+    tour_instance_serializer = return_tour_serializer_instance(tour_instance)
+    tour_instructor_serializer = return_tour_instructor_serializer_instance(
+        tour_instructor_instance)
+
     return JsonResponse({'tour': tour_instance_serializer.data, 'tour_instructor': tour_instructor_serializer.data}, safe=False)
 
 
@@ -39,10 +35,7 @@ def booking_dates(request, tour):
     year = return_request_year(request)
     month = return_request_month(request)
 
-    tour_booking_dates = TourBookingDate.objects.filter(
-        tour_booking_date__month=month, tour_booking_date__year=year)
-
-    if not tour_booking_dates:
+    if not return_tour_booking_date_instance(month, year):
         dates = construct_booking_dates(int(month), int(year))
 
     # Else if we have some booking on requested month, we must do calculuation to figure out what dates are available.
@@ -57,7 +50,7 @@ def reserve_booking(request, tour):
 
     if TourBookingDate.objects.filter(tour_booking_date=parsed_json['selectedDate']).exists():
         tour_booking_date = TourBookingDate.objects.filter(
-            tour_booking_date=parsed_json['bookingDate'])
+            tour_booking_date=parsed_json['selectedDate'])
 
         tour_booking = TourBooking.objects.filter(
             tour_id=tour_instance[0].id, tour_booking_date_id=tour_booking_date[0].id)[0]
@@ -67,7 +60,7 @@ def reserve_booking(request, tour):
         # We must also save userTourBookings here.
     else:
         tour_booking_date = TourBookingDate(
-            tour_booking_date=parsed_json['bookingDate'])
+            tour_booking_date=parsed_json['selectedDate'])
         tour_booking_date.save()
 
         tour_booking = TourBooking(
